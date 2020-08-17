@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "Corbert";
+    src: url("../lib/fonts/Corbert-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Corbert Bold";
+    src: url("../lib/fonts/Corbert-Bold.otf");
+}
+
+@font-face {
+    font-family: "Corbert Thin";
+    src: url("../lib/fonts/Corbert-Thin.otf");
+}
+
+@font-face {
+    font-family: "Granic Slab Bold";
+    src: url("../lib/fonts/Granic-Slab-Bold.otf");
+}
+
+*{
+    font-family: "Corbert";
+}
+
+body{
+    margin: 0
+}
+
+a{
+    color: #4A4843 !important;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline !important;
+}
+
+button{
+    cursor: pointer;
+}
