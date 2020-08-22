@@ -1,8 +1,116 @@
 .homepage-banner{
     background-image: url('../../lib/img/homepage_banner.jpeg');
     width: 100vw;
-    height: 90vh;
+    height: 85vh;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+}
+
+.img-overlay{
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 85vh;
+}
+
+.mainTitle-banner p {
+    color: #ffffff;
+    font-family: 'Corbert Heavy';
+    line-height: normal !important;
+}
+
+.mainTitle-banner{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.our-story-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.our-story-card.flipped .our-story-card-text{
+   padding: 0 0 0 3em;
+}
+
+.our-story-card-text{
+    width: 52%;
+    height: 100%;
+}
+
+.our-story-card-title{
+    font-size: 50px;
+    font-family: 'Corbert Heavy';
+    margin-bottom: 0;
+}
+
+.our-story-card-subtitle{
+    font-size: 30px;
+}
+
+.our-story-card-img-container{
+    width: 48%;
+    height: 100%;
+}
+
+.our-story-card-img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.our-story-card.marine-species-card .our-story-card-text{
+    width: 100%;
+    text-align: center;
+}
+
+.our-story-card.our-customers-card .our-story-card-text{
+    width: 100%;
+    text-align: center;
+}
+
+.our-story-card.marine-species-card .our-story-card-img-container{
+    width: 20%;
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.our-story-card-text.non-profit-info{
+    margin-top: 100px;
+}
+
+.our-story-card.our-customers-card .our-story-card-img-container{
+    width: 15%;
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    border: 1px solid #707070;
+    border-radius: 100%;
+}
+
+.our-story-card.about-us-card .our-story-card-text{
+    width: 100%;
+    text-align: center;
+}
+
+.our-story-card.about-us-card .our-story-card-subtitle{
+    margin-top: 60px;
 }

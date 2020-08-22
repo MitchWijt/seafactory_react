@@ -14,12 +14,34 @@
 }
 
 @font-face {
+    font-family: "Corbert Heavy";
+    src: url("../lib/fonts/Corbert-Heavy.otf");
+}
+
+@font-face {
     font-family: "Granic Slab Bold";
     src: url("../lib/fonts/Granic-Slab-Bold.otf");
 }
 
 *{
     font-family: "Corbert";
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1500px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.heavy-font{
+    font-family: "Corbert Heavy";
+}
+
+.bold{
+    font-family: "Corbert Bold";
 }
 
 body{
@@ -37,4 +59,12 @@ a:hover{
 
 button{
     cursor: pointer;
+}
+
+h1, h2{
+    color: #4A4843 !important;
+}
+
+.underline{
+    text-decoration: underline;
 }

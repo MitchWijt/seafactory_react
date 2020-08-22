@@ -8,14 +8,16 @@ const Header = () => {
     return (
         <div className='header-container'>
             <div className="header">
-                <span id='seafactory-logo'>SeaFactory</span>
+                <Link to='/'>
+                    <span id='seafactory-logo'>SeaFactory</span>
+                </Link>
                 <div className='nav-menu'>
                     <Link to='/'>Customers</Link>
                     <Link to='/'>About us</Link>
                     <Divider className='divider' type='vertical'/>
                     <Link to='/'>Login</Link>
                     <Link to='/'>
-                        <Button text='Join here' type='cta' fontType='bold' fontSize='17px'/>
+                        <Button text='Join here' type='cta' fontType='bold' fontSize='15px'/>
                     </Link>
                 </div>
              </div>
