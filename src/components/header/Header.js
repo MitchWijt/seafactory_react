@@ -17,7 +17,7 @@ const Header = () => {
                     <Divider className='divider' type='vertical'/>
                     <Link to='/'>Login</Link>
                     <Link to='/'>
-                        <Button text='Join here' type='cta' fontType='bold' fontSize='15px'/>
+                        <Button text='Sign in' type='cta' fontType='bold' fontSize='15px'/>
                     </Link>
                 </div>
              </div>

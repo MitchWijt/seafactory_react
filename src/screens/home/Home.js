@@ -1,14 +1,81 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Header from '../../components/header'
 import Footer from '../../components/footer'
-import HomeInput from '../../components/homeInput'
+import HomeInput from '../../components/home/homeInput'
+import HomeInputButton from '../../components/home/homeInputButton'
 import exampleImglarge from '../../lib/img/example-pic-large.jpeg'
 import projectHiu from '../../lib/img/project_hiu.png'
 import Hr from '../../components/hr'
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
+import {addEmail} from '../../redux/actions/newAccountActions';
+import { validateEmail } from '../../services/formik/fieldValidations';
+import { Formik } from 'formik';
+import axios from 'axios';
+import fetchCdnImage from '../../services/cdnImage';
 import './style.css'
 
+const emailIsUnique = async (email) => {
+    const users = await axios(`/user?email=${email}`);
+    return users.data.length < 1;
+}
+
+
 const Home = (props) => {
+    useEffect(() => {
+        const setToken = async () => {
+            await axios.get('/token');
+        }
+        setToken();
+
+        //is jwt token in cookie? redirect to dashboard of user.
+    }, [])
+
+
+    const HomeEmailInput = () => (
+        <div>
+          <Formik
+            initialValues={{email: ''}}
+            validate={values => {
+              const errors = validateEmail(values.email);
+              return errors;
+            }}
+            onSubmit={async (values, { setSubmitting }) => {
+                const email = values.email;
+                props.addEmail(email);
+                localStorage.setItem('newUser', JSON.stringify({email: email}));
+                setSubmitting(false);
+
+                const isUnique = await emailIsUnique(email);
+
+                if(isUnique){
+                    localStorage.setItem('newUserStep', '1-info');
+                    props.history.push('/register');
+                } else {
+                    props.history.push('/login');  
+                }
+                
+            }}
+          >
+            {({
+              values,
+              errors,
+              handleChange,
+              handleSubmit,
+              isSubmitting,
+            }) => (
+              <form onSubmit={handleSubmit}>
+                  <div className='home-input-group'>
+                    <HomeInput type='email' name='email' onChange={handleChange} value={values.email}/>
+                    <HomeInputButton type='submit' title='Try it now' disabled={isSubmitting}/>
+                  </div>
+                  <span className='input-error'>{errors.email}</span>
+              </form>
+            )}
+          </Formik>
+        </div>
+    );
+
     return (
         <>
             <Header/>
@@ -19,7 +86,7 @@ const Home = (props) => {
                             <p style={{fontSize: '60px', marginBottom: '40px'}}>Register divers, <br></br> rentals, and more!</p>
                             <p style={{fontSize: '50px', marginBottom: '40px'}}>Your one stop dive center administrator</p>
                             <p style={{fontSize: '30px', marginBottom: '80px'}}>You hate paperwork? So do we!</p>
-                            <HomeInput/>
+                            <HomeEmailInput/>
                         </div>
                     </div>
                 </div>
@@ -81,7 +148,7 @@ const Home = (props) => {
                         <div className='our-story-card-text'>
                             <h1 className='our-story-card-title'>Our customers</h1>
                              <div className='our-story-card-img-container'>
-                                <img className='our-story-card-img' src='https://seafactory-cdn.s3.amazonaws.com/companyLogos/5e9b838334e1d87bb7999acb/wannadive-logo.png' alt='Wannadive bonaire'/>
+                                <img className='our-story-card-img' src={fetchCdnImage('/companyLogos/5e9b838334e1d87bb7999acb/wannadive-logo.png')} alt='Wannadive bonaire'/>
                             </div>
                             <p className='our-story-card-subtitle bold'>Wannadive Bonaire</p>
                         </div>
@@ -93,7 +160,7 @@ const Home = (props) => {
                         <div className='our-story-card-text'>
                             <h1 className='our-story-card-title'>About us</h1>
                             <p className='our-story-card-subtitle'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus aspernatur, esse incidunt facilis nam maiores doloribus dolorem ad accusamus, tempore quo libero magnam delectus commodi qui. Quisquam molestiae delectus porro.</p>
-                            <HomeInput/>
+                            <HomeEmailInput/>
                         </div>
                     </div>
                 </div> 
@@ -104,4 +171,15 @@ const Home = (props) => {
     )
 }
 
-export default Home
+const mapStateToProps = (state) => {
+    return {
+        newAccount: {...state.newAccountReducer}
+    }
+}
+
+const mapDispatchToProps = {addEmail};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home)

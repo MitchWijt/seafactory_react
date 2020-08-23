@@ -1,0 +1,51 @@
+.register-container{
+    text-align: center;
+}
+
+.register-step-counter{
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #4A4843;
+}
+
+.register-box-container{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.register-text-container{
+    width: 50%;
+    background: #F2F2F2;
+    position: relative;
+}
+
+.register-list-item{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.register-list-item p{
+    margin-bottom: 0 !important;
+}
+
+
+.register-list-item-icon{
+    margin-right: 5px;
+    height: 30px !important;
+    width: 30px !important;
+    color: #FF6F61;
+}
+
+.register-list-text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.register-cta-button{
+    margin-top: 70px;
+}
