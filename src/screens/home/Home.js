@@ -69,7 +69,7 @@ const Home = (props) => {
                             <div className='our-story-card-text non-profit-info'>
                                 <p className='our-story-card-subtitle'>By choosing to use our services for your dive center. <br></br> You are also saving sharks and different marine species at the same time!</p>
                                 <p className='our-story-card-subtitle bold'>How?</p>
-                                <p className='our-story-card-subtitle'>With every dive center that chooses to use our services we donate <span className='bold'>$10/Month</span> to a Non-profit organization called <span className='bold'>Project Hiu</span></p>
+                                <p className='our-story-card-subtitle'>With every dive center that chooses to use our services we donate <span className='bold'>$3/Month</span> to a Non-profit organization called <span className='bold'>Project Hiu</span></p>
                                 <Link className='our-story-card-subtitle underline' to='/'>Learn more</Link>
                             </div>
                         </div>
