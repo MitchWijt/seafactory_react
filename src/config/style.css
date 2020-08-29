@@ -74,3 +74,7 @@ h1, h2{
     font-family: 'Corbert Heavy' !important;
     color: #4A4843 !important;
 }
+
+span,p {
+    color: #707070
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import OneInfo from './steps/OneInfo';
 import OnePlans from './steps/OnePlans';
+import TwoInfo from './steps/TwoInfo';
+import TwoPassword from './steps/TwoPassword';
 import Header from '../../components/header';
 import { connect } from 'react-redux';
 
@@ -11,6 +13,8 @@ const getFormStep = (props) => {
     switch(step){
         case '1-info': return <OneInfo {...props}/>
         case '1-plans': return <OnePlans {...props}/>
+        case '2-info': return <TwoInfo {...props}/>
+        case '2-password': return <TwoPassword {...props} />
         default: return <OneInfo/>
     }
 }
