@@ -1,0 +1,17 @@
+.formInput{
+    border: 1px solid #4A4843;
+    border-radius: 5px;
+    color: #4A4843;
+    min-height: 50px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.errorStyle{
+    border: 1px solid red;
+}
+
+.formInputGroup{
+    text-align: left;
+}

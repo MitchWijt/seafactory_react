@@ -9,17 +9,19 @@ import Hr from '../../components/hr'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 import {addEmail} from '../../redux/actions/newAccountActions';
-import { validateEmail } from '../../services/formik/fieldValidations';
+import { validateEmail, emailIsUnique } from '../../services/formik/fieldValidations';
 import { Formik } from 'formik';
 import axios from 'axios';
 import fetchCdnImage from '../../services/cdnImage';
+import * as Yup from 'yup';
 import './style.css'
 
-const emailIsUnique = async (email) => {
-    const users = await axios(`/user?email=${email}`);
-    return users.data.length < 1;
-}
 
+const validationSchema = Yup.object({
+    email: Yup.string()
+        .email('Invalid email address')
+        .required('Email is required'),
+});
 
 const Home = (props) => {
     useEffect(() => {
@@ -36,10 +38,9 @@ const Home = (props) => {
         <div>
           <Formik
             initialValues={{email: ''}}
-            validate={values => {
-              const errors = validateEmail(values.email);
-              return errors;
-            }}
+            validationSchema={validationSchema}
+            validateOnChange={false}
+            validateOnBlur={false}
             onSubmit={async (values, { setSubmitting }) => {
                 const email = values.email;
                 props.addEmail(email);

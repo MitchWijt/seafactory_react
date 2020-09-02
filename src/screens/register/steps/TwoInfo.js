@@ -27,7 +27,7 @@ const TwoInfo = ({history}) => {
                                 <PeopleAltIcon className='register-list-item-icon large'/>
                                 <p>SeaFactory is personalized for your dive center. Create a password to access SeaFactory on any device at any time.</p>
                                 <div className='register-cta-button'>
-                                    <Button onClick={handleClick} type='cta' fontType='bold' text='Continue'/>
+                                    <Button onClick={handleClick} category='cta' type='button' fontType='bold' text='Continue'/>
                                 </div>
                             </div>
                         </div>

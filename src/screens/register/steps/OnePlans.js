@@ -66,7 +66,7 @@ const OnePlans = (props) => {
     return (
         <>
             <div className='container'>
-                <div className='register-plans-container'>
+                <div className='register-medium-container'>
                     <div className="register-text">
                         <p className='register-step-counter'>Step 1 of 4</p>
                         <h1 className='heavy-title'>Choose the best plan for your dive center</h1>
@@ -81,7 +81,7 @@ const OnePlans = (props) => {
                         {props.currentChosenPremiumPlan.title !== 'Premium' ? <p id='customerLimitExceeds'>*If customer limit gets exceeded its $2 extra per customer</p> : ''}
                     </div>  
                     <div className='register-cta-button'>
-                        <Button onClick={handleClick} type='cta' fontType='bold' text='Continue'/>
+                        <Button onClick={handleClick} category='cta' fontType='bold' text='Continue'/>
                     </div>     
                 </div>
             </div>

@@ -37,7 +37,7 @@ const OneInfo = ({history}) => {
                                     <p>Daily personalized dashboard</p>
                                 </div>
                                 <div className='register-cta-button'>
-                                    <Button onClick={handleClick} type='cta' fontType='bold' text='See all plans'/>
+                                    <Button onClick={handleClick} category='cta' type='button' fontType='bold' text='See all plans'/>
                                 </div>
                             </div>
                         </div>

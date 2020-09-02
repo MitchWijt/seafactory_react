@@ -56,7 +56,7 @@
     margin-top: 70px;
 }
 
-.register-plans-container{
+.register-medium-container{
     text-align: center;
     margin: 0 auto;
     max-width: 900px;
@@ -127,4 +127,47 @@
 #customerLimitExceeds{
     font-size: 12px;
     margin-top: 30px;
+}
+
+.register-cta-payment-button{
+    border: 1px solid #C4C0B6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.register-cta-payment-button:hover{
+    border: 1px solid #FF6F61;
+    
+}
+
+.register-cta-payment-icon{
+    color: #707070;
+    margin-left: 5px;
+    height: 25px !important;
+    width: 25px !important;
+}
+
+.register-cta-text-icon{
+    padding-left: 10px;
+    align-items: center;
+    display: flex;
+}
+
+.register-cta-chevron{
+    height: 35px !important;
+    width: 35px !important;
+}
+
+.register-cta-loading{
+    border: 1px solid #C4C0B6;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
