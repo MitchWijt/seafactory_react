@@ -25,12 +25,9 @@ const validationSchema = Yup.object({
 
 const Home = (props) => {
     useEffect(() => {
-        const setToken = async () => {
-            await axios.get('/token');
-        }
-        setToken();
-
-        //is jwt token in cookie? redirect to dashboard of user.
+        if(props.userState.isLoggedIn){
+            // window.location.href = '/dashboard';
+        } 
     }, [])
 
 
@@ -174,7 +171,8 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        newAccount: {...state.newAccountReducer}
+        newAccount: {...state.newAccountReducer},
+        userState: {...state.userStateReducer}
     }
 }
 
