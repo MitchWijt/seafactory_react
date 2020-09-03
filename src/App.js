@@ -19,7 +19,7 @@ const checkLoginStatus = async (login, logout) => {
   let res = await axios.get('/auth/user');
 
   if(res.data.isLoggedIn === true){
-    login(res.data.user);
+    login(res.data.user, res.data.user.role);
   } else {
     logout();
     const setToken = async () => {

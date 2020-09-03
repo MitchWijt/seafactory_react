@@ -1,5 +1,6 @@
 const defaultState = {
     isLoggedIn: null, 
+    role: null,
     user: null
 }
 
@@ -10,6 +11,7 @@ const userStateReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 isLoggedIn: action.payload.isLoggedIn,
+                role: action.payload.role,
                 user: action.payload.user
             }
         }
@@ -17,6 +19,7 @@ const userStateReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 isLoggedIn: false,
+                role: null,
                 user: null
             }
         }
