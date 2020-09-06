@@ -37,3 +37,16 @@
     height: 30px !important;
     display: block !important;
 }
+
+.account-icon{
+    color: #FF6F61;
+    height: 25px !important;
+    width: 25x !important;
+}
+
+.account-badge{
+    border: 1px solid #D8D8D8;
+    border-radius: 100%;
+    padding: 8px 11px;
+    cursor: pointer;
+}

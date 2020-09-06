@@ -19,9 +19,9 @@ import {ProtectedRoute} from './config/protectedRoute';
 
 const checkLoginStatus = async (login, logout, userState) => {
   let res = await axios.get('/auth/user');
- 
+
   if(res.data.isLoggedIn === true){
-    login(res.data.user, res.data.user.role);
+    login(res.data.user, res.data.role);
   } else {
     logout();
     await axios.get('/token');
@@ -41,8 +41,7 @@ function App(props) {
     <Router>
       <Switch>
         <ProtectedRoute exact path='/thank-you' component={PaymentComplete} userState={props.userState}/>
-        <Route exact path='/login/admin' component={Login}/>
-        <Route exact path='/login/staff' component={Login}/>
+        <Route exact path='/login/:type' component={Login}/>
         <Route exact path='/register' component={Register}/>
         <Route exact path='/' component={Home}/>
       </Switch>

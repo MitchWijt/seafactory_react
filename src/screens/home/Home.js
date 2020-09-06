@@ -50,7 +50,7 @@ const Home = (props) => {
                     localStorage.setItem('newUserStep', '1-info');
                     props.history.push('/register');
                 } else {
-                    props.history.push('/login');  
+                    props.history.push('/login/admin');  
                 }
                 
             }}
