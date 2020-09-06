@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from '../button';
 import './style.css'
 import {Divider} from 'antd';
@@ -32,16 +32,23 @@ const HeaderLoggedOut = () => {
 }
 
 const HeaderLoggedIn = () => {
+    const [menuShown, setMenuShown] = useState(false);
+
     return (
         <div className='header-container'>
             <div className="header">
                 <Link to='/'>
                     <span id='seafactory-logo'>SeaFactory</span>
                 </Link>
-                <div className='account-badge'>
+                <div className='account-badge' onClick={() => setMenuShown(!menuShown)}>
                     <PersonIcon className='account-icon'/>
+                    {menuShown ? 
+                        <div className='account-menu'>
+                            <Button onClick={handleLogout} text='Logout' category='cta' type='button' fontType='bold' fontSize='15px'/>
+                        </div> 
+                    : '' }
                 </div>
-                <Button onClick={handleLogout} text='Logout' category='cta' type='button' fontType='bold' fontSize='15px'/>
+                
              </div>
         </div>
     )
