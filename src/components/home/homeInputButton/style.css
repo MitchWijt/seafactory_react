@@ -1,0 +1,17 @@
+.homeInputButton {
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    background: #FF6F61;
+    border: none;
+    height: 40px;
+}
+
+.homeInputButton{
+    font-family: 'Corbert Bold';
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.homeInputButton:hover{
+    background: #FF6F61;
+}

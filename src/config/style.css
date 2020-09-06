@@ -68,3 +68,13 @@ h1, h2{
 .underline{
     text-decoration: underline;
 }
+
+.heavy-title{
+    font-size: 30px;
+    font-family: 'Corbert Heavy' !important;
+    color: #4A4843 !important;
+}
+
+span,p {
+    color: #707070
+}

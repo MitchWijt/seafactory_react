@@ -114,3 +114,9 @@
 .our-story-card.about-us-card .our-story-card-subtitle{
     margin-top: 60px;
 }
+
+.home-input-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
