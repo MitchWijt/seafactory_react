@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import Home from './screens/home'
 import Register from './screens/register';
 import PaymentComplete from './screens/register/steps/PaymentComplete';
+import Dashboard from './screens/dashboard';
 import Login from './screens/login';
 import './config/style.css';
 import './config/errors.css';
@@ -40,6 +41,7 @@ function App(props) {
   return (
     <Router>
       <Switch>
+        <ProtectedRoute exact path='/dashboard' component={Dashboard} userState={props.userState}/>
         <ProtectedRoute exact path='/thank-you' component={PaymentComplete} userState={props.userState}/>
         <Route exact path='/login/:type' component={Login}/>
         <Route exact path='/register' component={Register}/>

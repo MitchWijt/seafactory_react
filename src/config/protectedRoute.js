@@ -7,7 +7,6 @@ export const ProtectedRoute = ({component: Component, ...rest}) => {
 
     return (
         <Route {...rest} render={(props) => {
-            console.log(userState);
             if(userState.isLoggedIn === null) {
                 return <LoadingCircle color={'#000000'}/>
             } else if(userState.isLoggedIn) {
