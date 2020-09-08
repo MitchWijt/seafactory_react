@@ -4,8 +4,10 @@ import Register from './screens/register';
 import PaymentComplete from './screens/register/steps/PaymentComplete';
 import Dashboard from './screens/dashboard';
 import Login from './screens/login';
-import './config/style.css';
-import './config/errors.css';
+import './config/style/style.css';
+import './config/style/flexbox.css';
+import './config/style/errors.css';
+import './config/style/dataTable.css';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 import {

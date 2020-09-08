@@ -1,26 +1,26 @@
 @font-face {
     font-family: "Corbert";
-    src: url("../lib/fonts/Corbert-Regular.ttf");
+    src: url("../../lib/fonts/Corbert-Regular.ttf");
 }
 
 @font-face {
     font-family: "Corbert Bold";
-    src: url("../lib/fonts/Corbert-Bold.otf");
+    src: url("../../lib/fonts/Corbert-Bold.otf");
 }
 
 @font-face {
     font-family: "Corbert Thin";
-    src: url("../lib/fonts/Corbert-Thin.otf");
+    src: url("../../lib/fonts/Corbert-Thin.otf");
 }
 
 @font-face {
     font-family: "Corbert Heavy";
-    src: url("../lib/fonts/Corbert-Heavy.otf");
+    src: url("../../lib/fonts/Corbert-Heavy.otf");
 }
 
 @font-face {
     font-family: "Granic Slab Bold";
-    src: url("../lib/fonts/Granic-Slab-Bold.otf");
+    src: url("../../lib/fonts/Granic-Slab-Bold.otf");
 }
 
 *{
@@ -77,4 +77,21 @@ h1, h2{
 
 span,p {
     color: #707070
+}
+
+.content-container {
+    background: #F2F2F2;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+}
+
+.content-container-title {
+    color: #4A4843;
+    font-family: 'Corbert Bold';
+    font-size: 30px;
+    margin-bottom: 10px;
 }

@@ -1,0 +1,11 @@
+.d-flex {
+    display: flex;
+}
+
+.fd-row {
+    flex-direction: row;
+}
+
+.jc-center{
+    justify-content: center;
+}
