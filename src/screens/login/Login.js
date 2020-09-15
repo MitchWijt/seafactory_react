@@ -85,7 +85,7 @@ const LoginFormAdmin = () => {
                 onSubmit={async (values, { setSubmitting }) => {
                     setSubmitting(true);
                     await handleLogin(values, 'admin');
-                    // window.location.href = '/dashboard';
+                    window.location.href = '/dashboard';
                     setSubmitting(false);
                 }}
             >
@@ -130,7 +130,7 @@ const LoginFormStaff = () => {
                 onSubmit={async (values, { setSubmitting }) => {
                     setSubmitting(true);
                     await handleLogin(values, 'staff');
-                    // window.location.href = '/dashboard';
+                    window.location.href = '/dashboard';
                     setSubmitting(false);
                 }}
             >

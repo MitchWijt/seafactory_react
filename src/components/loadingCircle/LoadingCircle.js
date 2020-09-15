@@ -4,7 +4,8 @@ import { LoadingOutlined } from '@ant-design/icons';
 
 const LoadingCircle = (props) => {
     const color = props.color ? props.color : '#ffffff';
-    const antIcon = <LoadingOutlined style={{ fontSize: 24, color: color }} spin />;
+    const fontSize = props.fontSize ? props.fontSize : 24;
+    const antIcon = <LoadingOutlined style={{ fontSize: fontSize, color: color }} spin />;
     return (
         <>
             <Spin indicator={antIcon} />

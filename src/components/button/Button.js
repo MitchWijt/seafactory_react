@@ -7,12 +7,19 @@ const Button = (props) => {
     const fontSize = props.fontSize ? props.fontSize : '16px';
     const fontType = props.fontType === 'bold' ? 'Corbert Bold' : 'Corbert';
     const isLoading = props.isLoading ? props.isLoading : false;
+    let className;
+    switch(props.category){
+        case 'cta' : className = 'ctaButton';
+        break;
+        case 'table-cta': className = 'ctaButton table';
+        break;
+        case 'regular' : className = 'regular';
+        break;
+        default: className = 'cta';
+    }
 
     return (
-        props.category === 'cta' ? 
-            <button type={props.type} className='ctaButton' style={{fontSize: fontSize, fontFamily: fontType}} onClick={props.onClick}>{isLoading ? <LoadingCircle/> : props.text}</button> 
-            : 
-            <button type={props.type} className='regularButton' style={{fontSize: fontSize, fontFamily: fontType}} onClick={props.onClick}>{props.text}</button>
+        <button type={props.type} className={className} style={{fontSize: fontSize, fontFamily: fontType}} onClick={props.onClick}>{isLoading ? <LoadingCircle/> : props.text}</button>             
     )
 }
 

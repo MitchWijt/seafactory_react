@@ -1,0 +1,23 @@
+.content-card-data{
+    text-align: center;
+}
+
+.content-card-main-title{
+    font-size: 17px;
+    font-family: 'Corbert Bold';
+    color: #4A4843;
+    margin-bottom: 0px;
+}
+
+.content-card-sub-title{
+    font-size: 13px;
+    color: #4A4843;
+}
+
+.content-card{
+    max-height: 130px;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    height: 130px;
+    margin-bottom: 10px;
+}

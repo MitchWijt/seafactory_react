@@ -1,7 +1,8 @@
 const defaultState = {
     isLoggedIn: null, 
     role: null,
-    user: null
+    user: null,
+    settings: null
 }
 
 
@@ -12,7 +13,8 @@ const userStateReducer = (state = defaultState, action) => {
                 ...state,
                 isLoggedIn: action.payload.isLoggedIn,
                 role: action.payload.role,
-                user: action.payload.user
+                user: action.payload.user,
+                settings: action.payload.settings
             }
         }
         case 'LOGOUT': {
@@ -20,7 +22,8 @@ const userStateReducer = (state = defaultState, action) => {
                 ...state,
                 isLoggedIn: false,
                 role: null,
-                user: null
+                user: null,
+                settings: null
             }
         }
         default: return state;

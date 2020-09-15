@@ -26,9 +26,9 @@ const validationSchema = Yup.object({
 const Home = (props) => {
     useEffect(() => {
         if(props.userState.isLoggedIn){
-            // window.location.href = '/dashboard';
+            window.location.href = '/dashboard';
         } 
-    }, [])
+    }, [props.userState])
 
 
     const HomeEmailInput = () => (

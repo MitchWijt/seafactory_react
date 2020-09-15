@@ -1,15 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import LoadingCircle from '../components/loadingCircle';
+import LoadingScreen from '../components/loadingScreen';
 
 export const ProtectedRoute = ({component: Component, ...rest}) => {
     let userState = rest.userState;
 
     return (
         <Route {...rest} render={(props) => {
-            console.log(userState);
             if(userState.isLoggedIn === null) {
-                return <LoadingCircle color={'#000000'}/>
+                return <LoadingScreen/>
             } else if(userState.isLoggedIn) {
                 return <Component {...props}/>
             } else {

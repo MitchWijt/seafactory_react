@@ -1,0 +1,22 @@
+.dashboard-todo-container{
+    max-height: 420px;
+    padding-top: 50px;
+}
+
+.dashboard-weather span,img{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.dashboard-weather span{
+    font-family: 'Corbert Bold';
+    font-size: 20px;
+}
+
+.dashboard-weather{
+    margin-bottom: 20px;
+}
+
+.dashboard-checkout-container{
+    max-height: 420px;
+}

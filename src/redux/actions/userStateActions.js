@@ -1,13 +1,14 @@
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
-export const login = (user, role) => {
+export const login = (user, role, settings) => {
     return {
         type: LOGIN,
         payload: {
             isLoggedIn: true,
             role: role,
-            user: user
+            user: user,
+            settings: settings
         }
     }
 }
