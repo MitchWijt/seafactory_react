@@ -1,13 +1,17 @@
 import React, {useEffect} from 'react';
 import Header from '../../components/header';
 import {connect} from 'react-redux';
-import {addGuests, addStaffWorking, addTodoToday, addWeather, setIsLoading} from '../../redux/actions/dashboardActions';
-import LoadingCircle from '../../components/loadingCircle';
+import {addGuests, addStaffWorking, addTodoToday, addWeather} from '../../redux/actions/dashboardActions';
+import {setIsLoading} from '../../redux/actions/loadingActions';
+import LoadingScreen from '../../components/loadingScreen';
 import ContentCircle from '../../components/contentCircle';
+import ContentCard from '../../components/contentCard';
 import moment from 'moment-timezone';
 import axios from 'axios';
-import Hr from '../../components/hr';
+import {Link} from 'react-router-dom';
+import Button from '../../components/button';
 import {Row, Col} from 'antd';
+import './style.css';
 
 const Dashboard = (props) => {
     useEffect(() => {
@@ -20,15 +24,16 @@ const Dashboard = (props) => {
             props.setIsLoading(false);
         }
 
-        fetchDashboardData();
+        fetchDashboardData(props.location.pathname);
+       
+
+       
     }, []);
 
-    console.log(props.weather);
-
     return (
-        <>
+        <> 
             <Header/>
-            {props.isLoading ? <LoadingCircle color={'#000000'}/> : 
+            {props.isLoading ? <LoadingScreen/> : 
                 <div className='container'>
                     <Row gutter={16}>
                         <Col span={8}>
@@ -39,17 +44,36 @@ const Dashboard = (props) => {
                                 </div>
                             </div>
                             <div className='content-container'>
-                                <p className='content-container-title'>To do today</p>
-                                {/* <div className='d-flex jc-center'> */}
-                                    <ToDoTable data={props.toDoToday} titles={['Staff', 'Morning', 'Afternoon']}/>
-                                {/* </div> */}
+                                <p className='content-container-title'>To Do Today</p>
+                                <div className='d-flex fd-column jc-center scroll-content-container dashboard-todo-container'>
+                                    {props.toDoToday.map((toDoItem) => {
+                                        return <ContentCard
+                                                key={toDoItem.title} 
+                                                mainTitle={toDoItem.title} 
+                                                subTitle={`${moment(toDoItem.start_time).format('hh:mm A')} - ${moment(toDoItem.end_time).format('hh:mm A')}`}
+                                                topLeft={<ToDoTodayStaffCircles staff={toDoItem.staff}/>}/>
+                                    })}
+                                </div>
                             </div>
                         </Col>
                         <Col span={8}>
-                           
+                            <div className='content-container'>
+                                <p className='content-container-title'>Weather</p>
+                                <div className='d-flex fd-row jc-center ai-center dashboard-weather'>
+                                    <img src={props.weather.current.imageUrl} className='dashboard-weather-image' alt=""/>
+                                    <span>{props.weather.current.temperature}ºC </span>
+                                    <span>{props.weather.current.winddisplay}</span>
+                                </div>
+                                <WeatherTable data={props.weather.forecast} titles={['Date', 'Temperature', 'Description']}/>
+                            </div>
                         </Col>
                         <Col span={8}>
-        
+                            <div className='content-container'>
+                                <p className='content-container-title'>Guests checking out today</p>
+                                <div className='scroll-content-container dashboard-checkout-container'>
+                                    <GuestsCheckingOutTable data={props.guestsCheckingOut} titles={['Name', 'Dep. Date', '']}/>
+                                </div>
+                            </div>
                         </Col>
                     </Row>
                 </div>
@@ -82,37 +106,34 @@ const fetchWeatherData = async (addWeather) => {
 const SingleDataTitle = (props) => {
     return (
         <>
-            <th className='column-title'>{props.title}</th>
+            <th style={{width: `${props.width}%`}} className='column-title'>{props.title}</th>
         </>
     )
 }
 
-const ToDoTable = (props) => {
-    const ToDoTableColumn = (props) => {
+const WeatherTable = (props) => {
+    const WeatherTableColumn = (props) => {
         return (
             <tr className='table-data-row'>
-                <td>
-                    {props.staff.map((staff) => <span>{staff.name}</span>)}
-                </td>
-                {/* <td>{props.guest_info.name}</td>
-                <td>{props.local ? 'true' : 'false'}</td>
-                <td>{props.other_info.departure_date ? FormatDate(props.other_info.departure_date) : '-'}</td> */}
+                <td>{`${props.shortday} ${moment(props.date).format('MMMM DD')}`}</td>
+                <td>{props.high}</td>
+                <td>{props.skytextday}</td>
             </tr>
         )
     }
 
     return (
-        <div className="container contentBox">
+        <div>
             <div className='table-body-data'>
             {props.data.length > 0 ? 
                 <table className='table'>
                     <thead>
                         <tr>
-                            {props.titles.map((title) => <SingleDataTitle key={title} title={title}/>)}
+                            {props.titles.map((title) => <SingleDataTitle width={100 / props.titles.length} key={title} title={title}/>)}
                         </tr>
                     </thead>
                     <tbody className='table-body-data'>
-                        {props.data.map((data) => <ToDoTableColumn key={data._id} {...data}/>)}
+                        {props.data.map((data) => <WeatherTableColumn key={data.date} {...data}/>)}
                     </tbody>
                     
                 </table>
@@ -126,6 +147,51 @@ const ToDoTable = (props) => {
     )
 }
 
+const GuestsCheckingOutTable = (props) => {
+    const GuestsCheckingOutTableColumn = (props) => {
+        return (
+            <tr className='table-data-row'>
+                <td>{props.guest_info.name}</td>
+                <td>{moment(props.other_info.departure_date).format('DD/MM/YY')}</td>
+                <td><Link to={`/guest/${props._id}`}><Button type='submit' category='table-cta' fontSize={'14px'} fontType='bold' text='Open form' /> </Link></td>
+            </tr>
+        )
+    }
+
+    return (
+        <div>
+            <div className='table-body-data'>
+            {props.data.length > 0 ? 
+                <table className='table'>
+                    <thead>
+                        <tr>
+                            {props.titles.map((title) => <SingleDataTitle width={100 / props.titles.length} key={title} title={title}/>)}
+                        </tr>
+                    </thead>
+                    <tbody className='table-body-data'>
+                        {props.data.map((data) => <GuestsCheckingOutTableColumn key={data._id} {...data}/>)}
+                    </tbody>
+                    
+                </table>
+            : 
+            <div className='center'>
+                <p id='no-results-text'>No results...</p>
+            </div>
+            }
+            </div>
+        </div>
+    )
+}
+
+const ToDoTodayStaffCircles = (props) => {
+    return (
+        <>
+            {props.staff.map((staff) => {
+                return <ContentCircle key={staff.initials} content={staff.initials}/>
+            })}
+        </>
+    )
+}
 
 
 const mapStateToProps = (state) => {
@@ -134,7 +200,7 @@ const mapStateToProps = (state) => {
         staffWorking: state.dashboardReducer.staffWorking,
         toDoToday: state.dashboardReducer.toDoToday,
         guestsCheckingOut: state.dashboardReducer.guestsCheckingOut,
-        isLoading: state.dashboardReducer.isLoading
+        isLoading: state.loadingReducer.isLoading
     }
 }
 

@@ -29,7 +29,7 @@
 
 .container{
     margin: 0 auto;
-    max-width: 1500px;
+    max-width: 1600px;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
@@ -82,11 +82,10 @@ span,p {
 .content-container {
     background: #F2F2F2;
     border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    margin-right: 30px;
 }
 
 .content-container-title {
@@ -94,4 +93,16 @@ span,p {
     font-family: 'Corbert Bold';
     font-size: 30px;
     margin-bottom: 10px;
+}
+
+.scroll-content-container{
+    overflow: scroll;
+}
+
+.center{
+    text-align: center;
+}
+
+.right{
+    text-align: right;
 }

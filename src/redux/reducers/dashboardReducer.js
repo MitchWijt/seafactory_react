@@ -3,7 +3,6 @@ const defaultState = {
     toDoToday: [],
     weather: {},
     guestsCheckingOut: [],
-    isLoading: true
 }
 
 
@@ -31,12 +30,6 @@ const dashboardReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 guestsCheckingOut: action.payload.guestsCheckingOut
-            }
-        }
-        case 'SET_IS_LOADING': {
-            return {
-                ...state,
-                isLoading: action.payload.isLoading
             }
         }
         default: return state;

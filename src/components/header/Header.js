@@ -6,9 +6,19 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux';
 import PersonIcon from '@material-ui/icons/Person';
 import {handleLogout} from '../../services/auth';
+import fetchCdnImage from '../../services/cdnImage';
+import HomeIcon from '@material-ui/icons/Home';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import {Row, Col} from 'antd';
+import {setMenuState, setSearchFormState} from '../../redux/actions/headerActions';
+import {Formik} from 'formik';
+import {DatePicker} from 'antd';
+import moment from 'moment-timezone';
+
 
 const Header = (props) => {
-    return props.userState.isLoggedIn ? <HeaderLoggedIn/> : <HeaderLoggedOut/>;
+    return props.userState.isLoggedIn ? <HeaderLoggedIn {...props}/> : <HeaderLoggedOut/>;
 }
 
 const HeaderLoggedOut = () => {
@@ -31,16 +41,67 @@ const HeaderLoggedOut = () => {
     )
 }
 
-const HeaderLoggedIn = () => {
-    const [menuShown, setMenuShown] = useState(false);
+const HeaderLoggedIn = (props) => {
+    const {setMenuState, setSearchFormState, menuShown, searchFormShown} = props;
+
+    const logo = userHasCompanyLogo(props.userState.settings.logo_url) ? <img src={fetchCdnImage(props.userState.settings.logo_url)} alt="logo"/> : <span id='seafactory-logo'>SeaFactory</span>;
+
 
     return (
         <div className='header-container'>
-            <div className="header">
-                <Link to='/'>
-                    <span id='seafactory-logo'>SeaFactory</span>
-                </Link>
-                <div className='account-badge' onClick={() => setMenuShown(!menuShown)}>
+            <Row gutter={16} className='ai-center'>
+                <Col span={8}>
+                        <div className='d-flex fd-row'>
+                            <div className='menuButtons d-flex fd-row'>
+                                <button type={'button'} className='header-menu-button'><div className='d-flex jc-center'><HomeIcon className='header-icon'/></div></button>      
+                                <button type={'button'} className='header-menu-button'><div className='d-flex ai-center'><MenuIcon className='header-icon'/> <span id='navButttonText'>Menu</span></div></button> 
+                                <button onClick={() => setSearchFormState(!searchFormShown)} type={'button'} className='header-menu-button'><div className='d-flex ai-center'><SearchIcon className='header-icon'/><span id='navButttonText'>Search guests</span></div></button>                                 
+                            </div>
+                    
+                        </div>
+                        {searchFormShown ? 
+                            <div className='searchForm'>
+                                <Formik
+                                    validateOnBlur={false}
+                                    validateOnChange={false}
+                                    initialValues={{name: '', depDate: ''}}
+                                    onSubmit={async (values, { setSubmitting }) => {
+                                        setSubmitting(true);
+                                        if(values.name && values.depDate){
+                                            window.location.href = `/guestlist?name=${values.name}&dep_date=${moment(values.depDate).format('YYYY-MM-DD')}`;
+                                        } else if(values.name && !values.depDate){
+                                            window.location.href = `/guestlist?name=${values.name}`;
+                                        } else if(!values.name && values.depDate){
+                                            window.location.href = `/guestlist?dep_date=${moment(values.depDate).format('YYYY-MM-DD')}`;
+                                        } else {
+                                            window.location.href = `/guestlist`;
+                                        }
+                                        setSubmitting(false);
+                                    }}
+                                >
+                                    {({
+                                    values,
+                                    errors,
+                                    handleChange,
+                                    handleSubmit,
+                                    }) => (
+                                    <form onSubmit={handleSubmit} className='d-flex fd-row'>
+                                        <input className='formInputHeader' placeholder='Name' type='text' name='name' value={values.name} onChange={handleChange}/>
+                                        <DatePicker className='formInputHeader' format='DD-MM-YYYY' onChange={(date) => values.depDate = date} placeholder='Dep. date' inputReadOnly/> 
+                                        <Button style={{display: 'none'}} type='submit' category='cta' fontType='bold' text='Search' /> 
+                                    </form>
+                                    )}
+                                </Formik>
+                            </div>
+                        : <></>}
+                </Col>
+                <Col span={8} className='center'>
+                    <a href='/dashboard'>
+                        {logo}
+                    </a>
+                </Col>
+                <Col span={8} className='right'>
+                <div className='account-badge' onClick={() => setMenuState(!menuShown)}>
                     <PersonIcon className='account-icon'/>
                     {menuShown ? 
                         <div className='account-menu'>
@@ -48,18 +109,27 @@ const HeaderLoggedIn = () => {
                         </div> 
                     : '' }
                 </div>
-                
-             </div>
+                </Col>
+            </Row>
         </div>
     )
 }
 
+const userHasCompanyLogo = (logoUrl) => {
+    return logoUrl ? true : false;
+}
+
 const mapStateToProps = (state) => {
     return {
-        userState: {...state.userStateReducer}
+        userState: {...state.userStateReducer},
+        menuShown: state.headerReducer.menuShown,
+        searchFormShown: state.headerReducer.searchFormShown
     }
 }
 
+const mapDispatchToProps = {setMenuState, setSearchFormState};
+
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Header);

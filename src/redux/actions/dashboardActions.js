@@ -2,17 +2,6 @@ export const ADD_WEATHER = 'ADD_WEATHER';
 export const ADD_STAFF_WORKING = 'ADD_STAFF_WORKING';
 export const ADD_TODO_TODAY = 'ADD_TODO_TODAY';
 export const ADD_GUESTS = 'ADD_GUESTS';
-export const SET_IS_LOADING = 'SET_IS_LOADING';
-
-
-export const setIsLoading = (isLoading) => {
-    return {
-        type: SET_IS_LOADING,
-        payload: {
-            isLoading: isLoading
-        }
-    }
-}
 
 export const addWeather = (weatherData) => {
     return {
