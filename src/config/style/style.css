@@ -88,11 +88,36 @@ span,p {
     margin-bottom: 20px;
 }
 
+.content-container.min-height{
+    min-height: 420px;
+}
+
+.content-title-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
 .content-container-title {
     color: #4A4843;
     font-family: 'Corbert Bold';
-    font-size: 30px;
-    margin-bottom: 10px;
+    font-size: 1.8em;
+    margin-bottom: 0;
+}
+
+.content-container-subtitle {
+    color: #4A4843;
+    font-family: 'Corbert Thin';
+    font-size: 1.4em;
+    margin-bottom: 1.4em;
+}
+
+.content-container-icon{
+    width: 25px !important;
+    height: 25px !important;
+    color: #FF6F61;
+    cursor: pointer;
 }
 
 .scroll-content-container{

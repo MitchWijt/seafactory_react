@@ -1,10 +1,11 @@
 import React from 'react';
 import './style.css';
+import {Field} from 'formik';
 
 const Checkbox = (props) => {
     return (
         <div className='checkbox-container'>
-            <input className='checkbox' onChange={props.onChange} id={props.name} name={props.name} type="checkbox"/>
+            <Field className='checkbox' type='checkbox' name={props.name} id={props.name}/>
             <label htmlFor={props.name}>{props.label}</label>
         </div>
     )

@@ -1,0 +1,19 @@
+.ant-modal-title{
+    color: #4A4843;
+    font-size: 1.5rem !important;
+    font-family: 'Corbert Bold';
+}
+
+.ant-modal-header{
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom: none !important;
+}
+
+.ant-modal{
+    width: 770px !important;
+}
+
+.ant-modal-content{
+    border-radius: 10px !important;
+}

@@ -9,9 +9,8 @@ import Hr from '../../components/hr'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 import {addEmail} from '../../redux/actions/newAccountActions';
-import { validateEmail, emailIsUnique } from '../../services/formik/fieldValidations';
+import {emailIsUnique } from '../../services/formik/fieldValidations';
 import { Formik } from 'formik';
-import axios from 'axios';
 import fetchCdnImage from '../../services/cdnImage';
 import * as Yup from 'yup';
 import './style.css'

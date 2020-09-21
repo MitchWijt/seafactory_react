@@ -5,10 +5,12 @@ import PaymentComplete from './screens/register/steps/PaymentComplete';
 import Dashboard from './screens/dashboard';
 import GuestList from './screens/guestList';
 import Login from './screens/login';
+import Guest from './screens/guest';
 import './config/style/style.css';
 import './config/style/flexbox.css';
 import './config/style/errors.css';
 import './config/style/dataTable.css';
+import './config/style/modal.css';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 import {
@@ -44,6 +46,7 @@ function App(props) {
   return (
     <Router>
       <Switch>
+        <ProtectedRoute exact path='/guest/:id' component={Guest} userState={props.userState}/>
         <ProtectedRoute exact path='/guestlist' component={GuestList} userState={props.userState}/>
         <ProtectedRoute exact path='/dashboard' component={Dashboard} userState={props.userState}/>
         <ProtectedRoute exact path='/thank-you' component={PaymentComplete} userState={props.userState}/>
