@@ -16,7 +16,7 @@ const OnePlans = (props) => {
         } else {
             addPremiumPlanToNewUserSession(basicPlan);
         }
-    }, []);
+    }, [choosePlan]);
 
     const handleClick = () => {
         localStorage.setItem('newUserStep', '2-info');

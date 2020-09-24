@@ -67,7 +67,7 @@ const CourseModal = (props) => {
                     }) => (
                     <form onSubmit={handleSubmit}>
                         <Select error={errors.title} items={courseItemsSelectValues} placeholder='Type of course' name='title' onChange={handleChange} value={values.title}/>
-                        <StaffMemberSelect errors={errors.staff} formValues={values}/>
+                        <StaffMemberSelect error={errors.staff} formValues={values} name='staff' placeholder='Choose one or more staff'/>
                         <Checkbox label='Guest has paid' name='paid'/>
                         <div className='right'>
                             <Button isLoading={isSubmitting} type='submit' category='cta' fontType='bold' text='Save' /> 

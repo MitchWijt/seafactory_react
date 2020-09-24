@@ -5,6 +5,9 @@ const defaultState = {
     courses: [],
     rentals: [],
     divesModalVisibility: false,
+    editGuestInfoModalVisibility: false,
+    editDivingInfoModalVisibility: false,
+    editOtherInfoModalVisibility: false,
     rentalModalVisibility: false,
     retailModalVisibility: false,
     coursesModalVisibility: false
@@ -65,6 +68,21 @@ const guestReducer = (state = defaultState, action) => {
                 case 'addCourse': newState = {
                     ...state,
                     coursesModalVisibility: action.payload.modal_visibility
+                }
+                break;
+                case 'editGuestInfo': newState = {
+                    ...state,
+                    editGuestInfoModalVisibility: action.payload.modal_visibility
+                }
+                break;
+                case 'editDivingInfo': newState = {
+                    ...state,
+                    editDivingInfoModalVisibility: action.payload.modal_visibility
+                }
+                break;
+                case 'editOtherInfo': newState = {
+                    ...state,
+                    editOtherInfoModalVisibility: action.payload.modal_visibility
                 }
                 break;
                 default: return newState;

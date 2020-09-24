@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Header from '../../components/header';
 import {connect} from 'react-redux';
 import {setGuest, setDives, setRetail, setCourses, setRentals, setModalVisibility} from '../../redux/actions/guestActions';
@@ -13,9 +13,13 @@ import DataTable from '../../components/dataTable';
 import DivesModal from './DivesModal';
 import RetailModal from './RetailModal';
 import CourseModal from './CourseModal';
+import RentalModal from './modals/RentalModal';
 import moment from 'moment-timezone';
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
+import EditGuestInfoModal from './modals/EditGuestInfoModal';
+import EditDivingInfoModal from './modals/EditDivingInfoModal';
+import EditOtherInfoModal from './modals/EditOtherInfoModal';
 
 const Guest = (props) => {
     const {
@@ -35,7 +39,6 @@ const Guest = (props) => {
     } = props;
     const guestId = props.match.params.id;
 
-
     useEffect(() => {
         const getAllGuestData = async () => {
             const getGuest = async () => {
@@ -47,7 +50,7 @@ const Guest = (props) => {
             }
     
             const getRentalItems = async () => {
-                const guestRentalsData = await axios.get(`/rentals`);
+                const guestRentalsData = await axios.get(`/rentals?guestId=${guestId}`);
                 setRentals(guestRentalsData.data);
             }
 
@@ -97,7 +100,6 @@ const Guest = (props) => {
             'Insurance': guest.other_info.insurance ? guest.other_info.insurance.type : '-'
         }
     }
-   
 
     return (
         <>
@@ -114,28 +116,31 @@ const Guest = (props) => {
                             <div className='content-container min-height'>
                                 <div className='content-title-container'>
                                     <p className='content-container-title'>Guest Information</p>
-                                    <EditIcon className='content-container-icon'/>
+                                    <EditIcon className='content-container-icon' onClick={() => setModalVisibility('editGuestInfo', true)}/>
                                 </div>
                               
                                 <DataList data={getGuestInfoObject()}/>
+                                <EditGuestInfoModal/>
                             </div>
                         </Col>
                         <Col span={6}>
                             <div className='content-container min-height'>
                                 <div className='content-title-container'>
                                     <p className='content-container-title'>Diving Information</p>
-                                    <EditIcon className='content-container-icon'/>
+                                    <EditIcon className='content-container-icon' onClick={() => setModalVisibility('editDivingInfo', true)}/>
                                 </div>
                                 <DataList data={getDivingInfoObject()}/>
+                                <EditDivingInfoModal/>
                             </div>
                         </Col>
                         <Col span={6}>
                             <div className='content-container min-height'>
                                 <div className='content-title-container'>
                                     <p className='content-container-title'>Other Information</p>
-                                    <EditIcon className='content-container-icon'/>
+                                    <EditIcon className='content-container-icon' onClick={() => setModalVisibility('editOtherInfo', true)}/>
                                 </div>
                                 <DataList data={getOtherInfoObject()}/>
+                                <EditOtherInfoModal/>
                             </div>
                         </Col>
                         <Col span={6}>
@@ -154,9 +159,10 @@ const Guest = (props) => {
                             <div className='content-container min-height'>
                                 <div className='content-title-container'>
                                     <p className='content-container-title'>Rentals</p>
-                                    <AddIcon className='content-container-icon'/>
+                                    <AddIcon className='content-container-icon' onClick={() => setModalVisibility('addRental', true)}/>
                                 </div>
                                 <DataTable maxHeight={'315px'} singleColumn={SingleColumnRentalsTable} data={rentals} titles={['Item', 'Start date', 'End date', 'Days rented', '']}/>
+                                <RentalModal/>
                             </div>
                         </Col>
                         <Col span={6}>
@@ -220,7 +226,7 @@ const SingleColumnRentalsTable = (props) => {
         <tr className='table-data-row'>
             <td>{props.rental_item.title}</td>
             <td>{moment(props.start_date).format('DD/MM/YYYY')}</td>
-            <td>{moment(props.end_date).format('DD/MM/YYYY')}</td>
+            <td>{props.end_date ? moment(props.end_date).format('DD/MM/YYYY') : '-'}</td>
             <td>{daysRented}</td>
             <td><Button type='submit' category='table-cta' fontSize={'14px'} fontType='bold' text='Edit' /></td>
         </tr>

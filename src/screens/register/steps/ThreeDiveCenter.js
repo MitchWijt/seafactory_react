@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import FormInput from '../../../components/formInput';
 import Select from '../../../components/select';
 import Checkbox from '../../../components/checkbox';
-import countryArray from '../../../lib/countryArray';
+import {countrySelectValues} from '../../../lib/countryData';
 import axios from 'axios';
 import * as Yup from 'yup';
 
@@ -29,12 +29,6 @@ const validationSchema = Yup.object({
     countryMainLocation: Yup.string()
         .required('Country is required'),
 });
-
-const countrySelectValues = countryArray.map((country) => {
-    let selectObject = {};
-    selectObject[country] = country;
-    return selectObject;
-})
  
 const ThreeDiveCenter = (props) => {
     const {history} = props;

@@ -126,12 +126,12 @@ const Home = (props) => {
                 <div className='container'>
                     <div className='our-story-card marine-species-card'>
                         <div className='our-story-card-text'>
-                            <h1 className='our-story-card-title'>You save marine species at the same time!</h1>
+                            <h1 className='our-story-card-title'>Your membership helps us save sea life</h1>
                             <div className='our-story-card-img-container'>
                                 <img className='our-story-card-img' src={projectHiu} alt=''/>
                             </div>
                             <div className='our-story-card-text non-profit-info'>
-                                <p className='our-story-card-subtitle'>By choosing to use our services for your dive center. <br></br> You are also saving sharks and different marine species at the same time!</p>
+                                <p className='our-story-card-subtitle'>By choosing to use our services for your dive center <br></br> You are also saving sharks and different marine species at the same time!</p>
                                 <p className='our-story-card-subtitle bold'>How?</p>
                                 <p className='our-story-card-subtitle'>With every dive center that chooses to use our services we donate <span className='bold'>$3/Month</span> to a Non-profit organization called <span className='bold'>Project Hiu</span></p>
                                 <Link className='our-story-card-subtitle underline' to='/'>Learn more</Link>

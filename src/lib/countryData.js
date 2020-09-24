@@ -1,4 +1,4 @@
-const countryArray = [
+export const countryArray = [
     "Bonaire, Sint Eustatius and Saba",
     "Netherlands (the)",
     "United States of America (the)",
@@ -250,4 +250,8 @@ const countryArray = [
 	"Åland Islands"
 ];
 
-export default countryArray;
+export const countrySelectValues = countryArray.map((country) => {
+    let selectObject = {};
+    selectObject[country] = country;
+    return selectObject;
+});

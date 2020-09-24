@@ -26,6 +26,12 @@ const productItemsReducer = (state = defaultState, action) => {
                 courseItems: action.payload.courseItems
             }
         }
+        case 'SET_INSURANCE_ITEMS': {
+            return {
+                ...state,
+                insuranceItems: action.payload.insuranceItems
+            }
+        }
         default: return state;
     }
 }

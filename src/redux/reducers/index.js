@@ -7,6 +7,8 @@ import guestReducer from './guestReducer';
 import loadingReducer from './loadingReducer';
 import productItemsReducer from './productItemsReducer';
 import staffReducer from './staffReducer';
+import rentalItemsReducer from './rentalItemsReducer';
+import inventoryReducer from './inventoryReducer';
 import { combineReducers } from 'redux';
 
 
@@ -19,7 +21,9 @@ const rootReducer = combineReducers({
     guestReducer,
     loadingReducer,
     productItemsReducer,
-    staffReducer
+    staffReducer,
+    rentalItemsReducer,
+    inventoryReducer
 })
 
 export default rootReducer;

@@ -8,13 +8,15 @@ import axios from 'axios';
 
 
 const StaffMemberSelect = (props) => {
+    let {setStaffMembers, setChosenStaffMembers} = props;
+    
     useEffect(() => {
         const getStaffMembers = async () => {
             const staffMembers = await axios.get('/staff');
-            props.setStaffMembers(staffMembers.data);
+            setStaffMembers(staffMembers.data);
         }
         getStaffMembers();        
-    }, []);
+    }, [setStaffMembers]);
 
     const handleChangeStaffSelect = (values, staffId, select) => {
         updateArrayChosenStaffMembers(values, staffId);
@@ -34,43 +36,43 @@ const StaffMemberSelect = (props) => {
              initials: staffMember.data.initials
          }
 
-         props.chosenStaffMembers.map((staffMember) => {
-             chosenStaffMembers.push(staffMember);
-             staffMembersInitials.push(staffMember.initials);
-         })
+         for(const staffMember of props.chosenStaffMembers){
+            chosenStaffMembers.push(staffMember);
+            staffMembersInitials.push(staffMember.initials);
+         }
+         
          if(!chosenStaffMembers.includes(staffDataObject)){
              chosenStaffMembers.push(staffDataObject);
              staffMembersInitials.push(staffDataObject.initials);
          }
 
-         props.setChosenStaffMembers(chosenStaffMembers);
+         setChosenStaffMembers(chosenStaffMembers);
          values.staff = staffMembersInitials
     }
 
     const onDeleteChosenStaff = (values, staffObject) => {
         let chosenStaffMembers = [];
         let staffMembersInitials = [];
-        props.chosenStaffMembers.map((staffMember) => {
+        for(const staffMember of props.chosenStaffMembers){
             if(staffMember.name !== staffObject.name){
                 chosenStaffMembers.push(staffMember);
                 staffMembersInitials.push(staffMember.initials);
             }
-        });
-        props.setChosenStaffMembers(chosenStaffMembers);
+        }
+
+        setChosenStaffMembers(chosenStaffMembers);
         values.staff = staffMembersInitials; 
     }
 
     const staffMembersSelectValues = props.staffMembers.map(item => {
         let selectObject = {};
-        if(item.name !== 'Shop') {
-            selectObject[item._id] = item.name;
-        }
+        selectObject[item._id] = item.name;
         return selectObject;
     });
 
    return (
        <>
-        <Select error={props.errors} items={staffMembersSelectValues} placeholder='Choose one or more staff' name='staff' onChange={(e) => handleChangeStaffSelect(props.formValues, e.target.value, e.target)} />
+        <Select error={props.error} items={staffMembersSelectValues} placeholder={props.placeholder} name={props.name} onChange={(e) => handleChangeStaffSelect(props.formValues, e.target.value, e.target)} />
         <div className='d-flex fd-column'>
             {props.chosenStaffMembers.map((staff) => <SelectListItem onDelete={() => onDeleteChosenStaff(props.formValues, staff)} text={staff.name}/>)}
         </div>

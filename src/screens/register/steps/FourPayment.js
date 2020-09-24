@@ -6,8 +6,6 @@ import RegisterBackgroundImage from '../../../components/registerBackgroundImage
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import LoadingCircle from '../../../components/loadingCircle';
 import axios from 'axios';
-import {ReactComponent as Amex} from '../../../lib/img/paymentCard/amex.svg';
-import Button from '../../../components/button';
 
 const FourPayment = ({history}) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -16,8 +14,6 @@ const FourPayment = ({history}) => {
         setIsLoading(true);
         const res = await axios.post('/payment');
         window.location.href = res.data.checkoutUrl;
-        // localStorage.setItem('newUserStep', '2-password');
-        // history.push('/register');
     }
 
 
