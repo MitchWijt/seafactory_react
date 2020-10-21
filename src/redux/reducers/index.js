@@ -9,6 +9,8 @@ import productItemsReducer from './productItemsReducer';
 import staffReducer from './staffReducer';
 import rentalItemsReducer from './rentalItemsReducer';
 import inventoryReducer from './inventoryReducer';
+import rentalReducer from './rentalReducer';
+import calendarReducer from './calendarReducer';
 import { combineReducers } from 'redux';
 
 
@@ -23,7 +25,9 @@ const rootReducer = combineReducers({
     productItemsReducer,
     staffReducer,
     rentalItemsReducer,
-    inventoryReducer
+    inventoryReducer,
+    calendarReducer,
+    rentalReducer
 })
 
 export default rootReducer;

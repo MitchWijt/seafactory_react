@@ -4,8 +4,10 @@ import Register from './screens/register';
 import PaymentComplete from './screens/register/steps/PaymentComplete';
 import Dashboard from './screens/dashboard';
 import GuestList from './screens/guestList';
+import EditRental from './screens/editRental';
 import Login from './screens/login';
 import Guest from './screens/guest';
+import Calendar from './screens/calendar';
 import './config/style/style.css';
 import './config/style/flexbox.css';
 import './config/style/errors.css';
@@ -46,6 +48,8 @@ function App(props) {
   return (
     <Router>
       <Switch>
+        <ProtectedRoute exact path='/calendar/:year/:month/:day' component={Calendar} userState={props.userState}/>
+        <ProtectedRoute exact path='/rental/:id' component={EditRental} userState={props.userState}/>
         <ProtectedRoute exact path='/guest/:id' component={Guest} userState={props.userState}/>
         <ProtectedRoute exact path='/guestlist' component={GuestList} userState={props.userState}/>
         <ProtectedRoute exact path='/dashboard' component={Dashboard} userState={props.userState}/>

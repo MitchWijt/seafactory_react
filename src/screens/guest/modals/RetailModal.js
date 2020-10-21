@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import { Modal } from 'antd';
 import {connect} from 'react-redux';
-import {setRetailItems} from '../../redux/actions/productItemsActions';
-import {setModalVisibility, setRetail} from '../../redux/actions/guestActions';
-import Button from '../../components/button';
-import Select from '../../components/select';
+import {setRetailItems} from '../../../redux/actions/productItemsActions';
+import {setModalVisibility, setRetail} from '../../../redux/actions/guestActions';
+import Button from '../../../components/button';
+import Select from '../../../components/select';
 import axios from 'axios';
 import {Formik} from 'formik';
-import Checkbox from '../../components/checkbox';
+import Checkbox from '../../../components/checkbox';
 import * as Yup from 'yup';
 
 const MODAL_VISIBILITY_NAME = 'addRetail';

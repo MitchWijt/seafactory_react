@@ -44,10 +44,6 @@ const RentalModal = (props) => {
         getInventoryItems();      
     }, []);
 
-    const handleDateChange = (date, values, dateSelector) => {
-        values[dateSelector] = moment(date).format();
-    }
-
     const initialValues = {
         guest: props.guest._id, 
         rental_item: '',
@@ -57,6 +53,10 @@ const RentalModal = (props) => {
         location: '', 
         discount: null, 
         paid: false
+    }
+
+    const handleDateChange = (date, values, dateSelector) => {
+        values[dateSelector] = moment(date).format();
     }
 
     return (
@@ -72,10 +72,10 @@ const RentalModal = (props) => {
                     validateOnChange={false}
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    onSubmit={async (values, { setSubmitting, resetForm }) => {
+                    onSubmit= {async (values, { setSubmitting }) => {
                         setSubmitting(true);
                         await axios.post('/rentals', values);
-
+    
                         const guestRentalsData = await axios.get(`/rentals?guestId=${props.guest._id}`);
                         props.setRentals(guestRentalsData.data);
                         props.setModalVisibility(MODAL_VISIBILITY_NAME, false);
@@ -94,7 +94,7 @@ const RentalModal = (props) => {
                         <DatePicker placeholder='End date' onChange={(date) => handleDateChange(date, values, 'end_date')}/>
                         <Select error={errors.rental_item} items={parseArrayToSelectValues(props.rentalItems, '_id', 'title')} placeholder='Rental item' name='rental_item' onChange={handleChange} value={values.rental_item}/>
                         <Select error={errors.inventory} items={parseArrayToSelectValues(props.inventoryItems, '_id', 'title')} placeholder='Inventory item' name='inventory' onChange={handleChange} value={values.inventory}/>
-                        <Select error={errors.locarion} items={parseArrayToSelectValues(props.diveCenterLocations)} placeholder='Dive center location' name='location' onChange={handleChange} value={values.location}/>
+                        <Select error={errors.location} items={parseArrayToSelectValues(props.diveCenterLocations)} placeholder='Dive center location' name='location' onChange={handleChange} value={values.location}/>
                         <FormInput type='number' placeholder='Discount' name='discount' onChange={handleChange} value={values.discount}/>
                         <Checkbox label='Guest has paid' name='paid'/>
                         <div className='right'>
@@ -115,7 +115,10 @@ const mapStateToProps = (state) => {
         diveCenterLocations: state.userStateReducer.user.locations,
         visibility: state.guestReducer.rentalModalVisibility,
         rentalItems: state.rentalItemsReducer.rentalItems,   
-        inventoryItems: state.inventoryReducer.inventoryItems     
+        inventoryItems: state.inventoryReducer.inventoryItems,
+        addRentalModalIsActive: state.rentalReducer.addRentalModalIsActive,
+        editRentalModalIsActive: state.rentalReducer.editRentalModalIsActive,
+        singleRental: state.rentalReducer.singleRental     
     }
 }
 

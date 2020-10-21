@@ -8,7 +8,7 @@ const Select = (props) => {
     props.items.map((itemObject) => {
         for(const keyValue of Object.keys(itemObject)){
             let optionValue = keyValue.replace('_', ' ');
-            if(itemObject[keyValue] === props.value){
+            if(keyValue == props.value){
                 options.push(<option selected key={keyValue} value={optionValue}>{itemObject[keyValue]}</option>); 
             } else {
                 options.push(<option key={keyValue} value={optionValue}>{itemObject[keyValue]}</option>); 

@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import SelectListItem from '../selectListItem';
 import {connect} from 'react-redux';
 import {setStaffMembers, setChosenStaffMembers} from '../../redux/actions/staffActions';
+import {getStaffMembersOfLoggedInDiveCenter} from '../../services/dataFetchRequests/staffMembers';
 import Select from '../../components/select';
 import axios from 'axios';
 
@@ -12,8 +13,8 @@ const StaffMemberSelect = (props) => {
     
     useEffect(() => {
         const getStaffMembers = async () => {
-            const staffMembers = await axios.get('/staff');
-            setStaffMembers(staffMembers.data);
+            const staffMembers = await getStaffMembersOfLoggedInDiveCenter();
+            setStaffMembers(staffMembers);
         }
         getStaffMembers();        
     }, [setStaffMembers]);

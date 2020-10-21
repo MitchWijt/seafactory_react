@@ -4,13 +4,16 @@ const defaultState = {
     retail: [],
     courses: [],
     rentals: [],
+    amountDue: 0,
+    isLoadingCheckout: false,
     divesModalVisibility: false,
     editGuestInfoModalVisibility: false,
     editDivingInfoModalVisibility: false,
     editOtherInfoModalVisibility: false,
     rentalModalVisibility: false,
     retailModalVisibility: false,
-    coursesModalVisibility: false
+    coursesModalVisibility: false,
+    checkoutModalVisibility: false
 }
 
 
@@ -44,6 +47,18 @@ const guestReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 rentals: action.payload.rentals
+            }
+        }
+        case 'SET_AMOUNT_DUE': {
+            return {
+                ...state,
+                amountDue: action.payload.amountDue
+            }
+        }
+        case 'SET_IS_LOADING_CHECKOUT': {
+            return {
+                ...state,
+                isLoadingCheckout: action.payload.isLoadingCheckout
             }
         }
         case 'SET_MODAL_VISIBILITY': {
@@ -83,6 +98,11 @@ const guestReducer = (state = defaultState, action) => {
                 case 'editOtherInfo': newState = {
                     ...state,
                     editOtherInfoModalVisibility: action.payload.modal_visibility
+                }
+                break;
+                case 'checkoutModal': newState = {
+                    ...state,
+                    checkoutModalVisibility: action.payload.modal_visibility
                 }
                 break;
                 default: return newState;

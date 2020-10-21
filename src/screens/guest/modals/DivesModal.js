@@ -1,37 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import { Modal } from 'antd';
 import {connect} from 'react-redux';
-import {setModalVisibility, setCourses} from '../../redux/actions/guestActions';
-import {setCourseItems} from '../../redux/actions/productItemsActions';
-import Select from '../../components/select';
-import StaffMemberSelect from '../../components/staffMemberSelect';
-import Button from '../../components/button';
+import {setModalVisibility, setDives} from '../../../redux/actions/guestActions';
+import {setDiveItems} from '../../../redux/actions/productItemsActions';
+import Select from '../../../components/select';
+import StaffMemberSelect from '../../../components/staffMemberSelect';
+import Button from '../../../components/button';
 import axios from 'axios';
+import moment from 'moment-timezone';
 import {Formik} from 'formik';
-import Checkbox from '../../components/checkbox';
+import Checkbox from '../../../components/checkbox';
 import * as Yup from 'yup';
 
-const MODAL_VISIBILITY_NAME = 'addCourse';
+const MODAL_VISIBILITY_NAME = 'addDive';
 
 const validationSchema = Yup.object({
-    title: Yup.string()
-        .required('Type of course is required'),
+    dive_type: Yup.string()
+        .required('Dive type is required'),
     staff: Yup.string()
         .required('Staff is required'),
+    air_type: Yup.string()
+        .required('Air type is required'),
 });
 
 
-const CourseModal = (props) => {
+const DivesModal = (props) => {
     useEffect(() => {
-        const getCoursesProductCategory = async () => {
-            const coursesCategory = await axios.get('/product/product-categories?title=Courses');
-            props.setCourseItems(coursesCategory.data.items);
+        const getDiveProductCategory = async () => {
+            const diveCategory = await axios.get('/product/product-categories?title=Dives');
+            props.setDiveItems(diveCategory.data.items);
         }
 
-        getCoursesProductCategory();        
+        getDiveProductCategory();        
     }, []);
 
-    const courseItemsSelectValues = props.courseItems.map((item) => {
+    const diveTypeItemsSelectValues = props.diveTypeItems.map((item) => {
         let selectObject = {};
         selectObject[item.title] = item.title;
         return selectObject;
@@ -41,19 +44,19 @@ const CourseModal = (props) => {
         <> 
             <Modal
                 visible={props.visibility}
-                title={'Add course'}
+                title={'Add dive'}
                 onCancel={() => props.setModalVisibility(MODAL_VISIBILITY_NAME, false)}
                 footer={null}
             >
                 <Formik
                     validateOnBlur={false}
                     validateOnChange={false}
-                    initialValues={{registrationId: props.guest.registration._id, title: '', staff: [], paid: false}}
+                    initialValues={{registrationId: props.guest.registration._id, dive_type: '', staff: [], air_type: '', paid: false, date: moment().format()}}
                     validationSchema={validationSchema}
                     onSubmit={async (values, { setSubmitting }) => {
                         setSubmitting(true);
-                        const addCourseRequest = await axios.put('/registration-categories/courses', values);
-                        props.setCourses(addCourseRequest.data.courses);
+                        const addDiveRequest = await axios.put('/registration-categories/dives', values);
+                        props.setDives(addDiveRequest.data.dives);
                         props.setModalVisibility(MODAL_VISIBILITY_NAME, false);
                         setSubmitting(false);
                     }}
@@ -66,8 +69,9 @@ const CourseModal = (props) => {
                     handleSubmit,
                     }) => (
                     <form onSubmit={handleSubmit}>
-                        <Select error={errors.title} items={courseItemsSelectValues} placeholder='Type of course' name='title' onChange={handleChange} value={values.title}/>
+                        <Select error={errors.dive_type} items={diveTypeItemsSelectValues} placeholder='Type of dive' name='dive_type' onChange={handleChange} value={values.dive_type}/>
                         <StaffMemberSelect error={errors.staff} formValues={values} name='staff' placeholder='Choose one or more staff'/>
+                        <Select error={errors.air_type} items={[{Air_tank: 'Air tank', Nitrox_tank: 'Nitrox tank'}]} placeholder='Air type' name='air_type' onChange={handleChange}/>
                         <Checkbox label='Guest has paid' name='paid'/>
                         <div className='right'>
                             <Button isLoading={isSubmitting} type='submit' category='cta' fontType='bold' text='Save' /> 
@@ -84,15 +88,15 @@ const CourseModal = (props) => {
 const mapStateToProps = (state) => {
     return {
         guest: state.guestReducer.guest,
-        courses: state.guestReducer.courses,
-        visibility: state.guestReducer.coursesModalVisibility,
-        courseItems: state.productItemsReducer.courseItems,
+        dives: state.guestReducer.dives,
+        visibility: state.guestReducer.divesModalVisibility,
+        diveTypeItems: state.productItemsReducer.diveItems,
     }
 }
 
-const mapDispatchToProps = {setModalVisibility, setCourses, setCourseItems}
+const mapDispatchToProps = {setModalVisibility, setDives, setDiveItems}
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CourseModal)
+)(DivesModal)
