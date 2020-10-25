@@ -5,7 +5,8 @@ const defaultState = {
     isLoadingCalendarItems: false,
     selectedDate: moment().format(),
     calendarItemRefs: [],
-    calendarItemPopover: ''
+    calendarItemPopover: '',
+    addCalendarItemModalVisibility: false,
 }
 
 const calendarReducer = (state = defaultState, action) => {
@@ -25,6 +26,10 @@ const calendarReducer = (state = defaultState, action) => {
         case 'SET_SELECTED_DATE' : return {
             ...state,
             selectedDate: action.payload.selectedDate
+        }
+        case 'SET_ADD_CALENDAR_ITEM_VISIBILITY' : return {
+            ...state,
+            addCalendarItemModalVisibility: action.payload.visibility
         }
         case 'SET_LOADING_CALENDAR_ITEMS' : return {
             ...state,

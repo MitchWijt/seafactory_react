@@ -3,6 +3,7 @@ export const SET_CALENDAR_ITEMS = 'SET_CALENDAR_ITEMS';
 export const SET_LOADING_CALENDAR_ITEMS = 'SET_LOADING_CALENDAR_ITEMS';
 export const SET_CALENDAR_ITEM_REFS = 'SET_CALENDAR_ITEM_REFS';
 export const SET_CALENDAR_ITEM_POPOVER = 'SET_CALENDAR_ITEM_POPOVER';
+export const SET_ADD_CALENDAR_ITEM_VISIBILITY = 'SET_ADD_CALENDAR_ITEM_VISIBILITY';
 
 export const setSelectedDate = (selectedDate) => {
     return {
@@ -18,6 +19,15 @@ export const setCalendarItemPopover = (popover) => {
         type: SET_CALENDAR_ITEM_POPOVER,
         payload: {
             calendarItemPopover: popover
+        }
+    }
+}
+
+export const setAddCalendarItemModalVisibility = (visibility) => {
+    return {
+        type: SET_ADD_CALENDAR_ITEM_VISIBILITY,
+        payload: {
+            visibility: visibility
         }
     }
 }

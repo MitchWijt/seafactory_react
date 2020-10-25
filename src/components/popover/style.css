@@ -20,3 +20,8 @@
     opacity: 2;
     z-index: 0;
 }
+
+.popover-content-text{
+    width: inherit;
+    white-space: pre-wrap;
+}
