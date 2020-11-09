@@ -33,8 +33,9 @@ const StaffMemberSelect = (props) => {
         let staffMember = await axios.get(`/staff?id=${staffId}`);
 
         let staffDataObject = {
-             name: staffMember.data.name,
-             initials: staffMember.data.initials
+            id: staffMember.data._id,
+            name: staffMember.data.name,
+            initials: staffMember.data.initials
          }
 
          for(const staffMember of props.chosenStaffMembers){
@@ -48,7 +49,7 @@ const StaffMemberSelect = (props) => {
          }
 
          setChosenStaffMembers(chosenStaffMembers);
-         values.staff = staffMembersInitials
+         values.staff = chosenStaffMembers
     }
 
     const onDeleteChosenStaff = (values, staffObject) => {
@@ -62,7 +63,7 @@ const StaffMemberSelect = (props) => {
         }
 
         setChosenStaffMembers(chosenStaffMembers);
-        values.staff = staffMembersInitials; 
+        values.staff = chosenStaffMembers; 
     }
 
     const staffMembersSelectValues = props.staffMembers.map(item => {

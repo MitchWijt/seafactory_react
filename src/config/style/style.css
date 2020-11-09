@@ -131,3 +131,14 @@ span,p {
 .right{
     text-align: right;
 }
+
+.icon-normal{
+    cursor: pointer;
+    color: #C4C0B6;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+}
+
+.icon-normal:hover{
+    color: #8f8c84;
+}

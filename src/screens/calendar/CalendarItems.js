@@ -2,10 +2,10 @@ import React from 'react';
 import {Row, Col} from 'antd';
 import ContentCard from '../../components/contentCard';
 import ContentCircle from '../../components/contentCircle';
-import moment from 'moment-timezone';
 import {getCalendarItemPopover} from './calendarItemPopover';
 
 const CalendarItems = ({calendarItems, calendarItemRefs, setCalendarItemPopover}) => {
+
     const openPopover = (calendarItem, index) => {
         let popover = getCalendarItemPopover(calendarItem, calendarItemRefs[index]);
         setCalendarItemPopover(popover);
@@ -25,7 +25,7 @@ const CalendarItems = ({calendarItems, calendarItemRefs, setCalendarItemPopover}
                                 parentRef={calendarItemRefs[i]}
                                 onClick={() => openPopover(calendarItem, i)}
                                 mainTitle={calendarItem.title} 
-                                subTitle={`${moment(calendarItem.start_time).format('hh:mm A')}`}
+                                subTitle={calendarItem.textualStartTime}
                                 topLeft={<StaffCircles staff={calendarItem.staff}/>}/>
                             </Col>
                             

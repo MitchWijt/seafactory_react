@@ -55,6 +55,7 @@ const DivesModal = (props) => {
                     validationSchema={validationSchema}
                     onSubmit={async (values, { setSubmitting }) => {
                         setSubmitting(true);
+                        values.staff = values.staff.map(staffMemberObject => staffMemberObject.initials);
                         const addDiveRequest = await axios.put('/registration-categories/dives', values);
                         props.setDives(addDiveRequest.data.dives);
                         props.setModalVisibility(MODAL_VISIBILITY_NAME, false);

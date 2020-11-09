@@ -52,6 +52,7 @@ const CourseModal = (props) => {
                     validationSchema={validationSchema}
                     onSubmit={async (values, { setSubmitting }) => {
                         setSubmitting(true);
+                        values.staff = values.staff.map(staffMemberObject => staffMemberObject.initials);
                         const addCourseRequest = await axios.put('/registration-categories/courses', values);
                         props.setCourses(addCourseRequest.data.courses);
                         props.setModalVisibility(MODAL_VISIBILITY_NAME, false);

@@ -3,11 +3,39 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import {Formik} from 'formik';
 import { Modal } from 'antd';
+import FormInput from '../../../components/formInput';
+import Select from '../../../components/select';
+import {parseArrayToSelectValues} from '../../../services/selectHelper';
+import DatePicker from '../../../components/datePicker';
+import StaffMemberSelect from '../../../components/staffMemberSelect';
+import Button from '../../../components/button';
 import {connect} from 'react-redux';
+import moment from 'moment-timezone';
 import {setAddCalendarItemModalVisibility} from '../../../redux/actions/calendarActions';
 
-
+  
 const AddCalendarItemModal = (props) => {
+    const validationSchema = Yup.object({
+        // checked_out_by: Yup.string()
+        //     .required('Checked out by is required')
+        
+    });
+
+    const initialFormValues = {
+        title: '',
+        date: props.selectedDate,
+        start_time: '2020-06-03T13:43:02.049+00:00',
+        end_time: '2020-06-03T15:43:02.049+00:00',
+        category: '',
+        staff: '',
+        description: ''
+    }
+
+    const handleDateChange = (date, values, dateSelector) => {
+        values[dateSelector] = moment(date).format();
+    }
+
+
     return (
         <Modal
         visible={props.visibility}
@@ -15,18 +43,16 @@ const AddCalendarItemModal = (props) => {
         onCancel={() => props.setAddCalendarItemModalVisibility(false)}
         footer={null}
         >
-            <p>fhjsjshdf</p>
-            {/* <Formik
+            <Formik
                 validateOnBlur={false}
                 validateOnChange={false}
-                initialValues={initialValues}
+                initialValues={initialFormValues}
                 validationSchema={validationSchema}
                 onSubmit={async (values, { setSubmitting }) => {
                     setSubmitting(true);
-                    await axios.put('/registration/checkout', values);
+                    values.staff = values.staff.map(staffMemberObject => staffMemberObject.id);
+                    await axios.post('/calendar', values);
                     setSubmitting(false);
-                    setModalVisibility('checkoutModal', false);
-                    window.location.reload();
                 }}
             >
                 {({
@@ -37,27 +63,26 @@ const AddCalendarItemModal = (props) => {
                 handleSubmit,
                 }) => (
                 <form onSubmit={handleSubmit}>
-                    <FormInput type='number' placeholder='Additional air tanks' name='airTanks' onChange={(e) => handleInputChange(values, e.target.value, values.nxTanks, values.discount)} />
-                    <FormInput type='number' placeholder='Additional nx tanks' name='nxTanks' onChange={(e) => handleInputChange(values, values.airTanks, e.target.value, values.discount)}/>
-                    <FormInput type='number' placeholder='Discount in %' name='discount' onChange={(e) => handleInputChange(values, values.airTanks, values.nxTanks, e.target.value)}/>
-                    <Select error={errors.checked_out_by} items={parseArrayToSelectValues(props.staffMembers, '_id', 'name')} placeholder='Checked out by' name='checked_out_by' onChange={handleChange} value={values.checked_out_by}/>
-                    <div className='d-flex jc-between'>
-                        <p style={{fontSize: '1.5em'}}>Amount due:</p>
-                        <p className='bold' style={{fontSize: '1.5em'}}>${props.amountDue}</p>
-                    </div>
+                    <FormInput type='text' placeholder='Title' name='title' onChange={handleChange} />
+                    <StaffMemberSelect formValues={values} placeholder='Staff members' name='staff'/>
+                    <Select items={parseArrayToSelectValues(props.calendarItemCategories, '_id', 'title')} placeholder='Category' name='category' onChange={handleChange} value={values.category}/>
+                    <DatePicker defaultValue={props.selectedDate} placeholder='Date of activity' onChange={(date) => handleDateChange(date, values, 'date')}/>
+
                     <div className='right'>
                         <Button isLoading={isSubmitting} type='submit' category='cta' fontType='bold' text='Check out' /> 
                     </div>     
                 </form>
                 )}
-            </Formik> */}
+            </Formik>
         </Modal>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        visibility: state.calendarReducer.addCalendarItemModalVisibility
+        visibility: state.calendarReducer.addCalendarItemModalVisibility,
+        calendarItemCategories: state.calendarReducer.calendarItemCategories,
+        selectedDate: state.calendarReducer.selectedDate
     }
 }
 
