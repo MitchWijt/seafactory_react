@@ -8,7 +8,7 @@ import {setIsLoading} from '../../redux/actions/loadingActions';
 import Button from '../../components/button';
 import Header from '../../components/header';
 import {FormatDate} from '../../services/dateFormatter';
-import {Link} from 'react-router-dom';
+import DataTable from '../../components/dataTable';
 
 const GuestList = (props) => {
     const {location, isLoading, guests, setIsLoading, setGuests} = props;
@@ -33,38 +33,12 @@ const GuestList = (props) => {
                     <div className='content-container'>
                         <p className='content-container-title'>Guests</p>
                         <div style={{maxHeight: '420px'}} className='scroll-content-container'>
-                            <GuestTable data={guests} titles={['Name', 'Local', 'Dep. Date', 'Marine tag', 'Checked in by', '']}/>
+                            <DataTable singleColumn={SingleColumn} data={guests} titles={['Name', 'Local', 'Dep. Date', 'Marine tag', 'Checked in by', '']}/>
                         </div>
                     </div>
                 </div>
             }      
         </>
-    )
-}
-
-const GuestTable = (props) => {
-    return (
-        <div className="container contentBox">
-            <div className='table-body-data'>
-            {props.data.length > 0 ? 
-                <table className='table'>
-                    <thead>
-                        <tr>
-                            {props.titles.map((title) => <SingleDataTitle key={title} title={title}/>)}
-                        </tr>
-                    </thead>
-                    <tbody className='table-body-data'>
-                        {props.data.map((data) => <SingleColumn {...data}/>)}
-                    </tbody>
-                    
-                </table>
-            : 
-            <div className='center'>
-                <p id='no-results-text'>No results...</p>
-            </div>
-            }
-            </div>
-        </div>
     )
 }
 
@@ -76,16 +50,8 @@ const SingleColumn = (props) => {
             <td>{props.other_info.departure_date ? FormatDate(props.other_info.departure_date) : '-'}</td>
             <td>{props.other_info.marine_park_tag ? 'Yes' : 'No'}</td>
             <td>{props.registration.checked_in_by ? props.registration.checked_in_by : '-'}</td>
-            <td><Link to={`/guest/${props._id}`}><Button type='submit' category='table-cta' fontSize={'14px'} fontType='bold' text='Open' /> </Link></td>
+            <td><Button onClick={() => window.location.href = `/guest/${props._id}`} type='submit' category='table-cta' fontSize={'14px'} fontType='bold' text='Open' /></td>
         </tr>
-    )
-}
-
-const SingleDataTitle = (props) => {
-    return (
-        <>
-            <th className='column-title'>{props.title}</th>
-        </>
     )
 }
 
@@ -101,7 +67,6 @@ const getReqUrlBasedOnParams = (params) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         userState: state.userStateReducer,
         isLoading: state.loadingReducer.isLoading,

@@ -6,6 +6,11 @@
     width: 100%;
     margin-top: 10px !important;
     margin-bottom: 10px !important;
+    padding-left: 10px;
+}
+
+.formInput::placeholder{
+    color: #989898;
 }
 
 .errorStyle{

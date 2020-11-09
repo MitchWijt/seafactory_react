@@ -98,9 +98,13 @@ const fetchStaffWorking = async (addStaffWorking) => {
 }
 
 const fetchWeatherData = async (addWeather) => {
-    const weatherResponse = await axios.get('/weather?location=Kralendijk, Bonaire');
+    try{
+    const weatherResponse = await axios.get('/weather?location=Kralendijk,Bonaire');
     const forecastData = weatherResponse.data[0];
     addWeather(forecastData);
+    } catch(e){
+        console.log(e.response.data.description);
+    }
 }
 
 const SingleDataTitle = (props) => {

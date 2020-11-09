@@ -3,7 +3,7 @@ import './style.css';
 
 const ContentCard = (props) => {
     return (
-        <div className='content-card'>
+        <div ref={props.parentRef} className='content-card' onClick={props.onClick}>
             <div className='d-flex jc-between'>
                 <div className='topLeft d-flex fd-row'>
                     {props.topLeft ? props.topLeft : ''}

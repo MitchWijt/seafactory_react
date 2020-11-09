@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import FormInput from '../../../components/formInput';
 import Select from '../../../components/select';
 import Checkbox from '../../../components/checkbox';
-import countryArray from '../../../lib/countryArray';
+import {countrySelectValues} from '../../../lib/countryData';
 import axios from 'axios';
 import * as Yup from 'yup';
 
@@ -71,7 +71,7 @@ const ThreeDiveCenter = (props) => {
                                 <FormInput error={errors.companyName} type='text' placeholder='Company name' name='companyName' onChange={handleChange} value={values.companyName}/>
                                 <FormInput error={errors.diveCenterLocations} type='text' placeholder='Name of main location (you can add more later)' name='diveCenterLocations' onChange={handleChange} value={values.diveCenterLocations}/>  
                                 <FormInput error={errors.addressMainLocation} type='text' placeholder='Address main location' name='addressMainLocation' onChange={handleChange} value={values.addressMainLocation}/>
-                                <Select error={errors.countryMainLocation} items={countryArray} placeholder='Country main location' name='countryMainLocation' onChange={handleChange} value={values.countryMainLocation}/>
+                                <Select error={errors.countryMainLocation} items={countrySelectValues} placeholder='Country main location' name='countryMainLocation' onChange={handleChange} value={values.countryMainLocation}/>
                                 <Checkbox label='SeaFactory is allowed to contact me by email with info regarding my account' name='contactMe' onChange={handleContactMe}/>
                                 <div className='register-cta-button'>
                                    <Button isLoading={isSubmitting} type='submit' category='cta' fontType='bold' text='Continue' /> 
