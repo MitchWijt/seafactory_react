@@ -1,2 +1,2 @@
-import SubscriptionExpired from './SubscriptionExpired';
-export default SubscriptionExpired;
+import SubscriptionExpired from './SubscriptionExpired'
+export default SubscriptionExpired

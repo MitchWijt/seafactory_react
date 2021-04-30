@@ -1,2 +1,2 @@
-import EditRental from './EditRental';
-export default EditRental;
+import EditRental from './EditRental'
+export default EditRental

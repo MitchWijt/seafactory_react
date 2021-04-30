@@ -1,2 +1,2 @@
-import Hr from './Hr';
+import Hr from './Hr'
 export default Hr

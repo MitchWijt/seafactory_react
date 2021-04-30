@@ -1,2 +1,2 @@
-import HomeInput from './HomeInput';
-export default HomeInput;
+import HomeInput from './HomeInput'
+export default HomeInput

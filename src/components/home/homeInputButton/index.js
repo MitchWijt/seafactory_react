@@ -1,2 +1,2 @@
-import HomeInputButton from './HomeInputButton';
-export default HomeInputButton;
+import HomeInputButton from './HomeInputButton'
+export default HomeInputButton

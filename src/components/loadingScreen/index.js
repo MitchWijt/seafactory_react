@@ -1,2 +1,2 @@
-import LoadingScreen from './LoadingScreen';
-export default LoadingScreen;
+import LoadingScreen from './LoadingScreen'
+export default LoadingScreen

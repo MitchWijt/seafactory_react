@@ -1,10 +1,10 @@
 export const parseArrayToSelectValues = (array, specificKeyValueDoc = null, specificValueDoc = null) => {
-    return array.map((value) => {
-        let keyValue = specificKeyValueDoc ? value[specificKeyValueDoc] : value;
-        let dataValue = specificValueDoc ? value[specificValueDoc] : value;
+  return array.map((value) => {
+    const keyValue = specificKeyValueDoc ? value[specificKeyValueDoc] : value
+    const dataValue = specificValueDoc ? value[specificValueDoc] : value
 
-        let selectObject = {};
-        selectObject[keyValue] = dataValue;
-        return selectObject;
-    })
+    const selectObject = {}
+    selectObject[keyValue] = dataValue
+    return selectObject
+  })
 }

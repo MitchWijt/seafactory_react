@@ -1,15 +1,15 @@
 const defaultState = {
-    rentalItems: []
+  rentalItems: []
 }
 
 const rentalItemsReducer = (state = defaultState, action) => {
-    switch(action.type){
-        case 'SET_RENTAL_ITEMS' : return {
-            ...state,
-            rentalItems : action.payload.rentalItems
-        }
-        default: return state
+  switch (action.type) {
+    case 'SET_RENTAL_ITEMS' : return {
+      ...state,
+      rentalItems: action.payload.rentalItems
     }
+    default: return state
+  }
 }
 
-export default rentalItemsReducer;
+export default rentalItemsReducer

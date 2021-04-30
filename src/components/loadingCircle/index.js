@@ -1,2 +1,2 @@
-import LoadingCircle from './LoadingCircle';
-export default LoadingCircle;
+import LoadingCircle from './LoadingCircle'
+export default LoadingCircle

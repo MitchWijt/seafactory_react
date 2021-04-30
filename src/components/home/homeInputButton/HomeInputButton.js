@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './style.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './style.css'
 
 const HomeInputButton = (props) => {
-    return (
-        <button className='homeInputButton' type={props.type} disabled={props.disabled}>{props.title}</button>
-    )
+  return (
+    <button className='homeInputButton' type={props.type} disabled={props.disabled}>{props.title}</button>
+  )
 }
 
 HomeInputButton.propTypes = {
-    title : PropTypes.string
+  title: PropTypes.string
 }
 
-export default HomeInputButton;
+export default HomeInputButton

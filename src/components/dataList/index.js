@@ -1,2 +1,2 @@
-import DataList from './DataList';
-export default DataList;
+import DataList from './DataList'
+export default DataList

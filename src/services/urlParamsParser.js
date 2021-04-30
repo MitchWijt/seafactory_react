@@ -1,8 +1,8 @@
-const qs = require('qs');
+const qs = require('qs')
 
 const urlParamsParser = (paramsString) => {
-    let string = paramsString.replace('?', '');
-    return qs.parse(string);
+  const string = paramsString.replace('?', '')
+  return qs.parse(string)
 }
 
-export default urlParamsParser;
+export default urlParamsParser

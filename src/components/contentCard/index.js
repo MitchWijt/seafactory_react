@@ -1,2 +1,2 @@
-import ContentCard from './ContentCard';
-export default ContentCard;
+import ContentCard from './ContentCard'
+export default ContentCard

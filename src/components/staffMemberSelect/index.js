@@ -1,2 +1,2 @@
-import StaffMemberSelect from './StaffMemberSelect';
-export default StaffMemberSelect;
+import StaffMemberSelect from './StaffMemberSelect'
+export default StaffMemberSelect

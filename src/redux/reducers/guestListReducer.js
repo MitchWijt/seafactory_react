@@ -1,18 +1,17 @@
 const defaultState = {
-    guests: [], 
+  guests: []
 }
-
 
 const guestListReducer = (state = defaultState, action) => {
-    switch(action.type){
-        case 'SET_GUESTS': {
-            return {
-                ...state,
-                guests: action.payload.guests
-            }
-        }
-        default: return state;
+  switch (action.type) {
+    case 'SET_GUESTS': {
+      return {
+        ...state,
+        guests: action.payload.guests
+      }
     }
+    default: return state
+  }
 }
 
-export default guestListReducer;
+export default guestListReducer

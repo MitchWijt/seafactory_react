@@ -1,2 +1,2 @@
-import RegisterBackgroundImage from './RegisterBackgroundImage';
-export default RegisterBackgroundImage;
+import RegisterBackgroundImage from './RegisterBackgroundImage'
+export default RegisterBackgroundImage

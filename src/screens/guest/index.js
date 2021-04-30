@@ -1,2 +1,2 @@
-import Guest from './Guest';
-export default Guest;
+import Guest from './Guest'
+export default Guest

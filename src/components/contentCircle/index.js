@@ -1,2 +1,2 @@
-import ContentCircle from './ContentCircle';
-export default ContentCircle;
+import ContentCircle from './ContentCircle'
+export default ContentCircle

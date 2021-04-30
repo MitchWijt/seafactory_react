@@ -1,18 +1,17 @@
 const defaultState = {
-    isLoading: true,
+  isLoading: true
 }
-
 
 const loadingReducer = (state = defaultState, action) => {
-    switch(action.type){
-        case 'SET_IS_LOADING': {
-            return {
-                ...state,
-                isLoading: action.payload.isLoading
-            }
-        }
-        default: return state;
+  switch (action.type) {
+    case 'SET_IS_LOADING': {
+      return {
+        ...state,
+        isLoading: action.payload.isLoading
+      }
     }
+    default: return state
+  }
 }
 
-export default loadingReducer;
+export default loadingReducer

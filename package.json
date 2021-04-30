@@ -22,16 +22,27 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
+    "standard": "^16.0.3",
     "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "standard",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "env": [
+      "jest",
+      "es6",
+      "browser",
+      "mocha"
+    ]
   },
   "browserslist": {
     "production": [

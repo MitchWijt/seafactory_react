@@ -1,2 +1,2 @@
-import GuestList from './GuestList';
-export default GuestList;
+import GuestList from './GuestList'
+export default GuestList
