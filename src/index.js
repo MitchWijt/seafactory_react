@@ -6,6 +6,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './redux/reducers'
 import { CookiesProvider } from 'react-cookie'
+import './index.css'
 
 const store = createStore(rootReducer)
 
