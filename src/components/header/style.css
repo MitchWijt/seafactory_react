@@ -1,98 +1,98 @@
-.header-container{
-    margin: 0 auto;
-    max-width: 1600px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.header-container {
+  margin: 0 auto;
+  max-width: 1600px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-#seafactory-logo{
-    font-family: "Granic Slab Bold";
-    font-size: 40px;
-    text-transform: uppercase;
-    color: #FF6F61;
-    margin-top: 10px
+#seafactory-logo {
+  font-family: "Granic Slab Bold";
+  font-size: 40px;
+  text-transform: uppercase;
+  color: #ff6f61;
+  margin-top: 10px;
 }
 
-.nav-menu a{
-    margin-left: 12px;
-    margin-right: 12px;
+.nav-menu a {
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
-.nav-menu{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.divider{
-    background: #707070 !important;
-    height: 30px !important;
-    display: block !important;
+.divider {
+  background: #707070 !important;
+  height: 30px !important;
+  display: block !important;
 }
 
-.account-icon{
-    color: #FF6F61;
-    width: 25px !important;
-    height: 25px !important;
+.account-icon {
+  color: #ff6f61;
+  width: 25px !important;
+  height: 25px !important;
 }
 
-.account-badge{
-    position: relative;
-    border: 1px solid #D8D8D8;
-    border-radius: 100%;
-    padding: 8px 11px;
-    display: inline-block;
-    cursor: pointer;
+.account-badge {
+  position: relative;
+  border: 1px solid #d8d8d8;
+  border-radius: 100%;
+  padding: 8px 11px;
+  display: inline-block;
+  cursor: pointer;
 }
 
-.account-menu{
-    position: absolute;
-    bottom: -50px;
-    left: -25px;
+.account-menu {
+  position: absolute;
+  bottom: -50px;
+  left: -25px;
 }
 
-.header-icon{
-    color: #ffffff;
-    width: 25px !important;
-    height: 25px !important;
-    margin-left: 5px;
-    margin-right: 5px;
+.header-icon {
+  color: #ffffff;
+  width: 25px !important;
+  height: 25px !important;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-.header-menu-button{
-    color: #ffffff;
-    background: #4A4843;
-    border: #C4C0B6;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 7px;
-    min-width: 45px;
-    margin-left: 5px;
-    margin-right: 5px;
+.header-menu-button {
+  color: #ffffff;
+  background: #4a4843;
+  border: #c4c0b6;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 7px;
+  min-width: 45px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-#navButttonText{
-    color: #ffffff;
-    font-size: 17px;
+#navButttonText {
+  color: #ffffff;
+  font-size: 17px;
 }
 
-.formInputHeader{
-    border: 1px solid #4A4843 !important;
-    border-radius: 5px !important;
-    color: #4A4843 !important;
-    width: 28%;
-    margin-left: 5px !important;
-    margin-right: 5px !important;
+.formInputHeader {
+  border: 1px solid #4a4843 !important;
+  border-radius: 5px !important;
+  color: #4a4843 !important;
+  width: 28%;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
 }
 
-.searchForm{
-    margin-top: 10px;
+.searchForm {
+  margin-top: 10px;
 }

@@ -2,8 +2,8 @@
   box-sizing: border-box !important;
 }
 
-.flexer { 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.flexer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

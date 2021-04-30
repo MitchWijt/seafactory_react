@@ -1,16 +1,16 @@
-.homeInput{
-    width: 25% !important;
-    height: 40px !important;
+.homeInput {
+  width: 25% !important;
+  height: 40px !important;
 }
 
-.homeInput{
-    border-top-left-radius: 5px !important;
-    border-bottom-left-radius: 5px !important;
-    border: 1px solid #4A4843;
+.homeInput {
+  border-top-left-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  border: 1px solid #4a4843;
 }
 
-#input-subtitle{
-    font-size: 16px;
-    margin-top: 5px !important;
-    font-family: 'Corbert' !important;
+#input-subtitle {
+  font-size: 16px;
+  margin-top: 5px !important;
+  font-family: "Corbert" !important;
 }

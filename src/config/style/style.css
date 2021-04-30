@@ -1,144 +1,146 @@
 @font-face {
-    font-family: "Corbert";
-    src: url("../../lib/fonts/Corbert-Regular.ttf");
+  font-family: "Corbert";
+  src: url("../../lib/fonts/Corbert-Regular.ttf");
 }
 
 @font-face {
-    font-family: "Corbert Bold";
-    src: url("../../lib/fonts/Corbert-Bold.otf");
+  font-family: "Corbert Bold";
+  src: url("../../lib/fonts/Corbert-Bold.otf");
 }
 
 @font-face {
-    font-family: "Corbert Thin";
-    src: url("../../lib/fonts/Corbert-Thin.otf");
+  font-family: "Corbert Thin";
+  src: url("../../lib/fonts/Corbert-Thin.otf");
 }
 
 @font-face {
-    font-family: "Corbert Heavy";
-    src: url("../../lib/fonts/Corbert-Heavy.otf");
+  font-family: "Corbert Heavy";
+  src: url("../../lib/fonts/Corbert-Heavy.otf");
 }
 
 @font-face {
-    font-family: "Granic Slab Bold";
-    src: url("../../lib/fonts/Granic-Slab-Bold.otf");
+  font-family: "Granic Slab Bold";
+  src: url("../../lib/fonts/Granic-Slab-Bold.otf");
 }
 
-*{
-    font-family: "Corbert";
+* {
+  font-family: "Corbert";
 }
 
-.container{
-    margin: 0 auto;
-    max-width: 1600px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.container {
+  margin: 0 auto;
+  max-width: 1600px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-.heavy-font{
-    font-family: "Corbert Heavy";
+.heavy-font {
+  font-family: "Corbert Heavy";
 }
 
-.bold{
-    font-family: "Corbert Bold";
+.bold {
+  font-family: "Corbert Bold";
 }
 
-body{
-    margin: 0
+body {
+  margin: 0;
 }
 
-a{
-    color: #4A4843 !important;
-    text-decoration: none;
+a {
+  color: #4a4843 !important;
+  text-decoration: none;
 }
 
-a:hover{
-    text-decoration: underline !important;
+a:hover {
+  text-decoration: underline !important;
 }
 
-button{
-    cursor: pointer;
+button {
+  cursor: pointer;
 }
 
-h1, h2{
-    color: #4A4843 !important;
+h1,
+h2 {
+  color: #4a4843 !important;
 }
 
-.underline{
-    text-decoration: underline;
+.underline {
+  text-decoration: underline;
 }
 
-.heavy-title{
-    font-size: 30px;
-    font-family: 'Corbert Heavy' !important;
-    color: #4A4843 !important;
+.heavy-title {
+  font-size: 30px;
+  font-family: "Corbert Heavy" !important;
+  color: #4a4843 !important;
 }
 
-span,p {
-    color: #707070
+span,
+p {
+  color: #707070;
 }
 
 .content-container {
-    background: #F2F2F2;
-    border-radius: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+  background: #f2f2f2;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-.content-container.min-height{
-    min-height: 420px;
+.content-container.min-height {
+  min-height: 420px;
 }
 
-.content-title-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5em;
+.content-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5em;
 }
 
 .content-container-title {
-    color: #4A4843;
-    font-family: 'Corbert Bold';
-    font-size: 1.8em;
-    margin-bottom: 0;
+  color: #4a4843;
+  font-family: "Corbert Bold";
+  font-size: 1.8em;
+  margin-bottom: 0;
 }
 
 .content-container-subtitle {
-    color: #4A4843;
-    font-family: 'Corbert Thin';
-    font-size: 1.4em;
-    margin-bottom: 1.4em;
+  color: #4a4843;
+  font-family: "Corbert Thin";
+  font-size: 1.4em;
+  margin-bottom: 1.4em;
 }
 
-.content-container-icon{
-    width: 25px !important;
-    height: 25px !important;
-    color: #FF6F61;
-    cursor: pointer;
+.content-container-icon {
+  width: 25px !important;
+  height: 25px !important;
+  color: #ff6f61;
+  cursor: pointer;
 }
 
-.scroll-content-container{
-    overflow: scroll;
+.scroll-content-container {
+  overflow: scroll;
 }
 
-.center{
-    text-align: center;
+.center {
+  text-align: center;
 }
 
-.right{
-    text-align: right;
+.right {
+  text-align: right;
 }
 
-.icon-normal{
-    cursor: pointer;
-    color: #C4C0B6;
-    margin-left: 7.5px;
-    margin-right: 7.5px;
+.icon-normal {
+  cursor: pointer;
+  color: #c4c0b6;
+  margin-left: 7.5px;
+  margin-right: 7.5px;
 }
 
-.icon-normal:hover{
-    color: #8f8c84;
+.icon-normal:hover {
+  color: #8f8c84;
 }

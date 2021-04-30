@@ -1,23 +1,23 @@
 .d-flex {
-    display: flex;
+  display: flex;
 }
 
 .fd-row {
-    flex-direction: row;
+  flex-direction: row;
 }
 
-.fd-column{
-    flex-direction: column;
+.fd-column {
+  flex-direction: column;
 }
 
-.jc-center{
-    justify-content: center;
+.jc-center {
+  justify-content: center;
 }
 
-.jc-between{
-    justify-content: space-between;
+.jc-between {
+  justify-content: space-between;
 }
 
-.ai-center{
-    align-items: center;
+.ai-center {
+  align-items: center;
 }

@@ -1,22 +1,22 @@
-.formInput{
-    border: 1px solid #4A4843 !important;
-    border-radius: 5px !important;
-    color: #4A4843 !important;
-    min-height: 50px;
-    width: 100%;
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
-    padding-left: 10px;
+.formInput {
+  border: 1px solid #4a4843 !important;
+  border-radius: 5px !important;
+  color: #4a4843 !important;
+  min-height: 50px;
+  width: 100%;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  padding-left: 10px;
 }
 
-.formInput::placeholder{
-    color: #989898;
+.formInput::placeholder {
+  color: #989898;
 }
 
-.errorStyle{
-    border: 1px solid red !important;
+.errorStyle {
+  border: 1px solid red !important;
 }
 
-.formInputGroup{
-    text-align: left;
+.formInputGroup {
+  text-align: left;
 }
