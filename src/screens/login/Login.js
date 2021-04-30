@@ -95,7 +95,6 @@ const LoginFormAdmin = () => {
           <form onSubmit={handleSubmit}>
             <FormInput error={errors.email} type='email' placeholder='Email address' name='email' onChange={handleChange} value={values.email} />
             <FormInput error={errors.password} type='password' placeholder='Password' name='password' onChange={handleChange} value={values.password} />
-            <span className='input-error'>{errors.password}</span>
             <div className='register-cta-button'>
               <Button type='submit' category='cta' fontType='bold' text='Continue' />
             </div>
