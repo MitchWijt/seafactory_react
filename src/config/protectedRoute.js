@@ -8,16 +8,15 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest} render={(props) => {
-        if (userState.isLoggedIn === null) {
-          return <LoadingScreen />
-        } else if (userState.isLoggedIn) {
-          if (userState.licenseStatus === 'expired') {
-            window.location.href = '/expired'
-          }
-          return <Component {...props} />
+        if (!userState.isLoggedIn) return <LoadingScreen />
+
+        if (userState.isLoggedIn && userState.licenseStatus === 'expired') {
+          window.location.href = '/expired'
         } else {
           window.location.href = '/'
         }
+
+        return <Component {...props} />
       }}
     />
   )

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../constants'
+import { colors } from '../../config/constants'
 
 export const StyledButton = styled.button`
   color: #ffffff;
