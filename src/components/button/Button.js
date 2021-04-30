@@ -1,6 +1,7 @@
 import React from 'react'
 import './style.css'
 import LoadingCircle from '../loadingCircle'
+import { StyledButton } from './style'
 
 const Button = (props) => {
   const fontSize = props.fontSize ? props.fontSize : '16px'
@@ -18,7 +19,14 @@ const Button = (props) => {
   }
 
   return (
-    <button type={props.type} className={className} style={{ fontSize: fontSize, fontFamily: fontType }} onClick={props.onClick}>{isLoading ? <LoadingCircle /> : props.text}</button>
+    <StyledButton
+      type={props.type}
+      className={className}
+      style={{ fontSize: fontSize, fontFamily: fontType }}
+      onClick={props.onClick}
+    >
+      {isLoading ? <LoadingCircle /> : props.text}
+    </StyledButton>
   )
 }
 
