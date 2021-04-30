@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '../button'
 import './style.css'
 import { Divider, Row, Col, DatePicker } from 'antd'
@@ -92,7 +92,7 @@ const HeaderLoggedIn = (props) => {
                     </form>
                   )}
                 </Formik>
-                </div>
+              </div>
               : <></>}
           </Col>
           <Col span={8} className='center'>
@@ -106,7 +106,7 @@ const HeaderLoggedIn = (props) => {
               {menuShown
                 ? <div className='account-menu'>
                   <Button onClick={handleLogout} text='Logout' category='cta' type='button' fontType='bold' fontSize='15px' />
-                </div>
+                  </div>
                 : ''}
             </div>
           </Col>

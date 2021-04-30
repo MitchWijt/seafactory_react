@@ -48,6 +48,7 @@ const CheckedOutGuest = (props) => {
     }
 
     getAllGuestData()
+    // eslint-disable-next-line
   }, [])
 
   const getGuestInfoObject = () => {
@@ -92,7 +93,8 @@ const CheckedOutGuest = (props) => {
   return (
     <>
       <Header />
-      {isLoading ? <LoadingScreen />
+      {isLoading
+        ? <LoadingScreen />
         : <div className='container'>
           <div className='center'>
             <h1 className='content-container-title'>{guest.guest_info.name}</h1>
@@ -152,7 +154,7 @@ const CheckedOutGuest = (props) => {
               </div>
             </Col>
           </Row>
-        </div>}
+          </div>}
     </>
   )
 }
@@ -184,27 +186,27 @@ const SingleColumnCoursesTable = (props) => {
   )
 }
 
-const SingleColumnRentalsTable = (props) => {
-  const daysRented = calculateDaysRented(props.start_date, props.end_date)
-  return (
-    <tr className='table-data-row'>
-      <td>{props.rental_item.title}</td>
-      <td>{moment(props.start_date).format('DD/MM/YYYY')}</td>
-      <td>{props.end_date ? moment(props.end_date).format('DD/MM/YYYY') : '-'}</td>
-      <td>{daysRented}</td>
-    </tr>
-  )
-}
+// const SingleColumnRentalsTable = (props) => {
+//   const daysRented = calculateDaysRented(props.start_date, props.end_date)
+//   return (
+//     <tr className='table-data-row'>
+//       <td>{props.rental_item.title}</td>
+//       <td>{moment(props.start_date).format('DD/MM/YYYY')}</td>
+//       <td>{props.end_date ? moment(props.end_date).format('DD/MM/YYYY') : '-'}</td>
+//       <td>{daysRented}</td>
+//     </tr>
+//   )
+// }
 
-const calculateDaysRented = (start_date, end_date) => {
-  if (!end_date) {
-    return '-'
-  } else {
-    const start = moment(start_date)
-    const end = moment(end_date)
-    return end.diff(start, 'days') + 1
-  }
-}
+// const calculateDaysRented = (start_date, end_date) => {
+//   if (!end_date) {
+//     return '-'
+//   } else {
+//     const start = moment(start_date)
+//     const end = moment(end_date)
+//     return end.diff(start, 'days') + 1
+//   }
+// }
 
 const mapStateToProps = (state) => {
   return {

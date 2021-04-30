@@ -42,6 +42,7 @@ const RentalModal = (props) => {
 
     getRentalItems()
     getInventoryItems()
+    // eslint-disable-next-line
   }, [])
 
   const initialValues = {

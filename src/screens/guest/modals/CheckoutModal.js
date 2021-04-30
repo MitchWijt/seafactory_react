@@ -21,6 +21,7 @@ const CheckoutModal = (props) => {
     }
 
     getStaffMembers()
+    // eslint-disable-next-line
   }, [])
   const { setModalVisibility } = props
 

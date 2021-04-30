@@ -30,7 +30,7 @@ const validationSchema = Yup.object({
 })
 
 const EditRental = (props) => {
-  const { isLoading, singleRental, guest, setIsLoading, setSingleRental, setRentalItems, setInventoryItems } = props
+  const { isLoading, singleRental, setIsLoading, setSingleRental, setRentalItems, setInventoryItems } = props
 
   useEffect(() => {
     const rentalId = props.match.params.id
@@ -53,6 +53,7 @@ const EditRental = (props) => {
     getRentalItems()
     getInventoryItems()
     getRental()
+    // eslint-disable-next-line
   }, [])
 
   const getInitialValues = () => {
@@ -76,7 +77,8 @@ const EditRental = (props) => {
   return (
     <>
       <Header />
-      {isLoading ? <LoadingScreen />
+      {isLoading
+        ? <LoadingScreen />
         : <div className='container'>
           <div className='center'>
             <h1 className='content-container-title'>{singleRental.rental_item.title}</h1>
@@ -116,7 +118,7 @@ const EditRental = (props) => {
               </Formik>
             </>
           </div>
-        </div>}
+          </div>}
     </>
   )
 }

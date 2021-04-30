@@ -42,6 +42,7 @@ function App (props) {
       await checkLoginStatus(props.login, props.logout, props.userState)
     }
     loginStatus()
+    // eslint-disable-next-line
   }, [])
 
   return (

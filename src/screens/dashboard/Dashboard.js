@@ -25,12 +25,14 @@ const Dashboard = (props) => {
     }
 
     fetchDashboardData(props.location.pathname)
+    // eslint-disable-next-line
   }, [])
 
   return (
     <>
       <Header />
-      {props.isLoading ? <LoadingScreen />
+      {props.isLoading
+        ? <LoadingScreen />
         : <div className='container'>
           <Row gutter={16}>
             <Col span={8}>

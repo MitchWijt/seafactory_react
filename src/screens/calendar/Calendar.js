@@ -30,6 +30,7 @@ const Calendar = (props) => {
     if (calendarItemId) {
       setEditCalendarItemScreen()
     }
+    // eslint-disable-next-line
   }, [year, month, day])
 
   const setEditCalendarItemScreen = async () => {

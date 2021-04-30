@@ -65,6 +65,7 @@ const ActiveGuest = (props) => {
     }
 
     getAllGuestData()
+    // eslint-disable-next-line
   }, [])
 
   const openCheckoutModal = async () => {
@@ -200,7 +201,7 @@ const ActiveGuest = (props) => {
               </div>
             </Col>
           </Row>
-        </div>}
+          </div>}
     </>
   )
 }

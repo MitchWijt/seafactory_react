@@ -32,6 +32,7 @@ const EditOtherInfoForm = (props) => {
 
     getInsuranceProductCategory()
     getStaffMembers()
+    // eslint-disable-next-line
   }, [setInsuranceItems])
 
   const validationSchema = Yup.object({

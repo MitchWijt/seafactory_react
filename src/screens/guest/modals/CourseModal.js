@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Modal } from 'antd'
 import { connect } from 'react-redux'
 import { setModalVisibility, setCourses } from '../../../redux/actions/guestActions'
@@ -28,6 +28,7 @@ const CourseModal = (props) => {
     }
 
     getCoursesProductCategory()
+    // eslint-disable-next-line
   }, [])
 
   const courseItemsSelectValues = props.courseItems.map((item) => {

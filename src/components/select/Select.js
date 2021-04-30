@@ -4,10 +4,10 @@ import './style.css'
 const Select = (props) => {
   const options = []
 
-  props.items.map((itemObject) => {
+  props.items.forEach((itemObject) => {
     for (const keyValue of Object.keys(itemObject)) {
       const optionValue = keyValue.replace('_', ' ')
-      if (keyValue == props.value) {
+      if (keyValue === props.value) {
         options.push(<option selected key={keyValue} value={optionValue}>{itemObject[keyValue]}</option>)
       } else {
         options.push(<option key={keyValue} value={optionValue}>{itemObject[keyValue]}</option>)

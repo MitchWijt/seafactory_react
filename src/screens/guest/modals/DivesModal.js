@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Modal } from 'antd'
 import { connect } from 'react-redux'
 import { setModalVisibility, setDives } from '../../../redux/actions/guestActions'
@@ -31,6 +31,7 @@ const DivesModal = (props) => {
     }
 
     getDiveProductCategory()
+    // eslint-disable-next-line
   }, [])
 
   const diveTypeItemsSelectValues = props.diveTypeItems.map((item) => {

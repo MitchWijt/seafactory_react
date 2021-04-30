@@ -22,12 +22,14 @@ const GuestList = (props) => {
       setIsLoading(false)
     }
     getGuests()
+    // eslint-disable-next-line
   }, [])
 
   return (
     <>
       <Header history={props.history} />
-      {isLoading ? <LoadingScreen />
+      {isLoading
+        ? <LoadingScreen />
         : <div className='container'>
           <div className='content-container'>
             <p className='content-container-title'>Guests</p>
@@ -36,6 +38,7 @@ const GuestList = (props) => {
             </div>
           </div>
         </div>}
+
     </>
   )
 }

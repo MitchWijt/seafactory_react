@@ -16,6 +16,7 @@ const OnePlans = (props) => {
     } else {
       addPremiumPlanToNewUserSession(basicPlan)
     }
+    // eslint-disable-next-line
   }, [choosePlan])
 
   const handleClick = () => {

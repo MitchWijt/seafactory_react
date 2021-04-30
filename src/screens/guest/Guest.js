@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { setGuest, setAmountDue, setDives, setRetail, setCourses, setRentals, setModalVisibility, setIsLoadingCheckout } from '../../redux/actions/guestActions'
+import { setGuest } from '../../redux/actions/guestActions'
 import { setIsLoading } from '../../redux/actions/loadingActions'
 import LoadingScreen from '../../components/loadingScreen'
 import axios from 'axios'
@@ -24,6 +24,7 @@ const Guest = (props) => {
     }
 
     getGuest()
+    // eslint-disable-next-line
   }, [])
 
   return (

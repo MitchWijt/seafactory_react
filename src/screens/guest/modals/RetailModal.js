@@ -25,6 +25,7 @@ const RetailModal = (props) => {
     }
 
     getRetailProductCategory()
+    // eslint-disable-next-line
   }, [])
 
   const retailItemsSelectValues = props.retailItems.map((item) => {
