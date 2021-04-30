@@ -1,11 +1,18 @@
 import React from 'react'
-import './style.css'
+import { StyledInput } from './style'
 
 const HomeInput = (props) => {
+  const { type, name, value, onChange, onBlur, ...rest } = props
   return (
-    <>
-      <input className='homeInput' placeholder='E-mail address' type={props.type} name={props.name} value={props.value} onChange={props.onChange} onBlur={props.onBlur} />
-    </>
+    <StyledInput
+      placeholder='E-mail address'
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+      {...rest}
+    />
   )
 }
 
