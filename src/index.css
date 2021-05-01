@@ -2,6 +2,10 @@
   box-sizing: border-box !important;
 }
 
+.tb, .TB {
+  border: solid 1px red !important;
+}
+
 .flexer {
   display: flex;
   align-items: center;

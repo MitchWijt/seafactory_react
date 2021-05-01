@@ -5,6 +5,8 @@ import { choosePlan } from '../../../redux/actions/newAccountActions'
 import { connect } from 'react-redux'
 import Hr from '../../../components/hr'
 import Button from '../../../components/button'
+import { PlanCircle, PlanTitle } from '../style'
+import { FlexContainer } from '../../../lib/styled-components'
 const OnePlans = (props) => {
   const { newUserSession, currentChosenPremiumPlan, choosePlan } = props
 
@@ -31,13 +33,13 @@ const OnePlans = (props) => {
   }
 
   const SinglePackageButton = (plan) => {
-    const classname = currentChosenPremiumPlan.title === plan.title ? 'register-plan-button active' : 'register-plan-button'
     return (
-      <div onClick={() => handlePlanButtonClick(plan.title)} className={classname}>
-        <div className='register-plan-button-text'>
-          <span>{plan.title}</span>
-        </div>
-      </div>
+      <PlanCircle
+        active={currentChosenPremiumPlan.title === plan.title}
+        onClick={() => handlePlanButtonClick(plan.title)}
+      >
+        <PlanTitle>{plan.title}</PlanTitle>
+      </PlanCircle>
     )
   }
 
@@ -71,11 +73,9 @@ const OnePlans = (props) => {
             <p className='register-step-counter'>Step 1 of 4</p>
             <h1 className='heavy-title'>Choose the best plan for your dive center</h1>
           </div>
-          <div className='register-plans-buttons'>
-            {
-                            premiumPackages.map((plan) => <SinglePackageButton key={plan.title} {...plan} />)
-                        }
-          </div>
+          <FlexContainer justify='space-between'>
+            {premiumPackages.map((plan) => <SinglePackageButton key={plan.title} {...plan} />)}
+          </FlexContainer>
           <div className='register-plan-active-data-container'>
             <ActivePackageList />
             {props.currentChosenPremiumPlan.title !== 'Premium' ? <p id='customerLimitExceeds'>*If customer limit gets exceeded its $2 extra per customer</p> : ''}
