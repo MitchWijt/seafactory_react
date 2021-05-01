@@ -38,6 +38,12 @@ const ThreeDiveCenter = (props) => {
     setContactMe(!contactMe)
   }
 
+  const onSubmit = async (values, { setSubmitting }) => {
+    values.receiveMail = contactMe
+    setSubmitting(true)
+    await submitNewUserForm(values, history)
+    setSubmitting(false)
+  }
   return (
     <>
       <div className='container'>
@@ -52,13 +58,7 @@ const ThreeDiveCenter = (props) => {
               validateOnBlur={false}
               validateOnChange={false}
               validationSchema={validationSchema}
-              onSubmit={async (values, { setSubmitting }) => {
-                values.contactMe = contactMe
-
-                setSubmitting(true)
-                await submitNewUserForm(values, history)
-                setSubmitting(false)
-              }}
+              onSubmit={onSubmit}
             >
               {({
                 values,
