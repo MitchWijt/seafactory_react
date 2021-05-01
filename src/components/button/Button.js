@@ -22,7 +22,7 @@ const Button = (props) => {
     <StyledButton
       type={props.type}
       className={className}
-      style={{ fontSize: fontSize, fontFamily: fontType }}
+      style={{ fontSize: fontSize, fontFamily: fontType, ...props.style }}
       onClick={props.onClick}
     >
       {isLoading ? <LoadingCircle /> : props.text}

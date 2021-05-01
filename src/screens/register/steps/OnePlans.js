@@ -80,9 +80,13 @@ const OnePlans = (props) => {
             <ActivePackageList />
             {props.currentChosenPremiumPlan.title !== 'Premium' ? <p id='customerLimitExceeds'>*If customer limit gets exceeded its $2 extra per customer</p> : ''}
           </div>
-          <div className='register-cta-button'>
-            <Button onClick={handleClick} category='cta' fontType='bold' text='Continue' />
-          </div>
+          <Button
+            onClick={handleClick}
+            category='cta'
+            fontType='bold'
+            text='Continue'
+            style={{ marginTop: 30 }}
+          />
         </div>
       </div>
     </>
