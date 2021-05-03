@@ -26,20 +26,22 @@ import { login, logout } from './redux/actions/userStateActions'
 import { ProtectedRoute } from './config/protectedRoute'
 
 const checkLoginStatus = async (login, logout) => {
-  const res = await axios.get('/auth/user')
+  const { data } = await axios.get('/auth/user')
 
-  if (res.data.isLoggedIn === true) {
-    login(res.data)
-  } else {
-    logout()
-    await axios.get('/token')
-  }
+  if (data.isLoggedIn) return login(data)
+
+  logout()
+  await axios.get('/token')
 }
 
 function App (props) {
   useEffect(() => {
     const loginStatus = async () => {
-      await checkLoginStatus(props.login, props.logout, props.userState)
+      try {
+        await checkLoginStatus(props.login, props.logout, props.userState)
+      } catch (err) {
+        console.log(err)
+      }
     }
     loginStatus()
     // eslint-disable-next-line
