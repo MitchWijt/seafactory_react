@@ -5,8 +5,8 @@ import FormInput from '../../../components/formInput'
 import Select from '../../../components/select'
 import Checkbox from '../../../components/checkbox'
 import { countrySelectValues } from '../../../lib/countryData'
-import axios from 'axios'
 import * as Yup from 'yup'
+import { registerStore, setToken } from '../../../services/api'
 
 const formInitialValues = {
   companyName: '',
@@ -92,8 +92,8 @@ const submitNewUserForm = async (values, history) => {
   const formData = getFormDataFromUserSession()
 
   try {
-    const res = await axios.post('/user/register', formData)
-    await axios.post('/auth/set-token', { jwt: res.data.jwt })
+    const data = await registerStore(formData)
+    await setToken(data.jwt)
 
     localStorage.setItem('newUserStep', '4-payment')
     history.push('/register')

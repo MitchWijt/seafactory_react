@@ -9,14 +9,18 @@ const endpoints = {
   exists: '/user'
 }
 
-export const registerStore = async () => {
-  const { data } = await api.post(endpoints.register)
+export const registerStore = async (formData) => {
+  const { data } = await api.post(endpoints.register, formData)
   return data
 }
 
 export const authorizeUser = async () => {
   const { data } = await api.get(endpoints.authorize)
   return data
+}
+
+export const setToken = (token) => {
+  return api.post('/auth/set-token', { jwt: token })
 }
 
 export const checkUserExists = async (email) => {
