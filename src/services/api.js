@@ -6,7 +6,8 @@ const api = axios.create({ baseURL: config.apiHost() })
 const endpoints = {
   authorize: '/auth/user',
   register: '/user/register',
-  exists: '/user'
+  exists: '/user',
+  setToken: '/auth/set-token'
 }
 
 export const registerStore = async (formData) => {
@@ -20,7 +21,7 @@ export const authorizeUser = async () => {
 }
 
 export const setToken = (token) => {
-  return api.post('/auth/set-token', { jwt: token })
+  return api.post(endpoints.setToken, { jwt: token })
 }
 
 export const checkUserExists = async (email) => {
