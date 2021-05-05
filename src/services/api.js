@@ -10,7 +10,11 @@ const endpoints = {
   setToken: '/auth/set-token',
   getToken: '/token',
   getStaff: '/staff',
-  getUserInsuranceItems: '/product/product-categories?title=Insurance'
+  getUserInsuranceItems: '/product/product-categories?title=Insurance',
+  calendarItemsByDate: '/calendar?date=',
+  calendarItemsById: '/calendar?id=',
+  calendarItemsByCategories: '/calendar/categories',
+  removeCalendarItemById: '/calendar?id='
 }
 
 export const registerStore = async (formData) => {
@@ -26,6 +30,17 @@ export const authorizeUser = async () => {
 export const setToken = (token) => {
   return api.post(endpoints.setToken, { jwt: token })
 }
+
+export const fetchCalendarItemsByDate = async (date) => api.get(endpoints.calendarItemsByDate + date)
+
+export const fetchCalendarItemById = async (id) => {
+  const { data } = await api.get(endpoints.calendarItemsById + id)
+  return data
+}
+
+export const fetchCalendarItemCategories = async () => axios.get(endpoints.calendarItemsByCategories)
+
+export const removeCalendarItemById = async (id) => api.delete(endpoints.removeCalendarItemById + id)
 
 export const getToken = () => api.get(endpoints.getToken)
 

@@ -4,7 +4,7 @@ import Popover from '../../components/popover'
 import CloseIcon from '@material-ui/icons/Close'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
-import { removeCalendarItemById } from './serverRequests'
+import { removeCalendarItemById } from '../../services/api'
 
 const getCalendarItemPopoverContent = (calendarItem) => {
   return (
