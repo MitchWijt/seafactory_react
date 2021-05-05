@@ -24,9 +24,10 @@ import {
 import { connect } from 'react-redux'
 import { login, logout } from './redux/actions/userStateActions'
 import { ProtectedRoute } from './config/protectedRoute'
+import { authorizeUser } from './services/api'
 
 const checkLoginStatus = async (login, logout) => {
-  const { data } = await axios.get('/auth/user')
+  const { data } = await authorizeUser()
 
   if (data.isLoggedIn) return login(data)
 
