@@ -5,6 +5,7 @@ import { setStaffMembers, setChosenStaffMembers } from '../../redux/actions/staf
 import { getStaffMembersOfLoggedInDiveCenter } from '../../services/dataFetchRequests/staffMembers'
 import Select from '../../components/select'
 import axios from 'axios'
+import { getStaff } from '../../services/api'
 
 const StaffMemberSelect = (props) => {
   const { setStaffMembers, setChosenStaffMembers } = props
@@ -28,7 +29,7 @@ const StaffMemberSelect = (props) => {
     const chosenStaffMembers = []
     const staffMembersInitials = []
 
-    const staffMember = await axios.get(`/staff?id=${staffId}`)
+    const staffMember = getStaff(staffId)
 
     const staffDataObject = {
       id: staffMember.data._id,

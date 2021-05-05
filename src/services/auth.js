@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getToken, setToken } from './api'
 
 export const handleLogin = async (data, loginType) => {
   try {
@@ -13,7 +14,7 @@ export const handleLogin = async (data, loginType) => {
       }
     })
     const jwt = loginType === 'admin' ? res.data.jwt : res.data.jwtStaff
-    await axios.post('/auth/set-token', { jwt: jwt })
+    await setToken(jwt)
   } catch (e) {
     console.log(e.response.data.description)
   }
@@ -28,6 +29,6 @@ const getReqUrlBasedOnLoginType = (loginType) => {
 }
 export const handleLogout = async () => {
   // sets bearer token which removes the JWT token from the cookie.
-  await axios.get('/token')
+  await getToken()
   window.location.reload()
 }

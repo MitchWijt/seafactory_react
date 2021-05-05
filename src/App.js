@@ -15,7 +15,6 @@ import './config/style/errors.css'
 import './config/style/dataTable.css'
 import './config/style/modal.css'
 import 'antd/dist/antd.css'
-import axios from 'axios'
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,7 +23,7 @@ import {
 import { connect } from 'react-redux'
 import { login, logout } from './redux/actions/userStateActions'
 import { ProtectedRoute } from './config/protectedRoute'
-import { authorizeUser } from './services/api'
+import { authorizeUser, getToken } from './services/api'
 
 const checkLoginStatus = async (login, logout) => {
   const { data } = await authorizeUser()
@@ -32,7 +31,7 @@ const checkLoginStatus = async (login, logout) => {
   if (data.isLoggedIn) return login(data)
 
   logout()
-  await axios.get('/token')
+  getToken()
 }
 
 function App (props) {
