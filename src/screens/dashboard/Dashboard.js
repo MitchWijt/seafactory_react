@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import Button from '../../components/button'
 import { Row, Col } from 'antd'
 import './style.css'
+import { getStaffByField, getWeatherByLocation } from '../../services/api'
 
 const Dashboard = (props) => {
   useEffect(() => {
@@ -94,13 +95,13 @@ const fetchToDoToday = async (addToDoToday) => {
 }
 
 const fetchStaffWorking = async (addStaffWorking) => {
-  const staffWorkingResponse = await axios.get('/staff?workingToday=true')
+  const staffWorkingResponse = await getStaffByField('workingToday', true)
   addStaffWorking(staffWorkingResponse.data)
 }
 
 const fetchWeatherData = async (addWeather) => {
   try {
-    const weatherResponse = await axios.get('/weather?location=Kralendijk,Bonaire')
+    const weatherResponse = await getWeatherByLocation('Kralendijk,Bonaire')
     const forecastData = weatherResponse.data[0]
     addWeather(forecastData)
   } catch (e) {

@@ -18,7 +18,8 @@ const endpoints = {
   insuranceItems: '/product/product-categories?title=Insurance',
   getRentalById: '/rentals?id=',
   rentalItems: '/rental-item',
-  inventory: '/inventory'
+  inventory: '/inventory',
+  weatherByLocation: '/weather?location='
 }
 
 export const registerStore = async (formData) => {
@@ -63,3 +64,7 @@ export const getRentalItems = async () => await api.get(endpoints.rentalItems)
 export const getInventoryItems = async () => await api.get(endpoints.inventory)
 
 export const fetchCalendarItemsByDate = async (date) => api.get(endpoints.calendarItemsByDate + date)
+
+export const getWeatherByLocation = location => axios.get(endpoints.weatherByLocation + location)
+
+export const getStaffByField = (field, value) => api.get(endpoints.getStaff + `?${field}=${value}`)
