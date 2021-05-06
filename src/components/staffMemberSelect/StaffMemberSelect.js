@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { setStaffMembers, setChosenStaffMembers } from '../../redux/actions/staffActions'
 import { getStaffMembersOfLoggedInDiveCenter } from '../../services/dataFetchRequests/staffMembers'
 import Select from '../../components/select'
-import axios from 'axios'
 import { getStaff } from '../../services/api'
 
 const StaffMemberSelect = (props) => {
