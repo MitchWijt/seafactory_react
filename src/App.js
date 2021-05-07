@@ -15,7 +15,6 @@ import './config/style/errors.css'
 import './config/style/dataTable.css'
 import './config/style/modal.css'
 import 'antd/dist/antd.css'
-import axios from 'axios'
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,22 +23,25 @@ import {
 import { connect } from 'react-redux'
 import { login, logout } from './redux/actions/userStateActions'
 import { ProtectedRoute } from './config/protectedRoute'
+import { authorizeUser, getToken } from './services/api'
 
 const checkLoginStatus = async (login, logout) => {
-  const res = await axios.get('/auth/user')
+  const { data } = await authorizeUser()
 
-  if (res.data.isLoggedIn === true) {
-    login(res.data)
-  } else {
-    logout()
-    await axios.get('/token')
-  }
+  if (data.isLoggedIn) return login(data)
+
+  logout()
+  getToken()
 }
 
 function App (props) {
   useEffect(() => {
     const loginStatus = async () => {
-      await checkLoginStatus(props.login, props.logout, props.userState)
+      try {
+        await checkLoginStatus(props.login, props.logout, props.userState)
+      } catch (err) {
+        console.log(err)
+      }
     }
     loginStatus()
     // eslint-disable-next-line

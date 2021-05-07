@@ -16,7 +16,7 @@ import { connect } from 'react-redux'
 import moment from 'moment-timezone'
 import RenderCalendar from './RenderCalendar'
 import EditCalendarItem from './components/EditCalendarItem'
-import { fetchCalendarItemsByDate, fetchCalendarItemCategories, fetchCalendarItemById } from './serverRequests'
+import { fetchCalendarItemsByDate, fetchCalendarItemCategories, fetchCalendarItemById } from '../../services/api'
 import './style.css'
 
 const Calendar = (props) => {

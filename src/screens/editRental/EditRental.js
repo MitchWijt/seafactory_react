@@ -17,6 +17,7 @@ import DatePicker from '../../components/datePicker'
 import axios from 'axios'
 import { parseArrayToSelectValues } from '../../services/selectHelper'
 import * as Yup from 'yup'
+import { getInventoryItems, getRentalById, getRentalItems } from '../../services/api'
 
 const validationSchema = Yup.object({
   start_date: Yup.string()
@@ -34,25 +35,24 @@ const EditRental = (props) => {
 
   useEffect(() => {
     const rentalId = props.match.params.id
-    const getRental = async () => {
-      const rentalRequest = await axios.get(`/rentals?id=${rentalId}`)
+
+    async function callApis () {
+      const [rentalRequest, rentalItemsRequest, inventoryItemsRequest] = await Promise.all([
+        getRentalById(rentalId),
+        getRentalItems(),
+        getInventoryItems()
+      ])
+
       setSingleRental(rentalRequest.data)
       setIsLoading(false)
-    }
-
-    const getRentalItems = async () => {
-      const rentalItemsRequest = await axios.get('/rental-item')
       setRentalItems(rentalItemsRequest.data)
-    }
-
-    const getInventoryItems = async () => {
-      const inventoryItemsRequest = await axios.get('/inventory')
       setInventoryItems(inventoryItemsRequest.data)
     }
 
-    getRentalItems()
-    getInventoryItems()
-    getRental()
+    callApis()
+    // getRentalItems()
+    // getInventoryItems()
+    // getRental()
     // eslint-disable-next-line
   }, [])
 
