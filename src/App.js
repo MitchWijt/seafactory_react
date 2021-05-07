@@ -26,7 +26,7 @@ import { ProtectedRoute } from './config/protectedRoute'
 import { authorizeUser, getToken } from './services/api'
 
 const checkLoginStatus = async (login, logout) => {
-  const { data } = await authorizeUser()
+  const data = await authorizeUser()
 
   if (data.isLoggedIn) return login(data)
 
