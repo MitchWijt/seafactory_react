@@ -5,11 +5,12 @@ import '../style.css'
 import { basicPlan } from '../../../services/premiumPackages'
 import { choosePlan } from '../../../redux/actions/newAccountActions'
 import { connect } from 'react-redux'
-import Hr from '../../../components/hr'
 import Button from '../../../components/button'
 import { PlanCircle, PlanTitle } from '../style'
 import { FlexContainer } from '../../../lib/styled-components'
 import { getPaymentPlans } from '../../../services/api'
+import { PaymentPlanDetails } from '../../../components'
+
 const OnePlans = (props) => {
   const { newUserSession, currentChosenPremiumPlan, choosePlan } = props
   const [plans, setPlans] = useState([])
@@ -54,28 +55,6 @@ const OnePlans = (props) => {
     )
   }
 
-  const PaymentPlanDetails = (props) => {
-    const { monthlyPrice, locations, maxCustomers } = props?.plan || {}
-    return (
-      <>
-        <div className='register-plan-single-active-data'>
-          <span className='register-plan-single-text'>Monthly price</span>
-          <span className='bold register-plan-single-text'>&euro;{Number(monthlyPrice || 0).toFixed(0)}</span>
-        </div>
-        <Hr />
-        <div className='register-plan-single-active-data'>
-          <span className='register-plan-single-text'>Amount of dive center locations</span>
-          <span className='bold register-plan-single-text'>{locations}</span>
-        </div>
-        <Hr />
-        <div className='register-plan-single-active-data'>
-          <span className='register-plan-single-text'>New customers / Month</span>
-          <span className='bold register-plan-single-text'>{maxCustomers}</span>
-        </div>
-      </>
-    )
-  }
-
   return (
     <>
       <div className='container'>
@@ -85,12 +64,11 @@ const OnePlans = (props) => {
             <h1 className='heavy-title'>Choose the best plan for your dive center</h1>
           </div>
           <FlexContainer justify='space-between'>
-            {/* {(premiumPackages || plans).map((plan) => <SinglePackageButton key={plan.title} {...plan} />)} */}
             {plans.map((plan) => <SinglePackageButton key={plan._id} {...plan} />)}
           </FlexContainer>
           <div className='register-plan-active-data-container'>
             <PaymentPlanDetails plan={currentChosenPremiumPlan} />
-            {props.currentChosenPremiumPlan.title !== 'Premium' ? <p id='customerLimitExceeds'>*If customer limit gets exceeded its $2 extra per customer</p> : ''}
+            {currentChosenPremiumPlan.title !== 'Premium' ? <p id='customerLimitExceeds'>*If customer limit gets exceeded its $2 extra per customer</p> : ''}
           </div>
           <Button
             onClick={handleClick}
