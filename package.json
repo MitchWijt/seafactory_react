@@ -13,6 +13,7 @@
     "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
     "formik": "^2.1.5",
+    "lodash": "^4.17.21",
     "moment-timezone": "^0.5.31",
     "prettier": "^2.2.1",
     "qs": "^6.9.4",

@@ -24,6 +24,7 @@ import { connect } from 'react-redux'
 import { login, logout } from './redux/actions/userStateActions'
 import { ProtectedRoute } from './config/protectedRoute'
 import { authorizeUser, getToken } from './services/api'
+import OnePlans from './screens/register/steps/OnePlans'
 
 const checkLoginStatus = async (login, logout) => {
   const data = await authorizeUser()
@@ -60,6 +61,7 @@ function App (props) {
         <Route exact path='/login/:type' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/' component={Home} />
+        <Route exact path='/plans' component={OnePlans} />
         <Route component={Home} />
       </Switch>
     </Router>

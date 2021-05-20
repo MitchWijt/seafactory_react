@@ -1,23 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { find } from 'lodash'
+
 import '../style.css'
-import { premiumPackages, basicPlan, standardPlan, premiumPlan } from '../../../services/premiumPackages'
+import { basicPlan } from '../../../services/premiumPackages'
 import { choosePlan } from '../../../redux/actions/newAccountActions'
 import { connect } from 'react-redux'
 import Hr from '../../../components/hr'
 import Button from '../../../components/button'
 import { PlanCircle, PlanTitle } from '../style'
 import { FlexContainer } from '../../../lib/styled-components'
+import { getPaymentPlans } from '../../../services/api'
 const OnePlans = (props) => {
   const { newUserSession, currentChosenPremiumPlan, choosePlan } = props
+  const [plans, setPlans] = useState([])
 
   useEffect(() => {
+    (async () => {
+      const planItems = await getPaymentPlans()
+      setPlans(planItems)
+      choosePlan(planItems[0])
+    })()
+
     if (newUserSession.premium_plan) {
       const premiumPlanTitle = newUserSession.premium_plan.title
-      const activePlan = getActivePlanFromTitle(premiumPlanTitle)
+      const activePlan = find(plans, { title: premiumPlanTitle }) || {}
       choosePlan(activePlan)
     } else {
       addPremiumPlanToNewUserSession(basicPlan)
     }
+
     // eslint-disable-next-line
   }, [choosePlan])
 
@@ -26,8 +37,8 @@ const OnePlans = (props) => {
     props.history.push('/register')
   }
 
-  const handlePlanButtonClick = (title) => {
-    const activePlan = getActivePlanFromTitle(title)
+  const handlePlanButtonClick = (id) => {
+    const activePlan = find(plans, { _id: id }) || {}
     choosePlan(activePlan)
     addPremiumPlanToNewUserSession(activePlan)
   }
@@ -36,30 +47,30 @@ const OnePlans = (props) => {
     return (
       <PlanCircle
         active={currentChosenPremiumPlan.title === plan.title}
-        onClick={() => handlePlanButtonClick(plan.title)}
+        onClick={() => handlePlanButtonClick(plan._id)}
       >
         <PlanTitle>{plan.title}</PlanTitle>
       </PlanCircle>
     )
   }
 
-  const ActivePackageList = () => {
-    const data = currentChosenPremiumPlan
+  const PaymentPlanDetails = (props) => {
+    const { monthlyPrice, locations, maxCustomers } = props?.plan || {}
     return (
       <>
         <div className='register-plan-single-active-data'>
           <span className='register-plan-single-text'>Monthly price</span>
-          <span className='bold register-plan-single-text'>&euro;{Number(data.mprice).toFixed(0)}</span>
+          <span className='bold register-plan-single-text'>&euro;{Number(monthlyPrice || 0).toFixed(0)}</span>
         </div>
         <Hr />
         <div className='register-plan-single-active-data'>
           <span className='register-plan-single-text'>Amount of dive center locations</span>
-          <span className='bold register-plan-single-text'>{data.locations}</span>
+          <span className='bold register-plan-single-text'>{locations}</span>
         </div>
         <Hr />
         <div className='register-plan-single-active-data'>
           <span className='register-plan-single-text'>New customers / Month</span>
-          <span className='bold register-plan-single-text'>{data.customers}</span>
+          <span className='bold register-plan-single-text'>{maxCustomers}</span>
         </div>
       </>
     )
@@ -74,10 +85,11 @@ const OnePlans = (props) => {
             <h1 className='heavy-title'>Choose the best plan for your dive center</h1>
           </div>
           <FlexContainer justify='space-between'>
-            {premiumPackages.map((plan) => <SinglePackageButton key={plan.title} {...plan} />)}
+            {/* {(premiumPackages || plans).map((plan) => <SinglePackageButton key={plan.title} {...plan} />)} */}
+            {plans.map((plan) => <SinglePackageButton key={plan._id} {...plan} />)}
           </FlexContainer>
           <div className='register-plan-active-data-container'>
-            <ActivePackageList />
+            <PaymentPlanDetails plan={currentChosenPremiumPlan} />
             {props.currentChosenPremiumPlan.title !== 'Premium' ? <p id='customerLimitExceeds'>*If customer limit gets exceeded its $2 extra per customer</p> : ''}
           </div>
           <Button
@@ -91,14 +103,6 @@ const OnePlans = (props) => {
       </div>
     </>
   )
-}
-
-const getActivePlanFromTitle = (title) => {
-  switch (title) {
-    case 'Standard' : return standardPlan
-    case 'Premium': return premiumPlan
-    default: return basicPlan
-  }
 }
 
 const addPremiumPlanToNewUserSession = (premiumPlan) => {

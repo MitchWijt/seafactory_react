@@ -19,11 +19,17 @@ const endpoints = {
   getRentalById: '/rentals?id=',
   rentalItems: '/rental-item',
   inventory: '/inventory',
+  paymentPlans: '/payment-plans',
   weatherByLocation: '/weather?location='
 }
 
 export const registerStore = async (formData) => {
   const { data } = await api.post(endpoints.register, formData)
+  return data
+}
+
+export const getPaymentPlans = async () => {
+  const { data } = await api.get(endpoints.paymentPlans)
   return data
 }
 
