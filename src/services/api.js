@@ -36,6 +36,7 @@ export const getPaymentPlans = async () => {
 
 export const login = async (credentials = {}) => {
   const { data } = await api.post(endpoints.login, credentials)
+  localStorage.apiToken = data.token
   return data.token
 }
 
