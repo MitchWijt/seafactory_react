@@ -61,7 +61,6 @@ function App (props) {
         <Route exact path='/login/:type' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/' component={Home} />
-        <Route exact path='/plans' component={OnePlans} />
         <Route component={Home} />
       </Switch>
     </Router>
