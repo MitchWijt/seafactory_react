@@ -32,7 +32,7 @@ const HeaderLoggedOut = () => {
           <Link to='/'>Customers</Link>
           <Link to='/'>About us</Link>
           <Divider className='divider' type='vertical' />
-          <Link to='/login/admin'>
+          <Link to='/login'>
             <Button text='Sign in' category='cta' type='button' fontType='bold' fontSize='15px' />
           </Link>
         </div>
