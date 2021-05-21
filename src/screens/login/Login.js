@@ -3,7 +3,7 @@ import RegisterBackgroundImage from '../../components/registerBackgroundImage'
 import Header from '../../components/header'
 import Button from '../../components/button'
 import FormInput from '../../components/formInput'
-import { handleLogin } from '../../services/auth'
+import { setToken, login } from '../../services/api'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 
@@ -40,6 +40,18 @@ const LoginForm = () => {
       .required('password is required')
   })
 
+  const onSubmit = async ({ email, password }, { setSubmitting }) => {
+    try {
+      const token = await login({ email, password })
+      await setToken(token)
+      setSubmitting(true)
+      window.location.href = '/dashboard'
+      setSubmitting(false)
+    } catch (e) {
+      console.log(e.response.data.message)
+    }
+  }
+
   return (
     <>
       <Formik
@@ -47,12 +59,7 @@ const LoginForm = () => {
         validateOnChange={false}
         initialValues={{ email: '', password: '' }}
         validationSchema={validationSchema}
-        onSubmit={async (values, { setSubmitting }) => {
-          setSubmitting(true)
-          await handleLogin(values, 'admin')
-          window.location.href = '/dashboard'
-          setSubmitting(false)
-        }}
+        onSubmit={onSubmit}
       >
         {({
           values,

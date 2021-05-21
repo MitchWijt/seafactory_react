@@ -5,6 +5,7 @@ const api = axios.create({ baseURL: config.apiHost() })
 
 const endpoints = {
   authorize: '/auth/user',
+  login: '/login',
   register: '/user/register',
   exists: '/user',
   setToken: '/auth/set-token',
@@ -31,6 +32,11 @@ export const registerStore = async (formData) => {
 export const getPaymentPlans = async () => {
   const { data } = await api.get(endpoints.paymentPlans)
   return data
+}
+
+export const login = async (credentials = {}) => {
+  const { data } = await api.post(endpoints.login, credentials)
+  return data.token
 }
 
 export const authorizeUser = async () => {
