@@ -3,7 +3,7 @@ import RegisterBackgroundImage from '../../components/registerBackgroundImage'
 import Header from '../../components/header'
 import Button from '../../components/button'
 import FormInput from '../../components/formInput'
-import { setToken, login } from '../../services/api'
+import { login } from '../../services/api'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 
@@ -42,8 +42,7 @@ const LoginForm = () => {
 
   const onSubmit = async ({ email, password }, { setSubmitting }) => {
     try {
-      const token = await login({ email, password })
-      await setToken(token)
+      await login({ email, password })
       setSubmitting(true)
       window.location.href = '/dashboard'
       setSubmitting(false)
