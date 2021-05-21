@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { find } from 'lodash'
 
 import '../style.css'
-import { basicPlan } from '../../../services/premiumPackages'
 import { choosePlan } from '../../../redux/actions/newAccountActions'
 import { connect } from 'react-redux'
 import Button from '../../../components/button'
@@ -11,7 +10,7 @@ import { getPaymentPlans } from '../../../services/api'
 import { PaymentPlanDetails, PlanButton } from '../../../components'
 
 const OnePlans = (props) => {
-  const { newUserSession, currentChosenPremiumPlan, choosePlan } = props
+  const { currentChosenPremiumPlan, choosePlan } = props
   const [plans, setPlans] = useState([])
 
   useEffect(() => {
@@ -20,14 +19,6 @@ const OnePlans = (props) => {
       setPlans(planItems)
       choosePlan(planItems[0])
     })()
-
-    if (newUserSession.premium_plan) {
-      const premiumPlanTitle = newUserSession.premium_plan.title
-      const activePlan = find(plans, { title: premiumPlanTitle }) || {}
-      choosePlan(activePlan)
-    } else {
-      addPremiumPlanToNewUserSession(basicPlan)
-    }
 
     // eslint-disable-next-line
   }, [choosePlan])
@@ -41,6 +32,12 @@ const OnePlans = (props) => {
     const activePlan = find(plans, { _id: id }) || {}
     choosePlan(activePlan)
     addPremiumPlanToNewUserSession(activePlan)
+  }
+
+  const addPremiumPlanToNewUserSession = (premiumPlan) => {
+    const currentSession = JSON.parse(localStorage.getItem('newUser'))
+    const sessionData = { ...currentSession, premium_plan: premiumPlan }
+    localStorage.setItem('newUser', JSON.stringify(sessionData))
   }
 
   return (
@@ -74,12 +71,6 @@ const OnePlans = (props) => {
       </div>
     </div>
   )
-}
-
-const addPremiumPlanToNewUserSession = (premiumPlan) => {
-  const currentSession = JSON.parse(localStorage.getItem('newUser'))
-  const sessionData = { ...currentSession, premium_plan: premiumPlan }
-  localStorage.setItem('newUser', JSON.stringify(sessionData))
 }
 
 const mapStateToProps = (state) => {
