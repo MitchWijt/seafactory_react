@@ -58,7 +58,7 @@ function App (props) {
         <ProtectedRoute exact path='/dashboard' component={Dashboard} userState={props.userState} />
         <ProtectedRoute exact path='/thank-you' component={PaymentComplete} userState={props.userState} />
         <Route exact path='/expired' component={SubscriptionExpired} />
-        <Route exact path='/login/:type' component={Login} />
+        <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/' component={Home} />
         <Route component={Home} />

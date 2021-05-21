@@ -47,7 +47,7 @@ const Home = (props) => {
             localStorage.setItem('newUserStep', '1-info')
             props.history.push('/register')
           } else {
-            props.history.push('/login/admin')
+            props.history.push('/login')
           }
         }}
       >
