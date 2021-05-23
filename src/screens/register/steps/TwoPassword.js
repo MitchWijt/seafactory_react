@@ -3,7 +3,6 @@ import Button from '../../../components/button'
 import { Formik } from 'formik'
 import FormInput from '../../../components/formInput'
 import { connect } from 'react-redux'
-import { emailIsUnique } from '../../../services/formik/fieldValidations'
 import * as Yup from 'yup'
 
 const validationSchema = Yup.object({
