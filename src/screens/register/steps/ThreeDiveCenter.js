@@ -40,9 +40,9 @@ const ThreeDiveCenter = (props) => {
 
   const onSubmit = async (values, { setSubmitting }) => {
     values.receiveMail = contactMe
-    setSubmitting(true)
-    await submitNewUserForm(values, history)
-    setSubmitting(false)
+    // setSubmitting(true)
+    // await submitNewUserForm(values, history)
+    // setSubmitting(false)
   }
   return (
     <>

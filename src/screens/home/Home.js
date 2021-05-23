@@ -9,7 +9,6 @@ import Hr from '../../components/hr'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addEmail } from '../../redux/actions/newAccountActions'
-import { emailIsUnique } from '../../services/formik/fieldValidations'
 import { Formik } from 'formik'
 import fetchCdnImage from '../../services/cdnImage'
 import * as Yup from 'yup'
@@ -40,15 +39,7 @@ const Home = (props) => {
           props.addEmail(email)
           localStorage.setItem('newUser', JSON.stringify({ email: email }))
           setSubmitting(false)
-
-          const isUnique = await emailIsUnique(email)
-
-          if (isUnique) {
-            localStorage.setItem('newUserStep', '1-info')
-            props.history.push('/register')
-          } else {
-            props.history.push('/login')
-          }
+          props.history.push('/register')
         }}
       >
         {({
