@@ -3,8 +3,10 @@ import '../style.css'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 import RegisterBackgroundImage from '../../../components/registerBackgroundImage'
 import Button from '../../../components/button'
+import { withRouter } from 'react-router-dom'
 
-const OneInfo = ({ history }) => {
+const OneInfo = (props) => {
+  const { history } = props
   const handleClick = () => {
     localStorage.setItem('newUserStep', '1-plans')
     history.push('/register')
@@ -46,4 +48,4 @@ const OneInfo = ({ history }) => {
   )
 }
 
-export default OneInfo
+export default withRouter(OneInfo)

@@ -40,15 +40,10 @@ const TwoPassword = (props) => {
                   password: values.password
                 }
                 addPasswordAndEmailToUserSession(newSessionObject)
-                const isUnique = await emailIsUnique(values.email)
 
                 setSubmitting(false)
-                if (isUnique) {
-                  localStorage.setItem('newUserStep', '3-dive-center')
-                  props.history.push('/register')
-                } else {
-                  props.history.push('/login')
-                }
+                localStorage.setItem('newUserStep', '3-dive-center')
+                props.history.push('/register')
               }}
             >
               {({

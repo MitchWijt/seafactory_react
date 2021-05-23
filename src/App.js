@@ -24,7 +24,6 @@ import { connect } from 'react-redux'
 import { login, logout } from './redux/actions/userStateActions'
 import { ProtectedRoute } from './config/protectedRoute'
 import { authorizeUser, getToken } from './services/api'
-import OnePlans from './screens/register/steps/OnePlans'
 
 const checkLoginStatus = async (login, logout) => {
   const data = await authorizeUser()
