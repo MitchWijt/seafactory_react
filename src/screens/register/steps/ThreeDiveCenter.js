@@ -6,13 +6,13 @@ import Select from '../../../components/select'
 import Checkbox from '../../../components/checkbox'
 import { countrySelectValues } from '../../../lib/countryData'
 import * as Yup from 'yup'
-import { registerStore, setToken } from '../../../services/api'
+import { createCompany } from '../../../services/api'
 
 const formInitialValues = {
   companyName: '',
-  diveCenterLocations: '',
-  addressMainLocation: '',
-  countryMainLocation: '',
+  locationName: '',
+  address: '',
+  country: '',
   contactMe: false
 }
 
@@ -20,29 +20,37 @@ const validationSchema = Yup.object({
   companyName: Yup.string()
     .min(2, 'Must be 2 characters or more')
     .required('Dive center is required'),
-  diveCenterLocations: Yup.string()
+  locationName: Yup.string()
     .min(2, 'Must be 2 characters or more')
     .required('Location is required'),
-  addressMainLocation: Yup.string()
+  address: Yup.string()
     .min(2, 'Must be 2 characters or more')
     .required('Address is required'),
-  countryMainLocation: Yup.string()
+  country: Yup.string()
     .required('Country is required')
 })
 
 const ThreeDiveCenter = (props) => {
   const { history } = props
-  const [contactMe, setContactMe] = useState(false)
-
-  const handleContactMe = () => {
-    setContactMe(!contactMe)
-  }
 
   const onSubmit = async (values, { setSubmitting }) => {
-    values.receiveMail = contactMe
-    // setSubmitting(true)
-    // await submitNewUserForm(values, history)
-    // setSubmitting(false)
+    const { companyName, locationName, address, country } = values
+
+    const companyDetails = {
+      companyName,
+      locationName,
+      address,
+      country,
+      paymentPlanId: JSON.parse(localStorage.newUser).premium_plan._id
+    }
+
+    setSubmitting(true)
+    createCompany(companyDetails)
+
+    updateUserSession(values)
+    history.push('/register')
+
+    setSubmitting(false)
   }
   return (
     <>
@@ -69,10 +77,9 @@ const ThreeDiveCenter = (props) => {
               }) => (
                 <form onSubmit={handleSubmit}>
                   <FormInput error={errors.companyName} type='text' placeholder='Company name' name='companyName' onChange={handleChange} value={values.companyName} />
-                  <FormInput error={errors.diveCenterLocations} type='text' placeholder='Name of main location (you can add more later)' name='diveCenterLocations' onChange={handleChange} value={values.diveCenterLocations} />
-                  <FormInput error={errors.addressMainLocation} type='text' placeholder='Address main location' name='addressMainLocation' onChange={handleChange} value={values.addressMainLocation} />
-                  <Select error={errors.countryMainLocation} items={countrySelectValues} placeholder='Country main location' name='countryMainLocation' onChange={handleChange} value={values.countryMainLocation} />
-                  <Checkbox label='SeaFactory is allowed to contact me by email with info regarding my account' name='contactMe' onChange={handleContactMe} />
+                  <FormInput error={errors.locationName} type='text' placeholder='Name of main location (you can add more later)' name='locationName' onChange={handleChange} value={values.locationName} />
+                  <FormInput error={errors.address} type='text' placeholder='Address main location' name='address' onChange={handleChange} value={values.address} />
+                  <Select error={errors.country} items={countrySelectValues} placeholder='Country main location' name='country' onChange={handleChange} value={values.country} />
                   <div className='register-cta-button'>
                     <Button isLoading={isSubmitting} type='submit' category='cta' fontType='bold' text='Continue' />
                   </div>
@@ -86,35 +93,15 @@ const ThreeDiveCenter = (props) => {
   )
 }
 
-const submitNewUserForm = async (values, history) => {
-  updateUserSession(values)
-
-  const formData = getFormDataFromUserSession()
-
-  try {
-    const data = await registerStore(formData)
-    await setToken(data.jwt)
-
-    localStorage.setItem('newUserStep', '4-payment')
-    history.push('/register')
-  } catch (e) {
-    console.log(e.response.data.description)
-  }
-}
-
-const getFormDataFromUserSession = () => {
-  return JSON.parse(localStorage.getItem('newUser'))
-}
-
 const updateUserSession = (values) => {
   const currentSession = JSON.parse(localStorage.getItem('newUser'))
-
+  localStorage.setItem('newUserStep', '4-payment')
   const newSessionObject = {
     ...currentSession,
     dive_center: values.companyName,
-    locations: [values.diveCenterLocations],
-    dive_center_address: values.addressMainLocation,
-    dive_center_country: values.countryMainLocation,
+    locations: [values.locationName],
+    dive_center_address: values.address,
+    dive_center_country: values.country,
     receiveMail: values.contactMe
   }
 
