@@ -20,6 +20,7 @@ const endpoints = {
   getRentalById: '/rentals?id=',
   rentalItems: '/rental-item',
   inventory: '/inventory',
+  createCompany: '/company/add-new',
   paymentPlans: '/payment-plans',
   weatherByLocation: '/weather?location='
 }
@@ -38,6 +39,11 @@ export const login = async (credentials = {}) => {
   const { data } = await api.post(endpoints.login, credentials)
   localStorage.apiToken = data.token
   return data.token
+}
+
+export const createCompany = async (company) => {
+  const { data } = await api.post(endpoints.createCompany, company)
+  return data
 }
 
 export const authorizeUser = async () => {

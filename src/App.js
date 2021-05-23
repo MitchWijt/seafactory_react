@@ -17,33 +17,24 @@ import './config/style/modal.css'
 import 'antd/dist/antd.css'
 import {
   BrowserRouter as Router,
+  useHistory,
   Switch,
   Route
 } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login, logout } from './redux/actions/userStateActions'
 import { ProtectedRoute } from './config/protectedRoute'
-import { authorizeUser, getToken } from './services/api'
-
-const checkLoginStatus = async (login, logout) => {
-  const data = await authorizeUser()
-
-  if (data.isLoggedIn) return login(data)
-
-  logout()
-  getToken()
-}
+import { useJwt } from 'react-jwt'
 
 function App (props) {
+  const { isExpired } = useJwt(localStorage.apiToken)
+  const history = useHistory()
+
   useEffect(() => {
-    const loginStatus = async () => {
-      try {
-        await checkLoginStatus(props.login, props.logout, props.userState)
-      } catch (err) {
-        console.log(err)
-      }
+    if (isExpired) {
+      localStorage.removeItem('apiHost')
+      history.push('/')
     }
-    loginStatus()
     // eslint-disable-next-line
   }, [])
 
