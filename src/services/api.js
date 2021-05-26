@@ -20,6 +20,8 @@ const endpoints = {
   getRentalById: '/rentals?id=',
   rentalItems: '/rental-item',
   inventory: '/inventory',
+  createSubscription: '/create-subscription',
+  createEmployee: '/employee/add-new',
   createCompany: '/company/add-new',
   paymentPlans: '/payment-plans',
   weatherByLocation: '/weather?location='
@@ -27,6 +29,17 @@ const endpoints = {
 
 export const registerStore = async (formData) => {
   const { data } = await api.post(endpoints.register, formData)
+  return data
+}
+
+export const createSubscription = async (customerId, priceId) => {
+  const { data } = await api.post(endpoints.createSubscription, { customerId, priceId })
+  return data
+}
+
+export const createEmployee = async (opts = {}) => {
+  const { email, password, companyId } = opts
+  const { data } = await api.post(endpoints.createEmployee, { email, password, companyId })
   return data
 }
 

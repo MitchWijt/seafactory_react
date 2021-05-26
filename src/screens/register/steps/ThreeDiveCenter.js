@@ -5,7 +5,7 @@ import FormInput from '../../../components/formInput'
 import Select from '../../../components/select'
 import { countrySelectValues } from '../../../lib/countryData'
 import * as Yup from 'yup'
-import { createCompany } from '../../../services/api'
+import { createCompany, createEmployee } from '../../../services/api'
 
 const formInitialValues = {
   companyName: '',
@@ -35,16 +35,19 @@ const ThreeDiveCenter = (props) => {
   const onSubmit = async (values, { setSubmitting }) => {
     const { companyName, locationName, address, country } = values
 
+    const { email, password, premium_plan: paymentPlan } = JSON.parse(localStorage.newUser || '{}')
+
     const companyDetails = {
       companyName,
       locationName,
       address,
       country,
-      paymentPlanId: JSON.parse(localStorage.newUser).premium_plan._id
+      paymentPlanId: paymentPlan._id
     }
 
     setSubmitting(true)
-    createCompany(companyDetails)
+    const { company: { _id: companyId } } = await createCompany(companyDetails)
+    await createEmployee({ email, password, companyId })
 
     updateUserSession(values)
     history.push('/register')
