@@ -1,6 +1,6 @@
 import qs from 'qs'
 
-function getApiHost (apiUrl = 'http://localhost:3001') {
+function getApiHost (apiUrl = 'http://localhost:1337') {
   let apiHostFromLocalStorage = localStorage.apiHost
   const apiHostFromURL =
         window.location.search && qs.parse(window.location.search.slice(1)).apiHost
