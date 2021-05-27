@@ -1,35 +1,22 @@
 import React, { useState } from 'react'
-import { withRouter } from 'react-router-dom'
-import {
-  CardElement,
-  useStripe,
-  useElements
-} from '@stripe/react-stripe-js'
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 
 import Button from '../button'
 
-const StripeCheckout = ({ location }) => {
+const StripeCheckout = () => {
   // Get the lookup key for the price from the previous page redirect.
   const [clientSecret] = useState(localStorage.stripePaymentSecret)
   const [isLoading, setIsLoading] = useState(false)
-  const [messages, _setMessages] = useState('')
+  const [messages, setMessages] = useState('')
   const [paymentIntent, setPaymentIntent] = useState()
-
-  // helper for displaying status messages.
-  const setMessage = (message) => {
-    _setMessages(`${messages}\n\n${message}`)
-  }
 
   // Initialize an instance of stripe.
   const stripe = useStripe()
   const elements = useElements()
 
-  if (!stripe || !elements) {
-    // Stripe.js has not loaded yet. Make sure to disable
-    // form submission until Stripe.js has loaded.
-    return ''
-  }
-
+  // Stripe.js has not loaded yet. Make sure to disable
+  // form submission until Stripe.js has loaded.
+  if (!stripe || !elements) return ''
   // When the subscribe-form is submitted we do a few things:
   //
   //   1. Tokenize the payment method
@@ -54,11 +41,9 @@ const StripeCheckout = ({ location }) => {
     })
 
     setIsLoading(false)
-    if (error) {
-      // show error and collect new card details.
-      setMessage(error.message)
-      return
-    }
+    // show error and collect new card details.
+    if (error) return setMessages(error.message)
+
     setPaymentIntent(paymentIntent)
   }
 
@@ -69,12 +54,9 @@ const StripeCheckout = ({ location }) => {
 
   return (
     <>
-
       <hr />
-
       <form onSubmit={handleSubmit}>
         <CardElement />
-
         <Button
           category='cta'
           fontType='bold'
@@ -82,11 +64,10 @@ const StripeCheckout = ({ location }) => {
           isLoading={isLoading}
           style={{ marginTop: 30 }}
         />
-
         <div>{messages}</div>
       </form>
     </>
   )
 }
 
-export default withRouter(StripeCheckout)
+export default StripeCheckout
