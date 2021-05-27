@@ -55,7 +55,8 @@ const ThreeDiveCenter = (props) => {
     */
     const { company: { _id: companyId } } = await createCompany(companyDetails)
     const { customer } = await createEmployee({ email, password, companyId })
-    await createSubscription(customer.id, paymentPlan.stripeId)
+    const { clientSecret } = await createSubscription(customer.id, paymentPlan.stripeId)
+    localStorage.stripePaymentSecret = clientSecret
 
     updateUserSession(values)
     setSubmitting(false)

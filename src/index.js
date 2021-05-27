@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Elements } from '@stripe/react-stripe-js'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { createStore } from 'redux'
@@ -7,6 +8,7 @@ import { Provider } from 'react-redux'
 import rootReducer from './redux/reducers'
 import { CookiesProvider } from 'react-cookie'
 import './index.css'
+import { stripePromise } from './lib/stripe'
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -14,7 +16,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <CookiesProvider>
-        <App />
+        <Elements stripe={stripePromise}>
+          <App />
+        </Elements>
       </CookiesProvider>
     </Provider>
   </React.StrictMode>,
