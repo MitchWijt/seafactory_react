@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../style.css'
 import LockIcon from '@material-ui/icons/Lock'
 import RegisterBackgroundImage from '../../../components/registerBackgroundImage'
