@@ -18,6 +18,7 @@ const OnePlans = (props) => {
       const planItems = await getPaymentPlans()
       setPlans(planItems)
       choosePlan(planItems[0])
+      addPremiumPlanToNewUserSession(planItems[0])
     })()
 
     // eslint-disable-next-line

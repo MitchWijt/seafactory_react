@@ -5,7 +5,7 @@ import FormInput from '../../../components/formInput'
 import Select from '../../../components/select'
 import { countrySelectValues } from '../../../lib/countryData'
 import * as Yup from 'yup'
-import { createCompany, createEmployee } from '../../../services/api'
+import { createCompany, createEmployee, createSubscription } from '../../../services/api'
 
 const formInitialValues = {
   companyName: '',
@@ -46,13 +46,20 @@ const ThreeDiveCenter = (props) => {
     }
 
     setSubmitting(true)
+    /*
+    This setup has to be done in parts because
+    1. Company is created in the database
+    2. Employee AND Stripe customer is created in same endpoint
+    and Company is assigned
+    3. A inccomplete subscription is created, it's mark paid when user gives payment details
+    */
     const { company: { _id: companyId } } = await createCompany(companyDetails)
-    await createEmployee({ email, password, companyId })
+    const { customer } = await createEmployee({ email, password, companyId })
+    await createSubscription(customer.id, paymentPlan.stripeId)
 
     updateUserSession(values)
-    history.push('/register')
-
     setSubmitting(false)
+    history.push('/register')
   }
   return (
     <>
