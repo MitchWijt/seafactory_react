@@ -20,7 +20,7 @@ const endpoints = {
   getRentalById: '/rentals?id=',
   rentalItems: '/rental-item',
   inventory: '/inventory',
-  createSubscription: '/create-subscription',
+  createSubscription: '/payment/create-subscription',
   createEmployee: '/employee/add-new',
   createCompany: '/company/add-new',
   paymentPlans: '/payment-plans',
