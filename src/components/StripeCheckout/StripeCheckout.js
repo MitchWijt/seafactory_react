@@ -56,7 +56,7 @@ const StripeCheckout = () => {
     <>
       <hr />
       <form onSubmit={handleSubmit}>
-        <CardElement />
+        <CardElement options={{ hidePostalCode: true }} />
         <Button
           category='cta'
           fontType='bold'

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import config from '../config'
 
-const api = axios.create({ baseURL: config.apiHost() })
+const api = axios.create({ baseURL: config.apiHost })
 
 const endpoints = {
   authorize: '/auth/user',
