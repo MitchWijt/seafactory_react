@@ -77,7 +77,7 @@ const StripeCheckout = ({ history }) => {
 const PaymentSucceeded = () => {
   return (
     <div style={{ color: 'green', fontWeight: 'bold' }}>
-      Payment Succeeded, You will be Redirected soon
+      Payment Succeeded, Thanks for doing business with us. You will be redirected soon
     </div>
   )
 }
