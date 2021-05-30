@@ -38,8 +38,8 @@ export const createSubscription = async (customerId, priceId) => {
 }
 
 export const createEmployee = async (opts = {}) => {
-  const { email, password, companyId } = opts
-  const { data } = await api.post(endpoints.createEmployee, { email, password, companyId })
+  const { email, password, firstName, lastName, companyId } = opts
+  const { data } = await api.post(endpoints.createEmployee, { email, password, firstName, lastName, companyId })
   return data
 }
 

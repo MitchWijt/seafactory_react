@@ -35,7 +35,7 @@ const ThreeDiveCenter = (props) => {
   const onSubmit = async (values, { setSubmitting }) => {
     const { companyName, locationName, address, country } = values
 
-    const { email, password, premium_plan: paymentPlan } = JSON.parse(localStorage.newUser || '{}')
+    const { email, password, firstName, lastName, premium_plan: paymentPlan } = JSON.parse(localStorage.newUser || '{}')
 
     const companyDetails = {
       companyName,
@@ -54,7 +54,7 @@ const ThreeDiveCenter = (props) => {
     3. A inccomplete subscription is created, it's mark paid when user gives payment details
     */
     const { company: { _id: companyId } } = await createCompany(companyDetails)
-    const { customer } = await createEmployee({ email, password, companyId })
+    const { customer } = await createEmployee({ email, password, companyId, firstName, lastName })
     const { clientSecret } = await createSubscription(customer.id, paymentPlan.stripeId)
     localStorage.stripePaymentSecret = clientSecret
 

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import Home from './screens/home'
 import Register from './screens/register'
-import PaymentComplete from './screens/register/steps/PaymentComplete'
 import Dashboard from './screens/dashboard'
 import GuestList from './screens/guestList'
 import EditRental from './screens/editRental'
@@ -46,7 +45,6 @@ function App (props) {
         <ProtectedRoute exact path='/guest/:id' component={Guest} userState={props.userState} />
         <ProtectedRoute exact path='/guestlist' component={GuestList} userState={props.userState} />
         <ProtectedRoute exact path='/dashboard' component={Dashboard} userState={props.userState} />
-        <ProtectedRoute exact path='/thank-you' component={PaymentComplete} userState={props.userState} />
         <Route exact path='/expired' component={SubscriptionExpired} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />

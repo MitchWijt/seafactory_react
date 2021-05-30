@@ -9,6 +9,10 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
+  firstName: Yup.string()
+    .required('First Name is required'),
+  lastName: Yup.string()
+    .required('Last Name is required'),
   password: Yup.string()
     .min(8, 'Must be 8 characters or more')
     .required('password is required')
@@ -33,12 +37,15 @@ const TwoPassword = (props) => {
               initialValues={{ email: newUserSession.email, password: '' }}
               validationSchema={validationSchema}
               onSubmit={async (values, { setSubmitting }) => {
+                const { email, password, firstName, lastName } = values
                 const newSessionObject = {
                   ...newUserSession,
-                  email: values.email,
-                  password: values.password
+                  email,
+                  password,
+                  firstName,
+                  lastName
                 }
-                addPasswordAndEmailToUserSession(newSessionObject)
+                addUserInfoToLocalStorage(newSessionObject)
 
                 setSubmitting(false)
                 localStorage.setItem('newUserStep', '3-dive-center')
@@ -52,10 +59,10 @@ const TwoPassword = (props) => {
                 handleSubmit
               }) => (
                 <form onSubmit={handleSubmit}>
-                  <FormInput type='email' placeholder='Email address' name='email' onChange={handleChange} value={values.email} />
-                  <span className='input-error'>{errors.email}</span>
-                  <FormInput type='password' placeholder='Password' name='password' onChange={handleChange} value={values.password} />
-                  <span className='input-error'>{errors.password}</span>
+                  <FormInput error={errors.firstName} type='text' placeholder='First Name' name='firstName' onChange={handleChange} value={values.firstName} />
+                  <FormInput error={errors.lastName} type='text' placeholder='Last Name' name='lastName' onChange={handleChange} value={values.lastName} />
+                  <FormInput error={errors.email} type='email' placeholder='Email address' name='email' onChange={handleChange} value={values.email} />
+                  <FormInput error={errors.password} type='password' placeholder='Password' name='password' onChange={handleChange} value={values.password} />
                   <div className='register-cta-button'>
                     <Button type='submit' category='cta' fontType='bold' text='Continue' />
                   </div>
@@ -69,7 +76,7 @@ const TwoPassword = (props) => {
   )
 }
 
-const addPasswordAndEmailToUserSession = (newSessionObject) => {
+const addUserInfoToLocalStorage = (newSessionObject) => {
   localStorage.setItem('newUser', JSON.stringify(newSessionObject))
 }
 
