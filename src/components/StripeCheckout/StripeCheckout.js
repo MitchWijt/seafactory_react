@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import { withRouter } from 'react-router-dom'
 
 import Button from '../button'
 
-const StripeCheckout = () => {
+const StripeCheckout = ({ history }) => {
   // Get the lookup key for the price from the previous page redirect.
   const [clientSecret] = useState(localStorage.stripePaymentSecret)
   const [isLoading, setIsLoading] = useState(false)
@@ -49,7 +50,10 @@ const StripeCheckout = () => {
 
   if (paymentIntent && paymentIntent.status === 'succeeded') {
     localStorage.clear()
-    return <div>Payment Succeeded</div>
+    setTimeout(() => {
+      history.push('/login')
+    }, 6000)
+    return <PaymentSucceeded />
   }
 
   return (
@@ -70,4 +74,12 @@ const StripeCheckout = () => {
   )
 }
 
-export default StripeCheckout
+const PaymentSucceeded = () => {
+  return (
+    <div style={{ color: 'green', fontWeight: 'bold' }}>
+      Payment Succeeded, You will be Redirected soon
+    </div>
+  )
+}
+
+export default withRouter(StripeCheckout)
