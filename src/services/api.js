@@ -1,7 +1,12 @@
 import axios from 'axios'
 import config from '../config'
 
-const api = axios.create({ baseURL: config.apiHost })
+export const api = axios.create({
+  baseURL: config.apiHost,
+  headers: {
+    Authorization: `Bearer ${localStorage.apiToken}`
+  }
+})
 
 const endpoints = {
   authorize: '/auth/user',
@@ -97,6 +102,6 @@ export const getInventoryItems = async () => await api.get(endpoints.inventory)
 
 export const fetchCalendarItemsByDate = async (date) => api.get(endpoints.calendarItemsByDate + date)
 
-export const getWeatherByLocation = location => axios.get(endpoints.weatherByLocation + location)
+export const getWeatherByLocation = location => api.get(endpoints.weatherByLocation + location)
 
 export const getStaffByField = (field, value) => api.get(endpoints.getStaff + `?${field}=${value}`)

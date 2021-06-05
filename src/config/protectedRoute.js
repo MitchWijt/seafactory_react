@@ -1,20 +1,14 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import LoadingScreen from '../components/loadingScreen'
+import { useJwt } from 'react-jwt'
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const userState = rest.userState
+  const { isExpired } = useJwt(localStorage.apiToken)
 
   return (
     <Route
       {...rest} render={(props) => {
-        if (!userState.isLoggedIn) return <LoadingScreen />
-
-        if (userState.isLoggedIn && userState.licenseStatus === 'expired') {
-          window.location.href = '/expired'
-        } else {
-          window.location.href = '/'
-        }
+        if (isExpired) window.location.href = '/'
 
         return <Component {...props} />
       }}

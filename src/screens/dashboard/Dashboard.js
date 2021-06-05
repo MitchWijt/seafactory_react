@@ -7,12 +7,11 @@ import LoadingScreen from '../../components/loadingScreen'
 import ContentCircle from '../../components/contentCircle'
 import ContentCard from '../../components/contentCard'
 import moment from 'moment-timezone'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Button from '../../components/button'
 import { Row, Col } from 'antd'
 import './style.css'
-import { getStaffByField, getWeatherByLocation } from '../../services/api'
+import { api, getStaffByField, getWeatherByLocation } from '../../services/api'
 
 const Dashboard = (props) => {
   useEffect(() => {
@@ -85,12 +84,12 @@ const Dashboard = (props) => {
 }
 
 const fetchGuestsCheckingOut = async (addGuests) => {
-  const guestsCheckingOutResponse = await axios.get(`/guest?dep_date=${moment().format('YYYY-MM-DD')}`)
+  const guestsCheckingOutResponse = await api.get(`/guest?dep_date=${moment().format('YYYY-MM-DD')}`)
   addGuests(guestsCheckingOutResponse.data)
 }
 
 const fetchToDoToday = async (addToDoToday) => {
-  const toDoTodayResponse = await axios.get(`/calendar?date=${moment().format('YYYY-MM-DD')}`)
+  const toDoTodayResponse = await api.get(`/calendar?date=${moment().format('YYYY-MM-DD')}`)
   addToDoToday(toDoTodayResponse.data)
 }
 
