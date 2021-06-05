@@ -78,7 +78,7 @@ const Dashboard = (props) => {
               </div>
             </Col>
           </Row>
-        </div>}
+          </div>}
     </>
   )
 }
@@ -141,10 +141,10 @@ const WeatherTable = (props) => {
               {props.data.map((data) => <WeatherTableColumn key={data.date} {...data} />)}
             </tbody>
 
-          </table>
+            </table>
           : <div className='center'>
             <p id='no-results-text'>No results...</p>
-            </div>}
+          </div>}
       </div>
     </div>
   )
@@ -175,10 +175,10 @@ const GuestsCheckingOutTable = (props) => {
               {props.data.map((data) => <GuestsCheckingOutTableColumn key={data._id} {...data} />)}
             </tbody>
 
-          </table>
+            </table>
           : <div className='center'>
             <p id='no-results-text'>No results...</p>
-            </div>}
+          </div>}
       </div>
     </div>
   )

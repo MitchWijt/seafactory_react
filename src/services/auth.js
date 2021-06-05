@@ -1,7 +1,6 @@
-import { getToken } from './api'
 
 export const handleLogout = async () => {
   // sets bearer token which removes the JWT token from the cookie.
-  await getToken()
+  localStorage.clear()
   window.location.reload()
 }

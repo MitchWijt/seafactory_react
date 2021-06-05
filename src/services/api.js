@@ -14,7 +14,6 @@ const endpoints = {
   register: '/user/register',
   exists: '/user',
   setToken: '/auth/set-token',
-  getToken: '/token',
   getStaff: '/staff',
   getUserInsuranceItems: '/product/product-categories?title=Insurance',
   calendarItemsByDate: '/calendar?date=',
@@ -89,8 +88,6 @@ export const setToken = (token) => api.post(endpoints.setToken, { jwt: token })
 export const fetchCalendarItemCategories = async () => api.get(endpoints.calendarItemsByCategories)
 
 export const removeCalendarItemById = async (id) => api.delete(endpoints.removeCalendarItemById + id)
-
-export const getToken = () => api.get(endpoints.getToken)
 
 export const getStaff = (staffId) => api.get(`${endpoints.getStaff}?id=${staffId}`)
 
