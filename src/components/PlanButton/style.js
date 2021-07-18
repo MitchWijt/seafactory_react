@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { colors } from '../../config/constants'
+import { theme } from '../../config/constants'
 
 export const PlanCircle = styled.div`
   margin-top: 50px;
@@ -24,6 +24,6 @@ export const PlanCircle = styled.div`
 `
 
 export const PlanTitle = styled.span`
-  color: ${colors.accentGray};
+  color: ${theme.accentGray};
   font-size: 20px;
 `

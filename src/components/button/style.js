@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { colors } from '../../config/constants'
+import { theme } from '../../config/constants'
 
 export const StyledButton = styled.button`
   color: #ffffff;
-  background: ${colors.primary};
+  background: ${theme.primary};
   border: none;
   padding: 6px 12px;
   border-radius: 7px;
