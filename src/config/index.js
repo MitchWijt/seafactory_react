@@ -7,7 +7,7 @@ function getApiHost () {
         window.location.search && qs.parse(window.location.search.slice(1)).apiHost
 
   if (!apiHostFromLocalStorage && !apiHostFromURL) {
-    return REACT_APP_API_URL || 'http://localhost:1337'
+    return REACT_APP_API_URL || 'https://seafactory.herokuapp.com'
   }
 
   if (apiHostFromURL) {
