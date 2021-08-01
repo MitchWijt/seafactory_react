@@ -11,6 +11,7 @@ import moment from 'moment-timezone'
 import { Formik } from 'formik'
 import Checkbox from '../../../components/checkbox'
 import * as Yup from 'yup'
+import { getProductCategory } from '../../../services/api';
 
 const MODAL_VISIBILITY_NAME = 'addDive'
 
@@ -26,7 +27,7 @@ const validationSchema = Yup.object({
 const DivesModal = (props) => {
   useEffect(() => {
     const getDiveProductCategory = async () => {
-      const diveCategory = await axios.get('/product/product-categories?title=Dives')
+      const diveCategory = await getProductCategory('Dives')
       props.setDiveItems(diveCategory.data.items)
     }
 

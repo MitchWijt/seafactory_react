@@ -9,6 +9,7 @@ import axios from 'axios'
 import { Formik } from 'formik'
 import Checkbox from '../../../components/checkbox'
 import * as Yup from 'yup'
+import { getProductCategory } from '../../../services/api'
 
 const MODAL_VISIBILITY_NAME = 'addRetail'
 
@@ -20,7 +21,7 @@ const validationSchema = Yup.object({
 const RetailModal = (props) => {
   useEffect(() => {
     const getRetailProductCategory = async () => {
-      const retailCategory = await axios.get('/product/product-categories?title=Retail')
+      const retailCategory = await getProductCategory('Retail')
       props.setRetailItems(retailCategory.data.items)
     }
 

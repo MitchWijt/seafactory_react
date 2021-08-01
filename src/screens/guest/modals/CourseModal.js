@@ -10,6 +10,7 @@ import axios from 'axios'
 import { Formik } from 'formik'
 import Checkbox from '../../../components/checkbox'
 import * as Yup from 'yup'
+import { getProductCategory } from '../../../services/api';
 
 const MODAL_VISIBILITY_NAME = 'addCourse'
 
@@ -23,7 +24,7 @@ const validationSchema = Yup.object({
 const CourseModal = (props) => {
   useEffect(() => {
     const getCoursesProductCategory = async () => {
-      const coursesCategory = await axios.get('/product/product-categories?title=Courses')
+      const coursesCategory = await getProductCategory('Courses')
       props.setCourseItems(coursesCategory.data.items)
     }
 
