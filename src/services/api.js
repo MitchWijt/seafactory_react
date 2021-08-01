@@ -1,6 +1,7 @@
 import axios from 'axios'
 import config from '../config'
 
+
 export const api = axios.create({
   baseURL: config.apiHost,
   headers: {
@@ -117,6 +118,15 @@ export const getStaffMembersOfLoggedInDiveCenter = async () => {
   return staffMembers.data
 }
 
-export const getGuestData = (guestId) => await api.get(endpoints.guest + guestId)
+export const getGuestData = async (guestId) => await api.get(endpoints.guest + guestId)
 
-export const getGuestRentalsData = (guestId) => await api.get(endpoints.rentalsGuest + guestId)
+export const getGuestRentalsData = async (guestId) => await api.get(endpoints.rentalsGuest + guestId)
+
+export const getGuestDepDate = (date) => api.get(`/guest?dep_date=${date}`)
+
+export const getTodayDate = (date) => api.get(`/calendar?date=${date}`)
+
+export const getProductCategory = (data) => api.get(`/product/product-categories?title=${data}`)
+
+
+
