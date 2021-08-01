@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { setGuest } from '../../redux/actions/guestActions'
 import { setIsLoading } from '../../redux/actions/loadingActions'
 import LoadingScreen from '../../components/loadingScreen'
-import axios from 'axios'
 import ActiveGuest from './ActiveGuest'
 import CheckedOutGuest from './CheckedOutGuest'
+import { getGuestData } from "../../services/api"
 
 const Guest = (props) => {
   const {
@@ -18,7 +18,7 @@ const Guest = (props) => {
 
   useEffect(() => {
     const getGuest = async () => {
-      const guestData = await axios.get(`/guest?id=${guestId}`)
+      const guestData = getGuestData(guestId)
       setGuest(guestData.data)
       setIsLoading(false)
     }

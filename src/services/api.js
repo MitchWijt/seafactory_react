@@ -28,7 +28,11 @@ const endpoints = {
   createEmployee: '/employee/add-new',
   createCompany: '/company/add-new',
   paymentPlans: '/payment-plans',
-  weatherByLocation: '/weather?location='
+  weatherByLocation: '/weather?location=',
+  staff: '/staff',
+  guest: '/guest?id=',
+  rentalsGuest: '/rentals?guestId='
+  
 }
 
 export const registerStore = async (formData) => {
@@ -102,3 +106,17 @@ export const fetchCalendarItemsByDate = async (date) => api.get(endpoints.calend
 export const getWeatherByLocation = location => api.get(endpoints.weatherByLocation + location)
 
 export const getStaffByField = (field, value) => api.get(endpoints.getStaff + `?${field}=${value}`)
+
+export const getAmountDue = async (registrationId, airTanks = 0, nxTanks = 0, discount = 0) => {
+  const getTotalCost = await api.get(`/registration/total-cost?id=${registrationId}&air=${airTanks}&nitrox=${nxTanks}&discount=${discount}`)
+  return getTotalCost.data.total
+}
+
+export const getStaffMembersOfLoggedInDiveCenter = async () => {
+  const staffMembers = await api.get(endpoints.staff)
+  return staffMembers.data
+}
+
+export const getGuestData = (guestId) => await api.get(endpoints.guest + guestId)
+
+export const getGuestRentalsData = (guestId) => await api.get(endpoints.rentalsGuest + guestId)

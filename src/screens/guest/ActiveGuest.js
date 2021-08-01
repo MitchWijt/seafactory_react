@@ -6,7 +6,6 @@ import { setIsLoading } from '../../redux/actions/loadingActions'
 import LoadingScreen from '../../components/loadingScreen'
 import { FormatDate } from '../../services/dateFormatter'
 import Button from '../../components/button'
-import axios from 'axios'
 import { Row, Col } from 'antd'
 import DataList from '../../components/dataList'
 import DataTable from '../../components/dataTable'
@@ -21,7 +20,7 @@ import EditGuestInfoModal from './modals/EditGuestInfoModal'
 import EditDivingInfoModal from './modals/EditDivingInfoModal'
 import EditOtherInfoModal from './modals/EditOtherInfoModal'
 import CheckoutModal from './modals/CheckoutModal'
-import { getAmountDue } from '../../services/checkoutGuest'
+import { getAmountDue, getGuestData, getGuestRentalsData } from "../../services/api"
 
 const ActiveGuest = (props) => {
   const {
@@ -47,7 +46,7 @@ const ActiveGuest = (props) => {
   useEffect(() => {
     const getAllGuestData = async () => {
       const getGuest = async () => {
-        const guestData = await axios.get(`/guest?id=${guestId}`)
+        const guestData = getGuestData(guestId)
         setGuest(guestData.data)
         setDives(guestData.data.registration.dives)
         setCourses(guestData.data.registration.courses)
@@ -55,7 +54,7 @@ const ActiveGuest = (props) => {
       }
 
       const getRentalItems = async () => {
-        const guestRentalsData = await axios.get(`/rentals?guestId=${guestId}`)
+        const guestRentalsData = getGuestRentalsData(guestId)
         setRentals(guestRentalsData.data)
       }
 

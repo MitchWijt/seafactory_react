@@ -10,6 +10,9 @@ import { Row, Col } from 'antd'
 import DataList from '../../components/dataList'
 import DataTable from '../../components/dataTable'
 import moment from 'moment-timezone'
+import { getGuestData, getGuestRentalsData } from "../../services/api"
+
+
 
 const CheckedOutGuest = (props) => {
   const {
@@ -30,7 +33,7 @@ const CheckedOutGuest = (props) => {
   useEffect(() => {
     const getAllGuestData = async () => {
       const getGuest = async () => {
-        const guestData = await axios.get(`/guest?id=${guestId}`)
+        const guestData = getGuestData(guestId)
         setGuest(guestData.data)
         setDives(guestData.data.registration.dives)
         setCourses(guestData.data.registration.courses)
@@ -38,7 +41,7 @@ const CheckedOutGuest = (props) => {
       }
 
       const getRentalItems = async () => {
-        const guestRentalsData = await axios.get(`/rentals?guestId=${guestId}`)
+        const guestRentalsData = getGuestRentalsData(guestId)
         setRentals(guestRentalsData.data)
       }
 

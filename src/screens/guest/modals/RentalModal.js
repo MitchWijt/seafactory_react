@@ -14,6 +14,9 @@ import moment from 'moment-timezone'
 import DatePicker from '../../../components/datePicker'
 import { parseArrayToSelectValues } from '../../../services/selectHelper'
 import * as Yup from 'yup'
+import { getGuestRentalsData } from "../../../services/api"
+
+
 
 const MODAL_VISIBILITY_NAME = 'addRental'
 
@@ -77,7 +80,7 @@ const RentalModal = (props) => {
             setSubmitting(true)
             await axios.post('/rentals', values)
 
-            const guestRentalsData = await axios.get(`/rentals?guestId=${props.guest._id}`)
+            const guestRentalsData = getGuestRentalsData(props.guest._id)
             props.setRentals(guestRentalsData.data)
             props.setModalVisibility(MODAL_VISIBILITY_NAME, false)
             setSubmitting(false)
