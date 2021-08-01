@@ -3,15 +3,15 @@ import { connect } from 'react-redux'
 import Button from '../../../components/button'
 import { setAmountDue, setModalVisibility } from '../../../redux/actions/guestActions'
 import { setStaffMembers } from '../../../redux/actions/staffActions'
-import { getStaffMembersOfLoggedInDiveCenter } from '../../../services/dataFetchRequests/staffMembers'
 import { parseArrayToSelectValues } from '../../../services/selectHelper'
-import { getAmountDue } from '../../../services/checkoutGuest'
+import { getAmountDue, getStaffMembersOfLoggedInDiveCenter } from "../../../services/api"
 import axios from 'axios'
 import FormInput from '../../../components/formInput'
 import Select from '../../../components/select'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Modal } from 'antd'
+
 
 const CheckoutModal = (props) => {
   useEffect(() => {
