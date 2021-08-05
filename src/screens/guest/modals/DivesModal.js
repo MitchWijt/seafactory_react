@@ -6,12 +6,11 @@ import { setDiveItems } from '../../../redux/actions/productItemsActions'
 import Select from '../../../components/select'
 import StaffMemberSelect from '../../../components/staffMemberSelect'
 import Button from '../../../components/button'
-import axios from 'axios'
 import moment from 'moment-timezone'
 import { Formik } from 'formik'
 import Checkbox from '../../../components/checkbox'
 import * as Yup from 'yup'
-import { getProductCategory } from '../../../services/api';
+import { getProductCategory, putRegistrationCategoriesDives } from '../../../services/api'
 
 const MODAL_VISIBILITY_NAME = 'addDive'
 
@@ -57,7 +56,7 @@ const DivesModal = (props) => {
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true)
             values.staff = values.staff.map(staffMemberObject => staffMemberObject.initials)
-            const addDiveRequest = await axios.put('/registration-categories/dives', values)
+            const addDiveRequest = await putRegistrationCategoriesDives(values)
             props.setDives(addDiveRequest.data.dives)
             props.setModalVisibility(MODAL_VISIBILITY_NAME, false)
             setSubmitting(false)

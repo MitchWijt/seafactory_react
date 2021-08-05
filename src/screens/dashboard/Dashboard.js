@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 import Button from '../../components/button'
 import { Row, Col } from 'antd'
 import './style.css'
-import { getStaffByField, getWeatherByLocation, getGuestDepDate, getTodayDate } from '../../services/api'
+import { getStaffByField, getWeatherByLocation, getGuestDepDate, fetchCalendarItemsByDate } from '../../services/api'
 
 const Dashboard = (props) => {
   useEffect(() => {
@@ -89,7 +89,7 @@ const fetchGuestsCheckingOut = async (addGuests) => {
 }
 
 const fetchToDoToday = async (addToDoToday) => {
-  const toDoTodayResponse = await getTodayDate(moment().format('YYYY-MM-DD'))
+  const toDoTodayResponse = await fetchCalendarItemsByDate(moment().format('YYYY-MM-DD'))
   addToDoToday(toDoTodayResponse.data)
 }
 

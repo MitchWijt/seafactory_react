@@ -31,8 +31,17 @@ const endpoints = {
   paymentPlans: '/payment-plans',
   weatherByLocation: '/weather?location=',
   staff: '/staff',
-  guest: '/guest?id=',
-  rentalsGuest: '/rentals?guestId='
+  guestById: '/guest?id=',
+  rentalsGuest: '/rentals?guestId=',
+  registrationTotalCost: '/registration/total-cost?id=',
+  guestDepDate: '/guest?dep_date=',
+  productCategoriesTitle: '/product/product-categories?title=',
+  registrationCategories: '/registration-categories/',
+  guest: '/guest',
+  calendar: '/calendar',
+  registrationCheckout: '/registration/checkout',
+  rentals: '/rentals',
+  userEmail: '/user?email='
   
 }
 
@@ -96,11 +105,11 @@ export const removeCalendarItemById = async (id) => api.delete(endpoints.removeC
 
 export const getStaff = (staffId) => api.get(`${endpoints.getStaff}?id=${staffId}`)
 
-export const getRentalById = async (rentalId) => await api.get(endpoints.getRentalById + `${rentalId}`)
+export const getRentalById = async (rentalId) => await api.get(endpoints.getRentalById + rentalId)
 
-export const getRentalItems = async () => await api.get(endpoints.rentalItems)
+export const getRentalItem = async () => await api.get(endpoints.rentalItems)
 
-export const getInventoryItems = async () => await api.get(endpoints.inventory)
+export const getInventoryItem = async () => await api.get(endpoints.inventory)
 
 export const fetchCalendarItemsByDate = async (date) => api.get(endpoints.calendarItemsByDate + date)
 
@@ -109,7 +118,7 @@ export const getWeatherByLocation = location => api.get(endpoints.weatherByLocat
 export const getStaffByField = (field, value) => api.get(endpoints.getStaff + `?${field}=${value}`)
 
 export const getAmountDue = async (registrationId, airTanks = 0, nxTanks = 0, discount = 0) => {
-  const getTotalCost = await api.get(`/registration/total-cost?id=${registrationId}&air=${airTanks}&nitrox=${nxTanks}&discount=${discount}`)
+  const getTotalCost = await api.get(`${endpoints.registrationTotalCost}${registrationId}&air=${airTanks}&nitrox=${nxTanks}&discount=${discount}`)
   return getTotalCost.data.total
 }
 
@@ -118,15 +127,30 @@ export const getStaffMembersOfLoggedInDiveCenter = async () => {
   return staffMembers.data
 }
 
-export const getGuestData = async (guestId) => await api.get(endpoints.guest + guestId)
+export const getGuestData = async (guestId) => await api.get(endpoints.guestById + guestId)
 
 export const getGuestRentalsData = async (guestId) => await api.get(endpoints.rentalsGuest + guestId)
 
-export const getGuestDepDate = (date) => api.get(`/guest?dep_date=${date}`)
+export const getGuestDepDate = (date) => api.get(`${endpoints.guestDepDate}${date}`)
 
-export const getTodayDate = (date) => api.get(`/calendar?date=${date}`)
+export const getProductCategory = (data) => api.get(`${endpoints.productCategoriesTitle}${data}`)
 
-export const getProductCategory = (data) => api.get(`/product/product-categories?title=${data}`)
+export const putRegistrationCategoriesRetail = (values) => api.put(`${endpoints.registrationCategories}retail`, values)
 
+export const putRegistrationCategoriesCourses = (values) => api.put(`${endpoints.registrationCategories}courses`, values)
 
+export const putRegistrationCategoriesDives = (values) => api.put(`${endpoints.registrationCategories}dives`, values)
 
+export const updateGuest = (values) => api.put(endpoints.guest, values)
+
+export const postCalendar = (values) => api.post(endpoints.calendar, values)
+
+export const updateRentalsById = (values) => api.put(`${endpoints.getRentalById}${values.id}`, values)
+
+export const updateRegistrationCheckout = (values) => api.put(endpoints.registrationCheckout, values)
+
+export const getGuestDataByUrl = (url) => api.get(url)
+
+export const postRentals = (values) => api.post(endpoints.rentals, values)
+
+export const getIsEmailUnique = (email) => api.get(`${endpoints.userEmail}${email}`)

@@ -4,14 +4,13 @@ import Button from '../../../components/button'
 import { setGuest, setModalVisibility } from '../../../redux/actions/guestActions'
 import { setInsuranceItems } from '../../../redux/actions/productItemsActions'
 import { setStaffMembers } from '../../../redux/actions/staffActions'
-import axios from 'axios'
 import moment from 'moment-timezone'
 import FormInput from '../../../components/formInput'
 import Select from '../../../components/select'
 import Checkbox from '../../../components/checkbox'
 import DatePicker from '../../../components/datePicker'
 import { parseArrayToSelectValues } from '../../../services/selectHelper'
-import { getUserInsuranceItems } from '../../../services/api'
+import { getUserInsuranceItems, getStaffMembersOfLoggedInDiveCenter, updateGuest } from '../../../services/api'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Modal } from 'antd'
@@ -26,8 +25,8 @@ const EditOtherInfoForm = (props) => {
     }
 
     const getStaffMembers = async () => {
-      const staffMembers = await axios.get('/staff')
-      props.setStaffMembers(staffMembers.data)
+      const staffMembers = await getStaffMembersOfLoggedInDiveCenter()
+      props.setStaffMembers(staffMembers)
     }
 
     getInsuranceProductCategory()
@@ -62,7 +61,7 @@ const EditOtherInfoForm = (props) => {
           validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true)
-            const updatedGuest = await axios.put('/guest', values)
+            const updatedGuest = await updateGuest(values)
             setGuest(updatedGuest.data)
             setSubmitting(false)
             setModalVisibility('editOtherInfo', false)

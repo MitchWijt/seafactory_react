@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Button from '../../../components/button'
 import { setGuest, setModalVisibility } from '../../../redux/actions/guestActions'
-import axios from 'axios'
 import moment from 'moment-timezone'
 import FormInput from '../../../components/formInput'
 import Select from '../../../components/select'
@@ -11,6 +10,9 @@ import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Modal } from 'antd'
 import { countrySelectValues } from '../../../lib/countryData'
+import { updateGuest } from '../../../services/api'
+
+
 
 const EditGuestInfoModal = (props) => {
   const { setGuest, setModalVisibility } = props
@@ -49,7 +51,7 @@ const EditGuestInfoModal = (props) => {
           validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true)
-            const updatedGuest = await axios.put('/guest', values)
+            const updatedGuest = await updateGuest(values)
             setGuest(updatedGuest.data)
             setSubmitting(false)
             setModalVisibility('editGuestInfo', false)

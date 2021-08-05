@@ -6,11 +6,10 @@ import { setCourseItems } from '../../../redux/actions/productItemsActions'
 import Select from '../../../components/select'
 import StaffMemberSelect from '../../../components/staffMemberSelect'
 import Button from '../../../components/button'
-import axios from 'axios'
 import { Formik } from 'formik'
 import Checkbox from '../../../components/checkbox'
 import * as Yup from 'yup'
-import { getProductCategory } from '../../../services/api';
+import { getProductCategory, putRegistrationCategoriesCourses } from '../../../services/api'
 
 const MODAL_VISIBILITY_NAME = 'addCourse'
 
@@ -54,7 +53,7 @@ const CourseModal = (props) => {
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true)
             values.staff = values.staff.map(staffMemberObject => staffMemberObject.initials)
-            const addCourseRequest = await axios.put('/registration-categories/courses', values)
+            const addCourseRequest = await putRegistrationCategoriesCourses(values)
             props.setCourses(addCourseRequest.data.courses)
             props.setModalVisibility(MODAL_VISIBILITY_NAME, false)
             setSubmitting(false)

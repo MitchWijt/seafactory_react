@@ -4,8 +4,7 @@ import Button from '../../../components/button'
 import { setAmountDue, setModalVisibility } from '../../../redux/actions/guestActions'
 import { setStaffMembers } from '../../../redux/actions/staffActions'
 import { parseArrayToSelectValues } from '../../../services/selectHelper'
-import { getAmountDue, getStaffMembersOfLoggedInDiveCenter } from "../../../services/api"
-import axios from 'axios'
+import { getAmountDue, getStaffMembersOfLoggedInDiveCenter, updateRegistrationCheckout } from "../../../services/api"
 import FormInput from '../../../components/formInput'
 import Select from '../../../components/select'
 import * as Yup from 'yup'
@@ -63,7 +62,7 @@ const CheckoutModal = (props) => {
           validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true)
-            await axios.put('/registration/checkout', values)
+            await updateRegistrationCheckout(values)
             setSubmitting(false)
             setModalVisibility('checkoutModal', false)
             window.location.reload()
