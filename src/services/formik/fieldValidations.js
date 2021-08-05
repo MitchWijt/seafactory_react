@@ -1,4 +1,5 @@
-import axios from 'axios'
+import { getIsEmailUnique } from '../../services/api'
+
 
 export const validateReqFieldsNotEmpty = (reqFields, values) => {
   const errors = {}
@@ -36,6 +37,6 @@ export const validatePassword = (password) => {
 }
 
 export const emailIsUnique = async (email) => {
-  const users = await axios(`/user?email=${email}`)
+  const users = await getIsEmailUnique(email)
   return users.data.length < 1
 }

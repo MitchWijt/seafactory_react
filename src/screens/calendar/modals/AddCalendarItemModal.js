@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Modal } from 'antd'
@@ -12,6 +11,7 @@ import Button from '../../../components/button'
 import { connect } from 'react-redux'
 import moment from 'moment-timezone'
 import { setAddCalendarItemModalVisibility } from '../../../redux/actions/calendarActions'
+import { postCalendar } from '../../../services/api'
 
 const AddCalendarItemModal = (props) => {
   const validationSchema = Yup.object({
@@ -49,7 +49,7 @@ const AddCalendarItemModal = (props) => {
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true)
           values.staff = values.staff.map(staffMemberObject => staffMemberObject.id)
-          await axios.post('/calendar', values)
+          await postCalendar(values)
           setSubmitting(false)
         }}
       >

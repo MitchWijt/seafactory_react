@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import urlParamsParser from '../../services/urlParamsParser'
-import axios from 'axios'
 import LoadingScreen from '../../components/loadingScreen'
 import { setGuests } from '../../redux/actions/guestListActions'
 import { setIsLoading } from '../../redux/actions/loadingActions'
@@ -9,6 +8,9 @@ import Button from '../../components/button'
 import Header from '../../components/header'
 import { FormatDate } from '../../services/dateFormatter'
 import DataTable from '../../components/dataTable'
+import { getGuestDataByUrl } from '../../services/api'
+
+
 
 const GuestList = (props) => {
   const { location, isLoading, guests, setIsLoading, setGuests } = props
@@ -16,7 +18,7 @@ const GuestList = (props) => {
   useEffect(() => {
     const url = getReqUrlBasedOnParams(location.search)
     const getGuests = async () => {
-      const res = await axios.get(url)
+      const res = await getGuestDataByUrl(url)
 
       setGuests(res.data)
       setIsLoading(false)

@@ -6,7 +6,6 @@ import { setInventoryItems } from '../../../redux/actions/inventoryActions'
 import { setModalVisibility, setRentals } from '../../../redux/actions/guestActions'
 import Button from '../../../components/button'
 import Select from '../../../components/select'
-import axios from 'axios'
 import { Formik } from 'formik'
 import Checkbox from '../../../components/checkbox'
 import FormInput from '../../../components/formInput'
@@ -14,7 +13,7 @@ import moment from 'moment-timezone'
 import DatePicker from '../../../components/datePicker'
 import { parseArrayToSelectValues } from '../../../services/selectHelper'
 import * as Yup from 'yup'
-import { getGuestRentalsData } from "../../../services/api"
+import { getGuestRentalsData, postRentals, getRentalItem, getInventoryItem } from '../../../services/api'
 
 
 
@@ -34,12 +33,12 @@ const validationSchema = Yup.object({
 const RentalModal = (props) => {
   useEffect(() => {
     const getRentalItems = async () => {
-      const rentalItemsRequest = await axios.get('/rental-item')
+      const rentalItemsRequest = getRentalItem()
       props.setRentalItems(rentalItemsRequest.data)
     }
 
     const getInventoryItems = async () => {
-      const inventoryItemsRequest = await axios.get('/inventory')
+      const inventoryItemsRequest = getInventoryItem()
       props.setInventoryItems(inventoryItemsRequest.data)
     }
 
@@ -78,7 +77,7 @@ const RentalModal = (props) => {
           validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true)
-            await axios.post('/rentals', values)
+            await postRentals(values)
 
             const guestRentalsData = getGuestRentalsData(props.guest._id)
             props.setRentals(guestRentalsData.data)

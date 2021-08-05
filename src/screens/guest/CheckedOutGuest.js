@@ -5,7 +5,6 @@ import { setGuest, setDives, setRetail, setCourses, setRentals } from '../../red
 import { setIsLoading } from '../../redux/actions/loadingActions'
 import LoadingScreen from '../../components/loadingScreen'
 import { FormatDate } from '../../services/dateFormatter'
-import axios from 'axios'
 import { Row, Col } from 'antd'
 import DataList from '../../components/dataList'
 import DataTable from '../../components/dataTable'

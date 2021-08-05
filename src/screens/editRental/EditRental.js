@@ -14,10 +14,9 @@ import FormInput from '../../components/formInput'
 import Select from '../../components/select'
 import moment from 'moment-timezone'
 import DatePicker from '../../components/datePicker'
-import axios from 'axios'
 import { parseArrayToSelectValues } from '../../services/selectHelper'
 import * as Yup from 'yup'
-import { getInventoryItems, getRentalById, getRentalItems } from '../../services/api'
+import { getInventoryItem, getRentalById, getRentalItem, updateRentalsById } from '../../services/api'
 
 const validationSchema = Yup.object({
   start_date: Yup.string()
@@ -39,8 +38,8 @@ const EditRental = (props) => {
     async function callApis () {
       const [rentalRequest, rentalItemsRequest, inventoryItemsRequest] = await Promise.all([
         getRentalById(rentalId),
-        getRentalItems(),
-        getInventoryItems()
+        getRentalItem(),
+        getInventoryItem()
       ])
 
       setSingleRental(rentalRequest.data)
@@ -51,7 +50,7 @@ const EditRental = (props) => {
 
     callApis()
     // getRentalItems()
-    // getInventoryItems()
+    // getInventoryItem()
     // getRental()
     // eslint-disable-next-line
   }, [])
@@ -90,7 +89,7 @@ const EditRental = (props) => {
                 validationSchema={validationSchema}
                 onSubmit={async (values, { setSubmitting }) => {
                   setSubmitting(true)
-                  await axios.put(`/rentals?id=${values.id}`, values)
+                  await updateRentalsById(values)
                   setSubmitting(false)
                   window.location.href = `/guest/${values.guest}`
                 }}

@@ -5,11 +5,10 @@ import { setRetailItems } from '../../../redux/actions/productItemsActions'
 import { setModalVisibility, setRetail } from '../../../redux/actions/guestActions'
 import Button from '../../../components/button'
 import Select from '../../../components/select'
-import axios from 'axios'
 import { Formik } from 'formik'
 import Checkbox from '../../../components/checkbox'
 import * as Yup from 'yup'
-import { getProductCategory } from '../../../services/api'
+import { getProductCategory, putRegistrationCategoriesRetail } from '../../../services/api'
 
 const MODAL_VISIBILITY_NAME = 'addRetail'
 
@@ -50,7 +49,7 @@ const RetailModal = (props) => {
           validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true)
-            const addRetailRequest = await axios.put('/registration-categories/retail', values)
+            const addRetailRequest = putRegistrationCategoriesRetail(values)
             props.setRetail(addRetailRequest.data.retail)
             props.setModalVisibility(MODAL_VISIBILITY_NAME, false)
             setSubmitting(false)
