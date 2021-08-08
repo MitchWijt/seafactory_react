@@ -18,7 +18,6 @@ import { Formik } from 'formik'
 import moment from 'moment-timezone'
 
 const Header = (props) => {
-  console.log(props.userState,'props.userState=>')
   return props.userState.isLoggedIn ? <HeaderLoggedIn {...props} /> : <HeaderLoggedOut />
 }
 
