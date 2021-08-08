@@ -2,7 +2,7 @@ import React from 'react'
 import '../style.css'
 import LockIcon from '@material-ui/icons/Lock'
 import RegisterBackgroundImage from '../../../components/registerBackgroundImage'
-import { StripeCheckout } from '../../../components'
+import StripeCheckout from '../../../components/StripeCheckout/StripeCheckout'
 
 const FourPayment = ({ history }) => {
   return (
