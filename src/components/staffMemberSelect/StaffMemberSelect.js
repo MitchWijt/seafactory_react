@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import SelectListItem from '../selectListItem'
+import SelectListItem from '../selectListItem/SelectListItem'
 import { connect } from 'react-redux'
 import { setStaffMembers, setChosenStaffMembers } from '../../redux/actions/staffActions'
-import Select from '../../components/select'
+import Select from '../../components/select/Select'
 import { getStaff, getStaffMembersOfLoggedInDiveCenter } from '../../services/api'
 
 const StaffMemberSelect = (props) => {

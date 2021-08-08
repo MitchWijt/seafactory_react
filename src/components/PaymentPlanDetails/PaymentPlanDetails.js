@@ -1,5 +1,5 @@
 import React from 'react'
-import Hr from '../hr/'
+import Hr from '../hr/Hr'
 
 const PaymentPlanDetails = (props) => {
   const { monthlyPrice, locations, maxCustomers } = props?.plan || {}

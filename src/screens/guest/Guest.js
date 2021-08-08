@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { setGuest } from '../../redux/actions/guestActions'
 import { setIsLoading } from '../../redux/actions/loadingActions'
-import LoadingScreen from '../../components/loadingScreen'
+import LoadingScreen from '../../components/loadingScreen/LoadingScreen'
 import ActiveGuest from './ActiveGuest'
 import CheckedOutGuest from './CheckedOutGuest'
 import { getGuestData } from "../../services/api"

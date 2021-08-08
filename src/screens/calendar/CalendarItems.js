@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'antd'
-import ContentCard from '../../components/contentCard'
-import ContentCircle from '../../components/contentCircle'
+import ContentCard from '../../components/contentCard/ContentCard'
+import ContentCircle from '../../components/contentCircle/ContentCircle'
 import { getCalendarItemPopover } from './calendarItemPopover'
 
 const CalendarItems = ({ calendarItems, calendarItemRefs, setCalendarItemPopover }) => {

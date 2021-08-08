@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import urlParamsParser from '../../services/urlParamsParser'
-import LoadingScreen from '../../components/loadingScreen'
+import LoadingScreen from '../../components/loadingScreen/LoadingScreen'
 import { setGuests } from '../../redux/actions/guestListActions'
 import { setIsLoading } from '../../redux/actions/loadingActions'
-import Button from '../../components/button'
-import Header from '../../components/header'
+import Button from '../../components/button/Button'
+import Header from '../../components/header/Header'
 import { FormatDate } from '../../services/dateFormatter'
-import DataTable from '../../components/dataTable'
+import DataTable from '../../components/dataTable/DataTable'
 import { getGuestDataByUrl } from '../../services/api'
 
 

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
-import Header from '../../components/header'
+import Header from '../../components/header/Header'
 import { connect } from 'react-redux'
 import { setGuest, setDives, setRetail, setCourses, setRentals } from '../../redux/actions/guestActions'
 import { setIsLoading } from '../../redux/actions/loadingActions'
-import LoadingScreen from '../../components/loadingScreen'
+import LoadingScreen from '../../components/loadingScreen/LoadingScreen'
 import { FormatDate } from '../../services/dateFormatter'
 import { Row, Col } from 'antd'
-import DataList from '../../components/dataList'
-import DataTable from '../../components/dataTable'
+import DataList from '../../components/dataList/DataList'
+import DataTable from '../../components/dataTable/DataTable'
 import moment from 'moment-timezone'
 import { getGuestData, getGuestRentalsData } from "../../services/api"
 

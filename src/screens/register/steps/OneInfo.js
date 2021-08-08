@@ -1,8 +1,8 @@
 import React from 'react'
 import '../style.css'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
-import RegisterBackgroundImage from '../../../components/registerBackgroundImage'
-import Button from '../../../components/button'
+import RegisterBackgroundImage from '../../../components/registerBackgroundImage/RegisterBackgroundImage'
+import Button from '../../../components/button/Button'
 import { withRouter } from 'react-router-dom'
 
 const OneInfo = (props) => {

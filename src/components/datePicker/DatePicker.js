@@ -3,7 +3,7 @@ import { DatePicker } from 'antd'
 import moment from 'moment-timezone'
 import './style.css'
 
-const FormInput = (props) => {
+const DatePick = (props) => {
   const className = props.error ? 'formInput errorStyle' : 'formInput'
   const defaultValue = props.defaultValue ? moment(props.defaultValue, 'YYYY-MM-DD') : null
 
@@ -15,4 +15,4 @@ const FormInput = (props) => {
   )
 }
 
-export default FormInput
+export default DatePick
