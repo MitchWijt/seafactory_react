@@ -1,5 +1,5 @@
 import React from 'react'
-import LoadingCircle from '../loadingCircle'
+import LoadingCircle from '../loadingCircle/LoadingCircle'
 import './style.css'
 
 const LoadingScreen = () => {

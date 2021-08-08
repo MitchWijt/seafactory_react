@@ -1,7 +1,7 @@
 import React from 'react'
-import Button from '../../../components/button'
+import Button from '../../../components/button/Button'
 import { Formik } from 'formik'
-import FormInput from '../../../components/formInput'
+import FormInput from '../../../components/formInput/FormInput'
 import { connect } from 'react-redux'
 import * as Yup from 'yup'
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import '../style.css'
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt'
-import RegisterBackgroundImage from '../../../components/registerBackgroundImage'
-import Button from '../../../components/button'
+import RegisterBackgroundImage from '../../../components/registerBackgroundImage/RegisterBackgroundImage'
+import Button from '../../../components/button/Button'
 
 const TwoInfo = ({ history }) => {
   const handleClick = () => {

@@ -10,8 +10,8 @@ import {
   setEditCalendarItemScreen
 } from '../../redux/actions/calendarActions'
 import { setIsLoading } from '../../redux/actions/loadingActions'
-import LoadingScreen from '../../components/loadingScreen'
-import Header from '../../components/header'
+import LoadingScreen from '../../components/loadingScreen/LoadingScreen'
+import Header from '../../components/header/Header'
 import { connect } from 'react-redux'
 import moment from 'moment-timezone'
 import RenderCalendar from './RenderCalendar'

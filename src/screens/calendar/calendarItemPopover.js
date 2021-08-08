@@ -1,6 +1,6 @@
 import React from 'react'
 import DescriptionIcon from '@material-ui/icons/Description'
-import Popover from '../../components/popover'
+import Popover from '../../components/popover/Popover'
 import CloseIcon from '@material-ui/icons/Close'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'

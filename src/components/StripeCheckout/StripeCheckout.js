@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { withRouter } from 'react-router-dom'
 
-import Button from '../button'
+import Button from '../button/Button'
 
 const StripeCheckout = ({ history }) => {
   // Get the lookup key for the price from the previous page redirect.

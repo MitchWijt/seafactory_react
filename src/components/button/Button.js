@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-import LoadingCircle from '../loadingCircle'
+import LoadingCircle from '../loadingCircle/LoadingCircle'
 import { StyledButton } from './style'
 
 const Button = (props) => {

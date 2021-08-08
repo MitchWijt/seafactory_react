@@ -1,8 +1,8 @@
 import React from 'react'
-import Button from '../button'
+import Button from '../button/Button'
 import './style.css'
 import { Divider, Row, Col, DatePicker } from 'antd'
-import Hr from '../hr'
+import Hr from '../hr/Hr'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PersonIcon from '@material-ui/icons/Person'
@@ -18,6 +18,7 @@ import { Formik } from 'formik'
 import moment from 'moment-timezone'
 
 const Header = (props) => {
+  console.log(props.userState,'props.userState=>')
   return props.userState.isLoggedIn ? <HeaderLoggedIn {...props} /> : <HeaderLoggedOut />
 }
 
