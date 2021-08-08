@@ -7,7 +7,8 @@ import { connect } from 'react-redux'
 import Button from '../../../components/button'
 import { FlexContainer } from '../../../lib/styled-components'
 import { getPaymentPlans } from '../../../services/api'
-import { PaymentPlanDetails, PlanButton } from '../../../components'
+import PaymentPlanDetails from '../../../components/PaymentPlanDetails/PaymentPlanDetails'
+import PlanButton from '../../../components/PlanButton/PlanButton'
 
 const OnePlans = (props) => {
   const { currentChosenPremiumPlan, choosePlan } = props
